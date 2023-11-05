@@ -1,0 +1,1104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1125</width>
+    <height>618</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <property name="spacing">
+     <number>0</number>
+    </property>
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
+    <item>
+     <widget class="QFrame" name="frame">
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(253, 240, 213);</string>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_2" stretch="1,8">
+       <property name="spacing">
+        <number>5</number>
+       </property>
+       <property name="leftMargin">
+        <number>5</number>
+       </property>
+       <property name="topMargin">
+        <number>5</number>
+       </property>
+       <property name="rightMargin">
+        <number>5</number>
+       </property>
+       <property name="bottomMargin">
+        <number>5</number>
+       </property>
+       <item>
+        <widget class="QFrame" name="frame_superior">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>42</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QFrame{
+background-color:rgb(0, 48, 73);
+border-radius:20px;
+}
+
+QPushButton{
+background-color:rgb(0, 48, 73);
+border-radius:20px;
+}
+
+QPushButton:hover{
+background-color:rgb(102, 155, 188);
+border-radius:20px;
+}</string>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout">
+          <item>
+           <widget class="QPushButton" name="pushButton_2">
+            <property name="minimumSize">
+             <size>
+              <width>300</width>
+              <height>40</height>
+             </size>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset>
+              <normaloff>Imagenes/menu-burger.svg</normaloff>Imagenes/menu-burger.svg</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>38</width>
+              <height>38</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>442</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btn_minimizar">
+            <property name="minimumSize">
+             <size>
+              <width>80</width>
+              <height>40</height>
+             </size>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset>
+              <normaloff>Imagenes/horizontal-rule.svg</normaloff>Imagenes/horizontal-rule.svg</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>38</width>
+              <height>38</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btn_pestana">
+            <property name="minimumSize">
+             <size>
+              <width>80</width>
+              <height>40</height>
+             </size>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset>
+              <normaloff>Imagenes/window-restore.svg</normaloff>Imagenes/window-restore.svg</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>38</width>
+              <height>38</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btn_maximizar">
+            <property name="minimumSize">
+             <size>
+              <width>80</width>
+              <height>40</height>
+             </size>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset>
+              <normaloff>Imagenes/window-maximize.svg</normaloff>Imagenes/window-maximize.svg</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>38</width>
+              <height>38</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btn_cerrar">
+            <property name="minimumSize">
+             <size>
+              <width>80</width>
+              <height>40</height>
+             </size>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset>
+              <normaloff>Imagenes/x.svg</normaloff>Imagenes/x.svg</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>38</width>
+              <height>38</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QFrame" name="frame_main">
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_2">
+          <item>
+           <widget class="QFrame" name="frame_control">
+            <property name="minimumSize">
+             <size>
+              <width>300</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>0</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QFrame{
+background-color:rgb(0, 48, 73);
+border-radius:20px;
+}
+
+QPushButton{
+background-color:rgb(102, 155, 188);
+border-top-left-radius:20px;
+border-bottom-left-radius:20px;
+border-radius:20px;
+color:rgb(253, 240, 213);
+font: 77 10pt &quot;Arial Black&quot;;
+border-color:rgb(253, 240, 213);
+}
+
+QPushButton:hover{
+background-color:rgb(255, 255, 255);
+border-top-left-radius:20px;
+border-bottom-left-radius:20px;
+border-radius:20px;
+color:rgb(0, 48, 73);
+font: 77 10pt &quot;Arial Black&quot;;
+}</string>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_4">
+             <item>
+              <widget class="QPushButton" name="btn_inventario">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>50</height>
+                </size>
+               </property>
+               <property name="text">
+                <string>    INVENTARIO</string>
+               </property>
+               <property name="icon">
+                <iconset>
+                 <normaloff>Imagenes/list-check.svg</normaloff>Imagenes/list-check.svg</iconset>
+               </property>
+               <property name="iconSize">
+                <size>
+                 <width>35</width>
+                 <height>35</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="btn_ventas">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>50</height>
+                </size>
+               </property>
+               <property name="text">
+                <string>   VENTAS</string>
+               </property>
+               <property name="icon">
+                <iconset>
+                 <normaloff>Imagenes/comment-dollar.svg</normaloff>Imagenes/comment-dollar.svg</iconset>
+               </property>
+               <property name="iconSize">
+                <size>
+                 <width>35</width>
+                 <height>35</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="btn_cote_de_caja">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>50</height>
+                </size>
+               </property>
+               <property name="text">
+                <string>    CORTE DE CAJA</string>
+               </property>
+               <property name="icon">
+                <iconset>
+                 <normaloff>Imagenes/cash-register.svg</normaloff>Imagenes/cash-register.svg</iconset>
+               </property>
+               <property name="iconSize">
+                <size>
+                 <width>35</width>
+                 <height>35</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="btn_estadisticas">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>50</height>
+                </size>
+               </property>
+               <property name="text">
+                <string>    ESTADISTICAS</string>
+               </property>
+               <property name="icon">
+                <iconset>
+                 <normaloff>Imagenes/chart-histogram.svg</normaloff>Imagenes/chart-histogram.svg</iconset>
+               </property>
+               <property name="iconSize">
+                <size>
+                 <width>35</width>
+                 <height>35</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="btn_temperaturas">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>50</height>
+                </size>
+               </property>
+               <property name="text">
+                <string>    TEMPERATURAS</string>
+               </property>
+               <property name="icon">
+                <iconset>
+                 <normaloff>Imagenes/snowflake.svg</normaloff>Imagenes/snowflake.svg</iconset>
+               </property>
+               <property name="iconSize">
+                <size>
+                 <width>35</width>
+                 <height>35</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QFrame" name="frame_paginas">
+            <property name="styleSheet">
+             <string notr="true"/>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_3" stretch="0,0">
+             <item>
+              <widget class="QFrame" name="frame_temperaturas">
+               <property name="styleSheet">
+                <string notr="true">QLabel{
+color:rgb(0, 48, 73);
+font: 77 16pt &quot;Arial Black&quot;;
+}</string>
+               </property>
+               <property name="frameShape">
+                <enum>QFrame::StyledPanel</enum>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Raised</enum>
+               </property>
+               <layout class="QHBoxLayout" name="horizontalLayout_3">
+                <item>
+                 <widget class="QLabel" name="lbl_titulo_empresa">
+                  <property name="text">
+                   <string>FRESH MEAT SOFT</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="lbl_logo_empresa">
+                  <property name="minimumSize">
+                   <size>
+                    <width>60</width>
+                    <height>60</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>60</width>
+                    <height>60</height>
+                   </size>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                  <property name="pixmap">
+                   <pixmap>Imagenes/Logo.png</pixmap>
+                  </property>
+                  <property name="scaledContents">
+                   <bool>true</bool>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <spacer name="horizontalSpacer_2">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>332</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+                <item>
+                 <widget class="QLabel" name="lbl_imagen_termometro">
+                  <property name="minimumSize">
+                   <size>
+                    <width>50</width>
+                    <height>50</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>50</width>
+                    <height>50</height>
+                   </size>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                  <property name="pixmap">
+                   <pixmap>Imagenes/temperature-high.svg</pixmap>
+                  </property>
+                  <property name="scaledContents">
+                   <bool>true</bool>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="lbl_temperatura_actual">
+                  <property name="text">
+                   <string>40</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QComboBox" name="comboBox_temperaturas">
+                  <property name="minimumSize">
+                   <size>
+                    <width>60</width>
+                    <height>0</height>
+                   </size>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">QComboBox{
+border: 1px solid rgb(0, 48, 73);
+border-radius:4px;
+padding-left:10px;
+font:75 12pt &quot;Arial Black&quot;;
+color: rgb(0, 48, 73);
+}
+
+QComboBox::drop-down{
+border: 0px;
+}
+
+QComboBox::down-arrow{
+width:12px;
+height:12px;
+margin-right:15px;
+}
+
+QComboBox::on{
+border: 4px solid rgb(102, 155, 188);
+}</string>
+                  </property>
+                  <item>
+                   <property name="text">
+                    <string>°C</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>°F</string>
+                   </property>
+                  </item>
+                 </widget>
+                </item>
+               </layout>
+               <zorder>lbl_titulo_empresa</zorder>
+               <zorder>lbl_temperatura_actual</zorder>
+               <zorder>lbl_imagen_termometro</zorder>
+               <zorder>horizontalSpacer_2</zorder>
+               <zorder>lbl_logo_empresa</zorder>
+               <zorder>comboBox_temperaturas</zorder>
+              </widget>
+             </item>
+             <item>
+              <widget class="QFrame" name="frame_contenido">
+               <property name="styleSheet">
+                <string notr="true">QComboBox{
+border: 1px solid rgb(0, 48, 73);
+border-radius:4px;
+padding-left:10px;
+font:75 12pt &quot;Times New Roman&quot;;
+}
+
+QComboBox::drop-down{
+border: 0px;
+}
+
+QComboBox::down-arrow{
+width:12px;
+height:12px;
+margin-right:15px;
+}
+
+QComboBox::on{
+border: 4px solid rgb(102, 155, 188);
+}
+
+
+
+QFrame{
+background-color:rgb(253, 240, 213);
+border-radius:20px;
+}
+
+QLabel{
+font: 87 12pt &quot;Arial Black&quot;;
+background-color:rgb();
+color:rgb(0, 48, 73);
+}
+
+QLineEdit{
+border:0px;
+color:rgb(0, 48, 73);
+border-bottom:2px solid rgb(61,61,61);
+font: 75 12pt &quot;Times New Roman&quot;;
+}
+
+QPushButton{
+background-color:rgb(0, 48, 73);
+border-top-left-radius:20px;
+border-bottom-left-radius:20px;
+border-radius:20px;
+color:rgb(253, 240, 213);
+font: 77 10pt &quot;Arial Black&quot;;
+border-color:rgb(253, 240, 213);
+}
+
+QPushButton:hover{
+background-color:rgb(102, 155, 188);
+border-top-left-radius:20px;
+border-bottom-left-radius:20px;
+border-radius:20px;
+color:rgb(0, 48, 73);
+font: 77 10pt &quot;Arial Black&quot;;
+}
+
+QTableWidget{
+background-color:rgb(255, 255, 255);
+color:rgb(0, 48, 73);
+gridline-color:rgb(0, 48, 73);
+font-size:(12pt);
+color:#000000;
+}
+
+QHeaderView::section{
+background-color: rgb(0, 48, 73);
+border: 1px solid rgb(0,0,0);
+font-size: 12pt;
+color:rgb(253, 240, 213);
+}
+
+QTableWidget QTableCornerButton::Section{
+background-color:rgb(0,0,0);
+border: 1px: solid: rgb(0, 206, 152);
+}
+
+
+
+
+</string>
+               </property>
+               <property name="frameShape">
+                <enum>QFrame::StyledPanel</enum>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Raised</enum>
+               </property>
+               <layout class="QHBoxLayout" name="horizontalLayout_4">
+                <property name="spacing">
+                 <number>0</number>
+                </property>
+                <property name="leftMargin">
+                 <number>1</number>
+                </property>
+                <property name="topMargin">
+                 <number>1</number>
+                </property>
+                <property name="rightMargin">
+                 <number>1</number>
+                </property>
+                <property name="bottomMargin">
+                 <number>1</number>
+                </property>
+                <item>
+                 <widget class="QStackedWidget" name="stackedWidget_menu">
+                  <property name="enabled">
+                   <bool>true</bool>
+                  </property>
+                  <property name="currentIndex">
+                   <number>3</number>
+                  </property>
+                  <widget class="QWidget" name="page_temperaturas"/>
+                  <widget class="QWidget" name="page_estadisticas"/>
+                  <widget class="QWidget" name="page_corte_de_caja"/>
+                  <widget class="QWidget" name="page_agregar_inventario">
+                   <layout class="QVBoxLayout" name="verticalLayout_11">
+                    <item>
+                     <layout class="QVBoxLayout" name="verticalLayout_10">
+                      <item>
+                       <widget class="QLabel" name="label_7">
+                        <property name="font">
+                         <font>
+                          <family>Arial Black</family>
+                          <pointsize>12</pointsize>
+                          <italic>false</italic>
+                          <bold>false</bold>
+                         </font>
+                        </property>
+                        <property name="text">
+                         <string>AGREGAR PRODUCTO</string>
+                        </property>
+                        <property name="alignment">
+                         <set>Qt::AlignCenter</set>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <spacer name="verticalSpacer_2">
+                        <property name="orientation">
+                         <enum>Qt::Vertical</enum>
+                        </property>
+                        <property name="sizeHint" stdset="0">
+                         <size>
+                          <width>20</width>
+                          <height>40</height>
+                         </size>
+                        </property>
+                       </spacer>
+                      </item>
+                      <item>
+                       <layout class="QHBoxLayout" name="horizontalLayout_7">
+                        <property name="spacing">
+                         <number>30</number>
+                        </property>
+                        <item>
+                         <layout class="QVBoxLayout" name="verticalLayout_7">
+                          <property name="spacing">
+                           <number>30</number>
+                          </property>
+                          <item>
+                           <widget class="QLabel" name="label">
+                            <property name="text">
+                             <string>Nombre:</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QLabel" name="label_2">
+                            <property name="text">
+                             <string>Descripcion:</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QLabel" name="label_5">
+                            <property name="text">
+                             <string>Categoria:</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QLabel" name="label_6">
+                            <property name="text">
+                             <string>SubCategoria:</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QLabel" name="label_4">
+                            <property name="text">
+                             <string>Precio:</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QLabel" name="label_3">
+                            <property name="text">
+                             <string>Cantidad:</string>
+                            </property>
+                           </widget>
+                          </item>
+                         </layout>
+                        </item>
+                        <item>
+                         <layout class="QVBoxLayout" name="verticalLayout_6">
+                          <item>
+                           <widget class="QLineEdit" name="lineEdit">
+                            <property name="minimumSize">
+                             <size>
+                              <width>0</width>
+                              <height>0</height>
+                             </size>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QLineEdit" name="lineEdit_2">
+                            <property name="minimumSize">
+                             <size>
+                              <width>0</width>
+                              <height>0</height>
+                             </size>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QComboBox" name="comboBox">
+                            <property name="contextMenuPolicy">
+                             <enum>Qt::DefaultContextMenu</enum>
+                            </property>
+                            <property name="currentText">
+                             <string>Carne</string>
+                            </property>
+                            <item>
+                             <property name="text">
+                              <string>Carne</string>
+                             </property>
+                            </item>
+                            <item>
+                             <property name="text">
+                              <string>Verdura</string>
+                             </property>
+                            </item>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QComboBox" name="comboBox_2">
+                            <item>
+                             <property name="text">
+                              <string>Cerdo</string>
+                             </property>
+                            </item>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QLineEdit" name="lineEdit_4">
+                            <property name="minimumSize">
+                             <size>
+                              <width>0</width>
+                              <height>0</height>
+                             </size>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QLineEdit" name="lineEdit_3">
+                            <property name="minimumSize">
+                             <size>
+                              <width>0</width>
+                              <height>0</height>
+                             </size>
+                            </property>
+                           </widget>
+                          </item>
+                         </layout>
+                        </item>
+                        <item>
+                         <spacer name="horizontalSpacer_7">
+                          <property name="orientation">
+                           <enum>Qt::Horizontal</enum>
+                          </property>
+                          <property name="sizeHint" stdset="0">
+                           <size>
+                            <width>40</width>
+                            <height>20</height>
+                           </size>
+                          </property>
+                         </spacer>
+                        </item>
+                       </layout>
+                      </item>
+                      <item>
+                       <spacer name="verticalSpacer">
+                        <property name="orientation">
+                         <enum>Qt::Vertical</enum>
+                        </property>
+                        <property name="sizeHint" stdset="0">
+                         <size>
+                          <width>20</width>
+                          <height>40</height>
+                         </size>
+                        </property>
+                       </spacer>
+                      </item>
+                     </layout>
+                    </item>
+                    <item>
+                     <layout class="QHBoxLayout" name="horizontalLayout_9">
+                      <item>
+                       <spacer name="horizontalSpacer_6">
+                        <property name="orientation">
+                         <enum>Qt::Horizontal</enum>
+                        </property>
+                        <property name="sizeHint" stdset="0">
+                         <size>
+                          <width>40</width>
+                          <height>20</height>
+                         </size>
+                        </property>
+                       </spacer>
+                      </item>
+                      <item>
+                       <widget class="QPushButton" name="btn_agregar_producto">
+                        <property name="minimumSize">
+                         <size>
+                          <width>120</width>
+                          <height>40</height>
+                         </size>
+                        </property>
+                        <property name="text">
+                         <string>Agregar</string>
+                        </property>
+                        <property name="iconSize">
+                         <size>
+                          <width>40</width>
+                          <height>40</height>
+                         </size>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </item>
+                   </layout>
+                  </widget>
+                  <widget class="QWidget" name="page_editar_inventario"/>
+                  <widget class="QWidget" name="page_eliminar_inventario"/>
+                  <widget class="QWidget" name="page_inventario">
+                   <layout class="QVBoxLayout" name="verticalLayout_5">
+                    <item>
+                     <widget class="QLabel" name="lbl_titulo_inventario">
+                      <property name="text">
+                       <string>INVENTARIO</string>
+                      </property>
+                      <property name="alignment">
+                       <set>Qt::AlignCenter</set>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <layout class="QHBoxLayout" name="horizontalLayout_6">
+                      <item>
+                       <widget class="QTableWidget" name="tabla_inventario">
+                        <property name="enabled">
+                         <bool>true</bool>
+                        </property>
+                        <property name="sizePolicy">
+                         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                          <horstretch>0</horstretch>
+                          <verstretch>0</verstretch>
+                         </sizepolicy>
+                        </property>
+                        <property name="minimumSize">
+                         <size>
+                          <width>0</width>
+                          <height>0</height>
+                         </size>
+                        </property>
+                        <property name="layoutDirection">
+                         <enum>Qt::LeftToRight</enum>
+                        </property>
+                        <property name="autoFillBackground">
+                         <bool>false</bool>
+                        </property>
+                        <column>
+                         <property name="text">
+                          <string>id</string>
+                         </property>
+                         <property name="font">
+                          <font>
+                           <family>Arial Black</family>
+                          </font>
+                         </property>
+                        </column>
+                        <column>
+                         <property name="text">
+                          <string>Nombre</string>
+                         </property>
+                        </column>
+                        <column>
+                         <property name="text">
+                          <string>Descripcion</string>
+                         </property>
+                        </column>
+                        <column>
+                         <property name="text">
+                          <string>Categoria</string>
+                         </property>
+                        </column>
+                        <column>
+                         <property name="text">
+                          <string>SubCategoria</string>
+                         </property>
+                        </column>
+                        <column>
+                         <property name="text">
+                          <string>Precio</string>
+                         </property>
+                        </column>
+                        <column>
+                         <property name="text">
+                          <string>Cantidad</string>
+                         </property>
+                        </column>
+                       </widget>
+                      </item>
+                     </layout>
+                    </item>
+                    <item>
+                     <layout class="QHBoxLayout" name="horizontalLayout_5">
+                      <item>
+                       <widget class="QPushButton" name="btn_agregar_inventario">
+                        <property name="minimumSize">
+                         <size>
+                          <width>120</width>
+                          <height>40</height>
+                         </size>
+                        </property>
+                        <property name="text">
+                         <string>Agregar</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <spacer name="horizontalSpacer_3">
+                        <property name="orientation">
+                         <enum>Qt::Horizontal</enum>
+                        </property>
+                        <property name="sizeHint" stdset="0">
+                         <size>
+                          <width>40</width>
+                          <height>20</height>
+                         </size>
+                        </property>
+                       </spacer>
+                      </item>
+                      <item>
+                       <widget class="QPushButton" name="btn_editar_inventario">
+                        <property name="minimumSize">
+                         <size>
+                          <width>120</width>
+                          <height>40</height>
+                         </size>
+                        </property>
+                        <property name="text">
+                         <string>Editar</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <spacer name="horizontalSpacer_4">
+                        <property name="orientation">
+                         <enum>Qt::Horizontal</enum>
+                        </property>
+                        <property name="sizeHint" stdset="0">
+                         <size>
+                          <width>40</width>
+                          <height>20</height>
+                         </size>
+                        </property>
+                       </spacer>
+                      </item>
+                      <item>
+                       <widget class="QPushButton" name="btn_eliminar_inventario">
+                        <property name="minimumSize">
+                         <size>
+                          <width>120</width>
+                          <height>40</height>
+                         </size>
+                        </property>
+                        <property name="text">
+                         <string>Eliminar</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <spacer name="horizontalSpacer_5">
+                        <property name="orientation">
+                         <enum>Qt::Horizontal</enum>
+                        </property>
+                        <property name="sizeHint" stdset="0">
+                         <size>
+                          <width>40</width>
+                          <height>20</height>
+                         </size>
+                        </property>
+                       </spacer>
+                      </item>
+                      <item>
+                       <widget class="QPushButton" name="btn_actualizar_inventario">
+                        <property name="minimumSize">
+                         <size>
+                          <width>120</width>
+                          <height>40</height>
+                         </size>
+                        </property>
+                        <property name="text">
+                         <string>Actualizar</string>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </item>
+                   </layout>
+                  </widget>
+                  <widget class="QWidget" name="page_ventas"/>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources>
+  <include location="Imagenes/Resource.qrc"/>
+ </resources>
+ <connections/>
+</ui>

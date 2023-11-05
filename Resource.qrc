@@ -1,0 +1,20 @@
+<RCC>
+  <qresource prefix="Iconos">
+    <file>bars-sort.svg</file>
+    <file>cash-register.svg</file>
+    <file>chart-histogram.svg</file>
+    <file>comment-dollar.svg</file>
+    <file>horizontal-rule.svg</file>
+    <file>list-check.svg</file>
+    <file>Logo.png</file>
+    <file>Logo.svg</file>
+    <file>menu-burger.svg</file>
+    <file>shopping-cart.svg</file>
+    <file>snowflake.svg</file>
+    <file>sort-down.svg</file>
+    <file>temperature-high.svg</file>
+    <file>window-maximize.svg</file>
+    <file>window-restore.svg</file>
+    <file>x.svg</file>
+  </qresource>
+</RCC>
