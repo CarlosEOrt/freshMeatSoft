@@ -14,10 +14,7 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QVBoxLayout" name="verticalLayout">
-    <property name="spacing">
-     <number>0</number>
-    </property>
+   <layout class="QGridLayout" name="gridLayout">
     <property name="leftMargin">
      <number>0</number>
     </property>
@@ -30,7 +27,7 @@
     <property name="bottomMargin">
      <number>0</number>
     </property>
-    <item>
+    <item row="0" column="0">
      <widget class="QFrame" name="frame">
       <property name="styleSheet">
        <string notr="true">background-color: rgb(253, 240, 213);</string>
@@ -684,7 +681,7 @@ border: 1px: solid: rgb(0, 206, 152);
                    <bool>true</bool>
                   </property>
                   <property name="currentIndex">
-                   <number>7</number>
+                   <number>8</number>
                   </property>
                   <widget class="QWidget" name="page_temperaturas"/>
                   <widget class="QWidget" name="page_estadisticas"/>
@@ -1591,6 +1588,19 @@ border: 1px: solid: rgb(0, 206, 152);
                     <item>
                      <layout class="QHBoxLayout" name="horizontalLayout_5">
                       <item>
+                       <spacer name="horizontalSpacer_3">
+                        <property name="orientation">
+                         <enum>Qt::Horizontal</enum>
+                        </property>
+                        <property name="sizeHint" stdset="0">
+                         <size>
+                          <width>40</width>
+                          <height>20</height>
+                         </size>
+                        </property>
+                       </spacer>
+                      </item>
+                      <item>
                        <widget class="QPushButton" name="btn_agregar_inventario">
                         <property name="minimumSize">
                          <size>
@@ -1603,8 +1613,92 @@ border: 1px: solid: rgb(0, 206, 152);
                         </property>
                        </widget>
                       </item>
+                     </layout>
+                    </item>
+                   </layout>
+                  </widget>
+                  <widget class="QWidget" name="page_mostrar_seleccion">
+                   <layout class="QVBoxLayout" name="verticalLayout_12">
+                    <item>
+                     <widget class="QLabel" name="lbl_nombre">
+                      <property name="text">
+                       <string>Nombre Producto</string>
+                      </property>
+                      <property name="alignment">
+                       <set>Qt::AlignCenter</set>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLabel" name="lbl_descripcion">
+                      <property name="text">
+                       <string>Descripcion Producto</string>
+                      </property>
+                      <property name="alignment">
+                       <set>Qt::AlignCenter</set>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLabel" name="lbl_categoria">
+                      <property name="text">
+                       <string>Categoria Producto</string>
+                      </property>
+                      <property name="alignment">
+                       <set>Qt::AlignCenter</set>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLabel" name="lbl_subcategoria">
+                      <property name="text">
+                       <string>SubCategoria Producto</string>
+                      </property>
+                      <property name="alignment">
+                       <set>Qt::AlignCenter</set>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLabel" name="lbl_precio">
+                      <property name="text">
+                       <string>Precio</string>
+                      </property>
+                      <property name="alignment">
+                       <set>Qt::AlignCenter</set>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLabel" name="lbl_cantidad">
+                      <property name="text">
+                       <string>Cantidad</string>
+                      </property>
+                      <property name="alignment">
+                       <set>Qt::AlignCenter</set>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <spacer name="verticalSpacer_4">
+                      <property name="orientation">
+                       <enum>Qt::Vertical</enum>
+                      </property>
+                      <property name="sizeType">
+                       <enum>QSizePolicy::Minimum</enum>
+                      </property>
+                      <property name="sizeHint" stdset="0">
+                       <size>
+                        <width>20</width>
+                        <height>40</height>
+                       </size>
+                      </property>
+                     </spacer>
+                    </item>
+                    <item>
+                     <layout class="QHBoxLayout" name="horizontalLayout_12">
                       <item>
-                       <spacer name="horizontalSpacer_3">
+                       <spacer name="horizontalSpacer_5">
                         <property name="orientation">
                          <enum>Qt::Horizontal</enum>
                         </property>
@@ -1627,10 +1721,16 @@ border: 1px: solid: rgb(0, 206, 152);
                         <property name="text">
                          <string>Editar</string>
                         </property>
+                        <property name="iconSize">
+                         <size>
+                          <width>16</width>
+                          <height>16</height>
+                         </size>
+                        </property>
                        </widget>
                       </item>
                       <item>
-                       <spacer name="horizontalSpacer_4">
+                       <spacer name="horizontalSpacer_14">
                         <property name="orientation">
                          <enum>Qt::Horizontal</enum>
                         </property>
@@ -1656,7 +1756,7 @@ border: 1px: solid: rgb(0, 206, 152);
                        </widget>
                       </item>
                       <item>
-                       <spacer name="horizontalSpacer_5">
+                       <spacer name="horizontalSpacer_15">
                         <property name="orientation">
                          <enum>Qt::Horizontal</enum>
                         </property>
@@ -1667,19 +1767,6 @@ border: 1px: solid: rgb(0, 206, 152);
                          </size>
                         </property>
                        </spacer>
-                      </item>
-                      <item>
-                       <widget class="QPushButton" name="btn_actualizar_inventario">
-                        <property name="minimumSize">
-                         <size>
-                          <width>120</width>
-                          <height>40</height>
-                         </size>
-                        </property>
-                        <property name="text">
-                         <string>Actualizar</string>
-                        </property>
-                       </widget>
                       </item>
                      </layout>
                     </item>

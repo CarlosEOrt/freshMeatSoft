@@ -15,10 +15,11 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QComboBox, QFrame, QHBoxLayout,
-    QHeaderView, QLabel, QLineEdit, QMainWindow,
-    QPushButton, QSizePolicy, QSpacerItem, QStackedWidget,
-    QTableWidget, QTableWidgetItem, QVBoxLayout, QWidget)
+from PySide6.QtWidgets import (QApplication, QComboBox, QFrame, QGridLayout,
+    QHBoxLayout, QHeaderView, QLabel, QLineEdit,
+    QMainWindow, QPushButton, QSizePolicy, QSpacerItem,
+    QStackedWidget, QTableWidget, QTableWidgetItem, QVBoxLayout,
+    QWidget)
 import Resource_rc
 
 class Ui_MainWindow(object):
@@ -28,10 +29,9 @@ class Ui_MainWindow(object):
         MainWindow.resize(1125, 618)
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
-        self.verticalLayout = QVBoxLayout(self.centralwidget)
-        self.verticalLayout.setSpacing(0)
-        self.verticalLayout.setObjectName(u"verticalLayout")
-        self.verticalLayout.setContentsMargins(0, 0, 0, 0)
+        self.gridLayout = QGridLayout(self.centralwidget)
+        self.gridLayout.setObjectName(u"gridLayout")
+        self.gridLayout.setContentsMargins(0, 0, 0, 0)
         self.frame = QFrame(self.centralwidget)
         self.frame.setObjectName(u"frame")
         self.frame.setStyleSheet(u"background-color: rgb(253, 240, 213);")
@@ -881,46 +881,95 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_5 = QHBoxLayout()
         self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
+        self.horizontalSpacer_3 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_5.addItem(self.horizontalSpacer_3)
+
         self.btn_agregar_inventario = QPushButton(self.page_inventario)
         self.btn_agregar_inventario.setObjectName(u"btn_agregar_inventario")
         self.btn_agregar_inventario.setMinimumSize(QSize(120, 40))
 
         self.horizontalLayout_5.addWidget(self.btn_agregar_inventario)
 
-        self.horizontalSpacer_3 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.horizontalLayout_5.addItem(self.horizontalSpacer_3)
-
-        self.btn_editar_inventario = QPushButton(self.page_inventario)
-        self.btn_editar_inventario.setObjectName(u"btn_editar_inventario")
-        self.btn_editar_inventario.setMinimumSize(QSize(120, 40))
-
-        self.horizontalLayout_5.addWidget(self.btn_editar_inventario)
-
-        self.horizontalSpacer_4 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.horizontalLayout_5.addItem(self.horizontalSpacer_4)
-
-        self.btn_eliminar_inventario = QPushButton(self.page_inventario)
-        self.btn_eliminar_inventario.setObjectName(u"btn_eliminar_inventario")
-        self.btn_eliminar_inventario.setMinimumSize(QSize(120, 40))
-
-        self.horizontalLayout_5.addWidget(self.btn_eliminar_inventario)
-
-        self.horizontalSpacer_5 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.horizontalLayout_5.addItem(self.horizontalSpacer_5)
-
-        self.btn_actualizar_inventario = QPushButton(self.page_inventario)
-        self.btn_actualizar_inventario.setObjectName(u"btn_actualizar_inventario")
-        self.btn_actualizar_inventario.setMinimumSize(QSize(120, 40))
-
-        self.horizontalLayout_5.addWidget(self.btn_actualizar_inventario)
-
 
         self.verticalLayout_5.addLayout(self.horizontalLayout_5)
 
         self.stackedWidget_menu.addWidget(self.page_inventario)
+        self.page_mostrar_seleccion = QWidget()
+        self.page_mostrar_seleccion.setObjectName(u"page_mostrar_seleccion")
+        self.verticalLayout_12 = QVBoxLayout(self.page_mostrar_seleccion)
+        self.verticalLayout_12.setObjectName(u"verticalLayout_12")
+        self.lbl_nombre = QLabel(self.page_mostrar_seleccion)
+        self.lbl_nombre.setObjectName(u"lbl_nombre")
+        self.lbl_nombre.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout_12.addWidget(self.lbl_nombre)
+
+        self.lbl_descripcion = QLabel(self.page_mostrar_seleccion)
+        self.lbl_descripcion.setObjectName(u"lbl_descripcion")
+        self.lbl_descripcion.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout_12.addWidget(self.lbl_descripcion)
+
+        self.lbl_categoria = QLabel(self.page_mostrar_seleccion)
+        self.lbl_categoria.setObjectName(u"lbl_categoria")
+        self.lbl_categoria.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout_12.addWidget(self.lbl_categoria)
+
+        self.lbl_subcategoria = QLabel(self.page_mostrar_seleccion)
+        self.lbl_subcategoria.setObjectName(u"lbl_subcategoria")
+        self.lbl_subcategoria.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout_12.addWidget(self.lbl_subcategoria)
+
+        self.lbl_precio = QLabel(self.page_mostrar_seleccion)
+        self.lbl_precio.setObjectName(u"lbl_precio")
+        self.lbl_precio.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout_12.addWidget(self.lbl_precio)
+
+        self.lbl_cantidad = QLabel(self.page_mostrar_seleccion)
+        self.lbl_cantidad.setObjectName(u"lbl_cantidad")
+        self.lbl_cantidad.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout_12.addWidget(self.lbl_cantidad)
+
+        self.verticalSpacer_4 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Minimum)
+
+        self.verticalLayout_12.addItem(self.verticalSpacer_4)
+
+        self.horizontalLayout_12 = QHBoxLayout()
+        self.horizontalLayout_12.setObjectName(u"horizontalLayout_12")
+        self.horizontalSpacer_5 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_12.addItem(self.horizontalSpacer_5)
+
+        self.btn_editar_inventario = QPushButton(self.page_mostrar_seleccion)
+        self.btn_editar_inventario.setObjectName(u"btn_editar_inventario")
+        self.btn_editar_inventario.setMinimumSize(QSize(120, 40))
+        self.btn_editar_inventario.setIconSize(QSize(16, 16))
+
+        self.horizontalLayout_12.addWidget(self.btn_editar_inventario)
+
+        self.horizontalSpacer_14 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_12.addItem(self.horizontalSpacer_14)
+
+        self.btn_eliminar_inventario = QPushButton(self.page_mostrar_seleccion)
+        self.btn_eliminar_inventario.setObjectName(u"btn_eliminar_inventario")
+        self.btn_eliminar_inventario.setMinimumSize(QSize(120, 40))
+
+        self.horizontalLayout_12.addWidget(self.btn_eliminar_inventario)
+
+        self.horizontalSpacer_15 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_12.addItem(self.horizontalSpacer_15)
+
+
+        self.verticalLayout_12.addLayout(self.horizontalLayout_12)
+
+        self.stackedWidget_menu.addWidget(self.page_mostrar_seleccion)
         self.page_ventas = QWidget()
         self.page_ventas.setObjectName(u"page_ventas")
         self.stackedWidget_menu.addWidget(self.page_ventas)
@@ -939,13 +988,13 @@ class Ui_MainWindow(object):
         self.verticalLayout_2.setStretch(0, 1)
         self.verticalLayout_2.setStretch(1, 8)
 
-        self.verticalLayout.addWidget(self.frame)
+        self.gridLayout.addWidget(self.frame, 0, 0, 1, 1)
 
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget_menu.setCurrentIndex(7)
+        self.stackedWidget_menu.setCurrentIndex(8)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -1021,8 +1070,13 @@ class Ui_MainWindow(object):
         ___qtablewidgetitem6 = self.tabla_inventario.horizontalHeaderItem(6)
         ___qtablewidgetitem6.setText(QCoreApplication.translate("MainWindow", u"Cantidad", None));
         self.btn_agregar_inventario.setText(QCoreApplication.translate("MainWindow", u"Agregar", None))
+        self.lbl_nombre.setText(QCoreApplication.translate("MainWindow", u"Nombre Producto", None))
+        self.lbl_descripcion.setText(QCoreApplication.translate("MainWindow", u"Descripcion Producto", None))
+        self.lbl_categoria.setText(QCoreApplication.translate("MainWindow", u"Categoria Producto", None))
+        self.lbl_subcategoria.setText(QCoreApplication.translate("MainWindow", u"SubCategoria Producto", None))
+        self.lbl_precio.setText(QCoreApplication.translate("MainWindow", u"Precio", None))
+        self.lbl_cantidad.setText(QCoreApplication.translate("MainWindow", u"Cantidad", None))
         self.btn_editar_inventario.setText(QCoreApplication.translate("MainWindow", u"Editar", None))
         self.btn_eliminar_inventario.setText(QCoreApplication.translate("MainWindow", u"Eliminar", None))
-        self.btn_actualizar_inventario.setText(QCoreApplication.translate("MainWindow", u"Actualizar", None))
     # retranslateUi
 
