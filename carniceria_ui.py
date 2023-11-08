@@ -15,11 +15,11 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QComboBox, QFrame, QGridLayout,
-    QHBoxLayout, QHeaderView, QLabel, QLineEdit,
-    QMainWindow, QPushButton, QSizePolicy, QSpacerItem,
-    QStackedWidget, QTableWidget, QTableWidgetItem, QVBoxLayout,
-    QWidget)
+from PySide6.QtWidgets import (QAbstractScrollArea, QApplication, QComboBox, QFrame,
+    QGridLayout, QHBoxLayout, QHeaderView, QLabel,
+    QLineEdit, QMainWindow, QPushButton, QSizePolicy,
+    QSpacerItem, QStackedWidget, QTableWidget, QTableWidgetItem,
+    QVBoxLayout, QWidget)
 import Resource_rc
 
 class Ui_MainWindow(object):
@@ -381,6 +381,10 @@ class Ui_MainWindow(object):
 "border: 1px: solid: rgb(0, 206, 152);\n"
 "}\n"
 "\n"
+"QTableWidget QTableCornerButton::Items{\n"
+"background-color:rgb(0,0,0);\n"
+"border: 1px: solid: rgb(0, 206, 152);\n"
+"}\n"
 "\n"
 "\n"
 "\n"
@@ -846,10 +850,13 @@ class Ui_MainWindow(object):
         self.tabla_inventario = QTableWidget(self.page_inventario)
         if (self.tabla_inventario.columnCount() < 7):
             self.tabla_inventario.setColumnCount(7)
+        brush = QBrush(QColor(0, 0, 0, 255))
+        brush.setStyle(Qt.Dense2Pattern)
         font1 = QFont()
         font1.setFamilies([u"Arial Black"])
         __qtablewidgetitem = QTableWidgetItem()
         __qtablewidgetitem.setFont(font1);
+        __qtablewidgetitem.setForeground(brush);
         self.tabla_inventario.setHorizontalHeaderItem(0, __qtablewidgetitem)
         __qtablewidgetitem1 = QTableWidgetItem()
         self.tabla_inventario.setHorizontalHeaderItem(1, __qtablewidgetitem1)
@@ -873,6 +880,20 @@ class Ui_MainWindow(object):
         self.tabla_inventario.setMinimumSize(QSize(0, 0))
         self.tabla_inventario.setLayoutDirection(Qt.LeftToRight)
         self.tabla_inventario.setAutoFillBackground(False)
+        self.tabla_inventario.setFrameShape(QFrame.StyledPanel)
+        self.tabla_inventario.setMidLineWidth(0)
+        self.tabla_inventario.setSizeAdjustPolicy(QAbstractScrollArea.AdjustToContents)
+        self.tabla_inventario.setAlternatingRowColors(False)
+        self.tabla_inventario.setShowGrid(True)
+        self.tabla_inventario.setGridStyle(Qt.SolidLine)
+        self.tabla_inventario.setSortingEnabled(True)
+        self.tabla_inventario.horizontalHeader().setVisible(True)
+        self.tabla_inventario.horizontalHeader().setCascadingSectionResizes(False)
+        self.tabla_inventario.horizontalHeader().setDefaultSectionSize(107)
+        self.tabla_inventario.horizontalHeader().setHighlightSections(True)
+        self.tabla_inventario.verticalHeader().setVisible(False)
+        self.tabla_inventario.verticalHeader().setCascadingSectionResizes(False)
+        self.tabla_inventario.verticalHeader().setHighlightSections(True)
 
         self.horizontalLayout_6.addWidget(self.tabla_inventario)
 
@@ -994,7 +1015,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget_menu.setCurrentIndex(8)
+        self.stackedWidget_menu.setCurrentIndex(7)
 
 
         QMetaObject.connectSlotsByName(MainWindow)

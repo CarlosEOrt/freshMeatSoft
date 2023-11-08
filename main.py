@@ -24,7 +24,7 @@ class MyWindow(QMainWindow):
         self.setWindowFlag(QtCore.Qt.WindowType.FramelessWindowHint)
         self.setWindowOpacity(1)
 
-        self.actualizarTablaInventario()
+        # self.actualizarTablaInventario()
 
         # self.timer = QTimer(self) # se crea una variable para constante actualizacion
         # self.timer.timeout.connect(lambda:self.actualizarTemperatura())#actualiza el label
@@ -147,8 +147,21 @@ class MyWindow(QMainWindow):
     def celda_clicada(self, fila, columna):
         # Acción específica cuando una celda se hace clic
         valor = self.tabla_inventario.item(fila, columna).text()
-        print(
-            f"Celda en la fila {fila}, columna {columna} fue clicada. Valor: {valor}")
+        if columna == 0:  # si es la columna de id nos lleva a mostrar el producto
+            self.stackedWidget_menu.setCurrentWidget(
+                self.page_mostrar_seleccion)
+            self.lbl_nombre.setText(
+                self.tabla_inventario.item(fila, columna+1).text())
+            self.lbl_descripcion.setText(
+                self.tabla_inventario.item(fila, columna+2).text())
+            self.lbl_categoria.setText(
+                self.tabla_inventario.item(fila, columna+3).text())
+            self.lbl_subcategoria.setText(
+                self.tabla_inventario.item(fila, columna+4).text())
+            self.lbl_precio.setText(
+                self.tabla_inventario.item(fila, columna+5).text())
+            self.lbl_cantidad.setText(
+                self.tabla_inventario.item(fila, columna+5).text())
 
     # funcionalidades de borrado de campos
     def borrarCamposInventarioAgregar(self):

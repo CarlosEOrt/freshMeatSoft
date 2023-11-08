@@ -648,6 +648,10 @@ background-color:rgb(0,0,0);
 border: 1px: solid: rgb(0, 206, 152);
 }
 
+QTableWidget QTableCornerButton::Items{
+background-color:rgb(0,0,0);
+border: 1px: solid: rgb(0, 206, 152);
+}
 
 
 
@@ -681,7 +685,7 @@ border: 1px: solid: rgb(0, 206, 152);
                    <bool>true</bool>
                   </property>
                   <property name="currentIndex">
-                   <number>8</number>
+                   <number>7</number>
                   </property>
                   <widget class="QWidget" name="page_temperaturas"/>
                   <widget class="QWidget" name="page_estadisticas"/>
@@ -1541,6 +1545,48 @@ border: 1px: solid: rgb(0, 206, 152);
                         <property name="autoFillBackground">
                          <bool>false</bool>
                         </property>
+                        <property name="frameShape">
+                         <enum>QFrame::StyledPanel</enum>
+                        </property>
+                        <property name="midLineWidth">
+                         <number>0</number>
+                        </property>
+                        <property name="sizeAdjustPolicy">
+                         <enum>QAbstractScrollArea::AdjustToContents</enum>
+                        </property>
+                        <property name="alternatingRowColors">
+                         <bool>false</bool>
+                        </property>
+                        <property name="showGrid">
+                         <bool>true</bool>
+                        </property>
+                        <property name="gridStyle">
+                         <enum>Qt::SolidLine</enum>
+                        </property>
+                        <property name="sortingEnabled">
+                         <bool>true</bool>
+                        </property>
+                        <attribute name="horizontalHeaderVisible">
+                         <bool>true</bool>
+                        </attribute>
+                        <attribute name="horizontalHeaderCascadingSectionResizes">
+                         <bool>false</bool>
+                        </attribute>
+                        <attribute name="horizontalHeaderDefaultSectionSize">
+                         <number>107</number>
+                        </attribute>
+                        <attribute name="horizontalHeaderHighlightSections">
+                         <bool>true</bool>
+                        </attribute>
+                        <attribute name="verticalHeaderVisible">
+                         <bool>false</bool>
+                        </attribute>
+                        <attribute name="verticalHeaderCascadingSectionResizes">
+                         <bool>false</bool>
+                        </attribute>
+                        <attribute name="verticalHeaderHighlightSections">
+                         <bool>true</bool>
+                        </attribute>
                         <column>
                          <property name="text">
                           <string>id</string>
@@ -1549,6 +1595,15 @@ border: 1px: solid: rgb(0, 206, 152);
                           <font>
                            <family>Arial Black</family>
                           </font>
+                         </property>
+                         <property name="foreground">
+                          <brush brushstyle="Dense2Pattern">
+                           <color alpha="255">
+                            <red>0</red>
+                            <green>0</green>
+                            <blue>0</blue>
+                           </color>
+                          </brush>
                          </property>
                         </column>
                         <column>
