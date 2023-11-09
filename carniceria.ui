@@ -819,7 +819,7 @@ border: 1px: solid: rgb(0, 206, 152);
                             </item>
                             <item>
                              <property name="text">
-                              <string>Verdura</string>
+                              <string>Despensa</string>
                              </property>
                             </item>
                            </widget>
@@ -828,7 +828,22 @@ border: 1px: solid: rgb(0, 206, 152);
                            <widget class="QComboBox" name="comboBox_2">
                             <item>
                              <property name="text">
+                              <string>Pollo</string>
+                             </property>
+                            </item>
+                            <item>
+                             <property name="text">
+                              <string>Res</string>
+                             </property>
+                            </item>
+                            <item>
+                             <property name="text">
                               <string>Cerdo</string>
+                             </property>
+                            </item>
+                            <item>
+                             <property name="text">
+                              <string>Pescado</string>
                              </property>
                             </item>
                            </widget>
@@ -1050,7 +1065,7 @@ border: 1px: solid: rgb(0, 206, 152);
                           </item>
                           <item>
                            <property name="text">
-                            <string>Verdura</string>
+                            <string>Despensa</string>
                            </property>
                           </item>
                          </widget>
@@ -1059,7 +1074,47 @@ border: 1px: solid: rgb(0, 206, 152);
                          <widget class="QComboBox" name="comboBox_14">
                           <item>
                            <property name="text">
+                            <string>Pollo</string>
+                           </property>
+                          </item>
+                          <item>
+                           <property name="text">
+                            <string>Res</string>
+                           </property>
+                          </item>
+                          <item>
+                           <property name="text">
                             <string>Cerdo</string>
+                           </property>
+                          </item>
+                          <item>
+                           <property name="text">
+                            <string>Pescado</string>
+                           </property>
+                          </item>
+                          <item>
+                           <property name="text">
+                            <string>Fruta</string>
+                           </property>
+                          </item>
+                          <item>
+                           <property name="text">
+                            <string>Verdura</string>
+                           </property>
+                          </item>
+                          <item>
+                           <property name="text">
+                            <string>Abarrote</string>
+                           </property>
+                          </item>
+                          <item>
+                           <property name="text">
+                            <string>Limpieza</string>
+                           </property>
+                          </item>
+                          <item>
+                           <property name="text">
+                            <string>Cremería</string>
                            </property>
                           </item>
                          </widget>
@@ -1674,6 +1729,16 @@ border: 1px: solid: rgb(0, 206, 152);
                   </widget>
                   <widget class="QWidget" name="page_mostrar_seleccion">
                    <layout class="QVBoxLayout" name="verticalLayout_12">
+                    <item>
+                     <widget class="QLabel" name="lbl_id">
+                      <property name="text">
+                       <string>Tu hermana :D</string>
+                      </property>
+                      <property name="alignment">
+                       <set>Qt::AlignCenter</set>
+                      </property>
+                     </widget>
+                    </item>
                     <item>
                      <widget class="QLabel" name="lbl_nombre">
                       <property name="text">

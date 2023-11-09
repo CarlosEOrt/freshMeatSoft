@@ -24,7 +24,7 @@ class MyWindow(QMainWindow):
         self.setWindowFlag(QtCore.Qt.WindowType.FramelessWindowHint)
         self.setWindowOpacity(1)
 
-        # self.actualizarTablaInventario()
+        self.actualizarTablaInventario()
 
         # self.timer = QTimer(self) # se crea una variable para constante actualizacion
         # self.timer.timeout.connect(lambda:self.actualizarTemperatura())#actualiza el label
@@ -66,7 +66,16 @@ class MyWindow(QMainWindow):
         # Botones de Funcionalidades de CRUD Inventario
         self.btn_agregar_producto.clicked.connect(
             lambda: self.agregarProductoABaseDeDatos())
+        self.btn_agregar_producto_7.clicked.connect(lambda: self.actualizarProducto())
         self.tabla_inventario.cellClicked.connect(self.celda_clicada)
+        
+        # Funcion para actualizar el comboBox de agregar productos
+
+        self.comboBox.currentIndexChanged.connect(lambda: self.actualizarComboBoxAgregarProducto())
+
+        # Funcion para actualizar el comboBox de editar productos
+
+        self.comboBox_13.currentIndexChanged.connect(lambda: self.actualizarComboBoxEditarProducto())
 
     def validacion_de_credenciales_editar(self):
         contrasena = self.lbl_contrasena_editar.text()
@@ -74,6 +83,12 @@ class MyWindow(QMainWindow):
             self.lbl_contrasena_editar.setText("")
             self.stackedWidget_menu.setCurrentWidget(
                 self.page_editar_inventario)
+            self.lineEdit_26.setText(self.lbl_nombre.text())
+            self.lineEdit_27.setText(self.lbl_descripcion.text())
+            self.lineEdit_28.setText(self.lbl_precio.text())
+            self.lineEdit_25.setText(self.lbl_cantidad.text())
+            self.comboBox_13.setCurrentText(self.lbl_categoria.text())
+            self.comboBox_14.setCurrentText(self.lbl_subcategoria.text())
         else:
             self.lbl_contrasena_editar.setText("")
             self.stackedWidget_menu.setCurrentWidget(self.page_inventario)
@@ -82,7 +97,7 @@ class MyWindow(QMainWindow):
         contrasena = self.lbl_contrasena_eliminar.text()
         if contrasena == '123':
             # en esta linea se realizara la eliminacion
-            self.actualizarTablaInventario()
+            self.borrarProductoDeBaseDeDatos()
         else:
             self.stackedWidget_menu.setCurrentWidget(self.page_inventario)
 
@@ -144,12 +159,27 @@ class MyWindow(QMainWindow):
 
         self.stackedWidget_menu.setCurrentWidget(self.page_inventario)
 
+    def actualizarProducto(self):
+        producto = Producto(self.lineEdit_26.text(), self.lineEdit_27.text(),
+                            self.comboBox_13.currentText(), self.comboBox_14.currentText(),
+                            self.lineEdit_28.text(), self.lineEdit_25.text())
+        com=Comunicacion()
+        com.editarProducto(producto, self.lbl_id.text())
+        self.actualizarTablaInventario()
+
+    def borrarProductoDeBaseDeDatos(self):
+        com = Comunicacion()
+        com.eliminarProducto(self.lbl_id.text())
+        self.actualizarTablaInventario()
+
     def celda_clicada(self, fila, columna):
         # Acción específica cuando una celda se hace clic
         valor = self.tabla_inventario.item(fila, columna).text()
         if columna == 0:  # si es la columna de id nos lleva a mostrar el producto
             self.stackedWidget_menu.setCurrentWidget(
                 self.page_mostrar_seleccion)
+            self.lbl_id.setText(
+                self.tabla_inventario.item(fila, columna+0).text())
             self.lbl_nombre.setText(
                 self.tabla_inventario.item(fila, columna+1).text())
             self.lbl_descripcion.setText(
@@ -161,7 +191,7 @@ class MyWindow(QMainWindow):
             self.lbl_precio.setText(
                 self.tabla_inventario.item(fila, columna+5).text())
             self.lbl_cantidad.setText(
-                self.tabla_inventario.item(fila, columna+5).text())
+                self.tabla_inventario.item(fila, columna+6).text())
 
     # funcionalidades de borrado de campos
     def borrarCamposInventarioAgregar(self):
@@ -172,6 +202,47 @@ class MyWindow(QMainWindow):
         self.comboBox.setCurrentIndex(0)
         self.comboBox.setCurrentIndex(1)
 
+    # funcionalidades para actualizar ComboBox
+
+    def actualizarComboBoxAgregarProducto(self):
+        # Limpia el segundo ComboBox
+        self.comboBox_2.clear()
+
+        # Obtiene la selección del primer ComboBox
+        seleccion = self.comboBox.currentText()
+
+        # Llena el segundo ComboBox basado en la selección del primero
+        if seleccion == "Carne":
+            self.comboBox_2.addItem("Pollo")
+            self.comboBox_2.addItem("Res")
+            self.comboBox_2.addItem("Cerdo")
+            self.comboBox_2.addItem("Pescado")
+        else:
+            self.comboBox_2.addItem("Fruta")
+            self.comboBox_2.addItem("Verdura")
+            self.comboBox_2.addItem("Abarrote")
+            self.comboBox_2.addItem("Limpieza")
+            self.comboBox_2.addItem("Cremería")
+
+    def actualizarComboBoxEditarProducto(self):
+         # Limpia el segundo ComboBox
+        self.comboBox_14.clear()
+
+        # Obtiene la selección del primer ComboBox
+        seleccion = self.comboBox_13.currentText()
+
+        # Llena el segundo ComboBox basado en la selección del primero
+        if seleccion == "Carne":
+            self.comboBox_14.addItem("Pollo")
+            self.comboBox_14.addItem("Res")
+            self.comboBox_14.addItem("Cerdo")
+            self.comboBox_14.addItem("Pescado")
+        else:
+            self.comboBox_14.addItem("Fruta")
+            self.comboBox_14.addItem("Verdura")
+            self.comboBox_14.addItem("Abarrote")
+            self.comboBox_14.addItem("Limpieza")
+            self.comboBox_14.addItem("Cremería")
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
