@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'carniceria.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.6.0
+## Created by: Qt User Interface Compiler version 6.5.2
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -29,9 +29,10 @@ class Ui_MainWindow(object):
         MainWindow.resize(1156, 686)
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
+        self.horizontalLayout_17 = QHBoxLayout(self.centralwidget)
+        self.horizontalLayout_17.setObjectName(u"horizontalLayout_17")
         self.frame = QFrame(self.centralwidget)
         self.frame.setObjectName(u"frame")
-        self.frame.setGeometry(QRect(0, 0, 1157, 684))
         self.frame.setStyleSheet(u"background-color: rgb(253, 240, 213);")
         self.frame.setFrameShape(QFrame.StyledPanel)
         self.frame.setFrameShadow(QFrame.Raised)
@@ -398,15 +399,144 @@ class Ui_MainWindow(object):
         self.stackedWidget_menu.setEnabled(True)
         self.page_temperaturas = QWidget()
         self.page_temperaturas.setObjectName(u"page_temperaturas")
-        self.verticalLayout_13 = QVBoxLayout(self.page_temperaturas)
+        self.verticalLayout_22 = QVBoxLayout(self.page_temperaturas)
+        self.verticalLayout_22.setObjectName(u"verticalLayout_22")
+        self.verticalLayout_13 = QVBoxLayout()
         self.verticalLayout_13.setObjectName(u"verticalLayout_13")
-        self.lbl_titulo_temperaturas = QLabel(self.page_temperaturas)
-        self.lbl_titulo_temperaturas.setObjectName(u"lbl_titulo_temperaturas")
-        self.lbl_titulo_temperaturas.setAlignment(Qt.AlignCenter)
+        self.label_11 = QLabel(self.page_temperaturas)
+        self.label_11.setObjectName(u"label_11")
+        self.label_11.setAlignment(Qt.AlignCenter)
 
-        self.verticalLayout_13.addWidget(self.lbl_titulo_temperaturas)
+        self.verticalLayout_13.addWidget(self.label_11)
+
+        self.tabla_temperaturas = QTableWidget(self.page_temperaturas)
+        if (self.tabla_temperaturas.columnCount() < 5):
+            self.tabla_temperaturas.setColumnCount(5)
+        brush = QBrush(QColor(0, 0, 0, 255))
+        brush.setStyle(Qt.Dense2Pattern)
+        font = QFont()
+        font.setFamilies([u"Arial Black"])
+        __qtablewidgetitem = QTableWidgetItem()
+        __qtablewidgetitem.setFont(font);
+        __qtablewidgetitem.setForeground(brush);
+        self.tabla_temperaturas.setHorizontalHeaderItem(0, __qtablewidgetitem)
+        __qtablewidgetitem1 = QTableWidgetItem()
+        self.tabla_temperaturas.setHorizontalHeaderItem(1, __qtablewidgetitem1)
+        __qtablewidgetitem2 = QTableWidgetItem()
+        self.tabla_temperaturas.setHorizontalHeaderItem(2, __qtablewidgetitem2)
+        __qtablewidgetitem3 = QTableWidgetItem()
+        self.tabla_temperaturas.setHorizontalHeaderItem(3, __qtablewidgetitem3)
+        __qtablewidgetitem4 = QTableWidgetItem()
+        self.tabla_temperaturas.setHorizontalHeaderItem(4, __qtablewidgetitem4)
+        self.tabla_temperaturas.setObjectName(u"tabla_temperaturas")
+        self.tabla_temperaturas.setEnabled(True)
+        sizePolicy = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.tabla_temperaturas.sizePolicy().hasHeightForWidth())
+        self.tabla_temperaturas.setSizePolicy(sizePolicy)
+        self.tabla_temperaturas.setMinimumSize(QSize(0, 0))
+        self.tabla_temperaturas.setLayoutDirection(Qt.LeftToRight)
+        self.tabla_temperaturas.setAutoFillBackground(False)
+        self.tabla_temperaturas.setFrameShape(QFrame.StyledPanel)
+        self.tabla_temperaturas.setMidLineWidth(0)
+        self.tabla_temperaturas.setSizeAdjustPolicy(QAbstractScrollArea.AdjustToContents)
+        self.tabla_temperaturas.setAlternatingRowColors(False)
+        self.tabla_temperaturas.setShowGrid(True)
+        self.tabla_temperaturas.setGridStyle(Qt.SolidLine)
+        self.tabla_temperaturas.setSortingEnabled(False)
+        self.tabla_temperaturas.horizontalHeader().setVisible(True)
+        self.tabla_temperaturas.horizontalHeader().setCascadingSectionResizes(False)
+        self.tabla_temperaturas.horizontalHeader().setDefaultSectionSize(152)
+        self.tabla_temperaturas.horizontalHeader().setHighlightSections(True)
+        self.tabla_temperaturas.verticalHeader().setVisible(False)
+        self.tabla_temperaturas.verticalHeader().setCascadingSectionResizes(False)
+        self.tabla_temperaturas.verticalHeader().setHighlightSections(True)
+
+        self.verticalLayout_13.addWidget(self.tabla_temperaturas)
+
+
+        self.verticalLayout_22.addLayout(self.verticalLayout_13)
 
         self.stackedWidget_menu.addWidget(self.page_temperaturas)
+        self.page_credenciales_eliminar_temperatura = QWidget()
+        self.page_credenciales_eliminar_temperatura.setObjectName(u"page_credenciales_eliminar_temperatura")
+        self.verticalLayout_21 = QVBoxLayout(self.page_credenciales_eliminar_temperatura)
+        self.verticalLayout_21.setObjectName(u"verticalLayout_21")
+        self.label_18 = QLabel(self.page_credenciales_eliminar_temperatura)
+        self.label_18.setObjectName(u"label_18")
+        self.label_18.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout_21.addWidget(self.label_18)
+
+        self.verticalSpacer_11 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Fixed)
+
+        self.verticalLayout_21.addItem(self.verticalSpacer_11)
+
+        self.horizontalLayout_14 = QHBoxLayout()
+        self.horizontalLayout_14.setObjectName(u"horizontalLayout_14")
+        self.horizontalLayout_14.setContentsMargins(-1, -1, -1, 20)
+        self.horizontalSpacer_4 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_14.addItem(self.horizontalSpacer_4)
+
+        self.lbl_logo_empresa_5 = QLabel(self.page_credenciales_eliminar_temperatura)
+        self.lbl_logo_empresa_5.setObjectName(u"lbl_logo_empresa_5")
+        self.lbl_logo_empresa_5.setMinimumSize(QSize(120, 120))
+        self.lbl_logo_empresa_5.setMaximumSize(QSize(120, 120))
+        self.lbl_logo_empresa_5.setPixmap(QPixmap(u"../../Carniceria/freshMeatSoft/Imagenes/portrait.svg"))
+        self.lbl_logo_empresa_5.setScaledContents(True)
+
+        self.horizontalLayout_14.addWidget(self.lbl_logo_empresa_5)
+
+        self.horizontalSpacer_18 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_14.addItem(self.horizontalSpacer_18)
+
+
+        self.verticalLayout_21.addLayout(self.horizontalLayout_14)
+
+        self.horizontalLayout_15 = QHBoxLayout()
+        self.horizontalLayout_15.setObjectName(u"horizontalLayout_15")
+        self.horizontalLayout_15.setContentsMargins(-1, -1, -1, 5)
+        self.horizontalSpacer_19 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_15.addItem(self.horizontalSpacer_19)
+
+        self.lbl_contrasena_eliminar_temperatura = QLineEdit(self.page_credenciales_eliminar_temperatura)
+        self.lbl_contrasena_eliminar_temperatura.setObjectName(u"lbl_contrasena_eliminar_temperatura")
+        self.lbl_contrasena_eliminar_temperatura.setEchoMode(QLineEdit.Password)
+
+        self.horizontalLayout_15.addWidget(self.lbl_contrasena_eliminar_temperatura)
+
+        self.horizontalSpacer_20 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_15.addItem(self.horizontalSpacer_20)
+
+
+        self.verticalLayout_21.addLayout(self.horizontalLayout_15)
+
+        self.horizontalLayout_16 = QHBoxLayout()
+        self.horizontalLayout_16.setObjectName(u"horizontalLayout_16")
+        self.horizontalLayout_16.setContentsMargins(-1, -1, -1, 60)
+        self.horizontalSpacer_23 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_16.addItem(self.horizontalSpacer_23)
+
+        self.btn_validar_contrasena_eliminar_temperatura = QPushButton(self.page_credenciales_eliminar_temperatura)
+        self.btn_validar_contrasena_eliminar_temperatura.setObjectName(u"btn_validar_contrasena_eliminar_temperatura")
+        self.btn_validar_contrasena_eliminar_temperatura.setMinimumSize(QSize(120, 40))
+
+        self.horizontalLayout_16.addWidget(self.btn_validar_contrasena_eliminar_temperatura)
+
+        self.horizontalSpacer_24 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_16.addItem(self.horizontalSpacer_24)
+
+
+        self.verticalLayout_21.addLayout(self.horizontalLayout_16)
+
+        self.stackedWidget_menu.addWidget(self.page_credenciales_eliminar_temperatura)
         self.page_estadisticas = QWidget()
         self.page_estadisticas.setObjectName(u"page_estadisticas")
         self.verticalLayout_14 = QVBoxLayout(self.page_estadisticas)
@@ -443,12 +573,12 @@ class Ui_MainWindow(object):
         self.verticalLayout_10.setObjectName(u"verticalLayout_10")
         self.label_7 = QLabel(self.page_agregar_inventario)
         self.label_7.setObjectName(u"label_7")
-        font = QFont()
-        font.setFamilies([u"Arial Black"])
-        font.setPointSize(12)
-        font.setWeight(QFont.)
-        font.setItalic(False)
-        self.label_7.setFont(font)
+        font1 = QFont()
+        font1.setFamilies([u"Arial Black"])
+        font1.setPointSize(12)
+        font1.setBold(False)
+        font1.setItalic(False)
+        self.label_7.setFont(font1)
         self.label_7.setAlignment(Qt.AlignCenter)
 
         self.verticalLayout_10.addWidget(self.label_7)
@@ -580,7 +710,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_29.setObjectName(u"verticalLayout_29")
         self.label_45 = QLabel(self.page_editar_inventario)
         self.label_45.setObjectName(u"label_45")
-        self.label_45.setFont(font)
+        self.label_45.setFont(font1)
         self.label_45.setAlignment(Qt.AlignCenter)
 
         self.verticalLayout_29.addWidget(self.label_45)
@@ -973,31 +1103,26 @@ class Ui_MainWindow(object):
         self.tabla_inventario = QTableWidget(self.page_inventario)
         if (self.tabla_inventario.columnCount() < 7):
             self.tabla_inventario.setColumnCount(7)
-        brush = QBrush(QColor(0, 0, 0, 255))
-        brush.setStyle(Qt.Dense2Pattern)
-        font1 = QFont()
-        font1.setFamilies([u"Arial Black"])
-        __qtablewidgetitem = QTableWidgetItem()
-        __qtablewidgetitem.setFont(font1);
-        __qtablewidgetitem.setForeground(brush);
-        self.tabla_inventario.setHorizontalHeaderItem(0, __qtablewidgetitem)
-        __qtablewidgetitem1 = QTableWidgetItem()
-        self.tabla_inventario.setHorizontalHeaderItem(1, __qtablewidgetitem1)
-        __qtablewidgetitem2 = QTableWidgetItem()
-        self.tabla_inventario.setHorizontalHeaderItem(2, __qtablewidgetitem2)
-        __qtablewidgetitem3 = QTableWidgetItem()
-        self.tabla_inventario.setHorizontalHeaderItem(3, __qtablewidgetitem3)
-        __qtablewidgetitem4 = QTableWidgetItem()
-        self.tabla_inventario.setHorizontalHeaderItem(4, __qtablewidgetitem4)
+        brush1 = QBrush(QColor(0, 0, 0, 255))
+        brush1.setStyle(Qt.Dense2Pattern)
         __qtablewidgetitem5 = QTableWidgetItem()
-        self.tabla_inventario.setHorizontalHeaderItem(5, __qtablewidgetitem5)
+        __qtablewidgetitem5.setFont(font);
+        __qtablewidgetitem5.setForeground(brush1);
+        self.tabla_inventario.setHorizontalHeaderItem(0, __qtablewidgetitem5)
         __qtablewidgetitem6 = QTableWidgetItem()
-        self.tabla_inventario.setHorizontalHeaderItem(6, __qtablewidgetitem6)
+        self.tabla_inventario.setHorizontalHeaderItem(1, __qtablewidgetitem6)
+        __qtablewidgetitem7 = QTableWidgetItem()
+        self.tabla_inventario.setHorizontalHeaderItem(2, __qtablewidgetitem7)
+        __qtablewidgetitem8 = QTableWidgetItem()
+        self.tabla_inventario.setHorizontalHeaderItem(3, __qtablewidgetitem8)
+        __qtablewidgetitem9 = QTableWidgetItem()
+        self.tabla_inventario.setHorizontalHeaderItem(4, __qtablewidgetitem9)
+        __qtablewidgetitem10 = QTableWidgetItem()
+        self.tabla_inventario.setHorizontalHeaderItem(5, __qtablewidgetitem10)
+        __qtablewidgetitem11 = QTableWidgetItem()
+        self.tabla_inventario.setHorizontalHeaderItem(6, __qtablewidgetitem11)
         self.tabla_inventario.setObjectName(u"tabla_inventario")
         self.tabla_inventario.setEnabled(True)
-        sizePolicy = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.tabla_inventario.sizePolicy().hasHeightForWidth())
         self.tabla_inventario.setSizePolicy(sizePolicy)
         self.tabla_inventario.setMinimumSize(QSize(0, 0))
@@ -1012,7 +1137,7 @@ class Ui_MainWindow(object):
         self.tabla_inventario.setSortingEnabled(False)
         self.tabla_inventario.horizontalHeader().setVisible(True)
         self.tabla_inventario.horizontalHeader().setCascadingSectionResizes(False)
-        self.tabla_inventario.horizontalHeader().setDefaultSectionSize(107)
+        self.tabla_inventario.horizontalHeader().setDefaultSectionSize(109)
         self.tabla_inventario.horizontalHeader().setHighlightSections(True)
         self.tabla_inventario.verticalHeader().setVisible(False)
         self.tabla_inventario.verticalHeader().setCascadingSectionResizes(False)
@@ -1139,14 +1264,14 @@ class Ui_MainWindow(object):
         self.tabla_ventas = QTableWidget(self.page_ventas)
         if (self.tabla_ventas.columnCount() < 4):
             self.tabla_ventas.setColumnCount(4)
-        __qtablewidgetitem7 = QTableWidgetItem()
-        self.tabla_ventas.setHorizontalHeaderItem(0, __qtablewidgetitem7)
-        __qtablewidgetitem8 = QTableWidgetItem()
-        self.tabla_ventas.setHorizontalHeaderItem(1, __qtablewidgetitem8)
-        __qtablewidgetitem9 = QTableWidgetItem()
-        self.tabla_ventas.setHorizontalHeaderItem(2, __qtablewidgetitem9)
-        __qtablewidgetitem10 = QTableWidgetItem()
-        self.tabla_ventas.setHorizontalHeaderItem(3, __qtablewidgetitem10)
+        __qtablewidgetitem12 = QTableWidgetItem()
+        self.tabla_ventas.setHorizontalHeaderItem(0, __qtablewidgetitem12)
+        __qtablewidgetitem13 = QTableWidgetItem()
+        self.tabla_ventas.setHorizontalHeaderItem(1, __qtablewidgetitem13)
+        __qtablewidgetitem14 = QTableWidgetItem()
+        self.tabla_ventas.setHorizontalHeaderItem(2, __qtablewidgetitem14)
+        __qtablewidgetitem15 = QTableWidgetItem()
+        self.tabla_ventas.setHorizontalHeaderItem(3, __qtablewidgetitem15)
         self.tabla_ventas.setObjectName(u"tabla_ventas")
         self.tabla_ventas.setProperty("showDropIndicator", True)
         self.tabla_ventas.horizontalHeader().setDefaultSectionSize(195)
@@ -1167,11 +1292,15 @@ class Ui_MainWindow(object):
         self.verticalLayout_2.addWidget(self.frame_main)
 
         self.verticalLayout_2.setStretch(0, 1)
+        self.verticalLayout_2.setStretch(1, 8)
+
+        self.horizontalLayout_17.addWidget(self.frame)
+
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget_menu.setCurrentIndex(10)
+        self.stackedWidget_menu.setCurrentIndex(9)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -1197,7 +1326,18 @@ class Ui_MainWindow(object):
         self.comboBox_temperaturas.setItemText(1, QCoreApplication.translate("MainWindow", u"\u00b0F", None))
         self.comboBox_temperaturas.setItemText(2, QCoreApplication.translate("MainWindow", u"%", None))
 
-        self.lbl_titulo_temperaturas.setText(QCoreApplication.translate("MainWindow", u"TEMPERATURAS", None))
+        self.label_11.setText(QCoreApplication.translate("MainWindow", u"Control de temperaturas", None))
+        ___qtablewidgetitem = self.tabla_temperaturas.horizontalHeaderItem(0)
+        ___qtablewidgetitem.setText(QCoreApplication.translate("MainWindow", u"Fecha", None));
+        ___qtablewidgetitem1 = self.tabla_temperaturas.horizontalHeaderItem(1)
+        ___qtablewidgetitem1.setText(QCoreApplication.translate("MainWindow", u"Temp Promedio", None));
+        ___qtablewidgetitem2 = self.tabla_temperaturas.horizontalHeaderItem(2)
+        ___qtablewidgetitem2.setText(QCoreApplication.translate("MainWindow", u"Temp Maxima", None));
+        ___qtablewidgetitem3 = self.tabla_temperaturas.horizontalHeaderItem(3)
+        ___qtablewidgetitem3.setText(QCoreApplication.translate("MainWindow", u"Temp Minima", None));
+        self.label_18.setText(QCoreApplication.translate("MainWindow", u"INGRESA LA CONTRASE\u00d1A", None))
+        self.lbl_logo_empresa_5.setText("")
+        self.btn_validar_contrasena_eliminar_temperatura.setText(QCoreApplication.translate("MainWindow", u"Aceptar", None))
         self.lbl_titulo_estadisticas.setText(QCoreApplication.translate("MainWindow", u"ESTADISTICAS", None))
         self.lbl_titulo_corte_de_caja.setText(QCoreApplication.translate("MainWindow", u"CORTE DE CAJA", None))
         self.btn_anadir_gasto.setText(QCoreApplication.translate("MainWindow", u"A\u00d1ADIR GASTO", None))
@@ -1251,20 +1391,20 @@ class Ui_MainWindow(object):
         self.lbl_logo_empresa_4.setText("")
         self.btn_validar_contrasena_eliminar.setText(QCoreApplication.translate("MainWindow", u"Aceptar", None))
         self.lbl_titulo_inventario.setText(QCoreApplication.translate("MainWindow", u"INVENTARIO", None))
-        ___qtablewidgetitem = self.tabla_inventario.horizontalHeaderItem(0)
-        ___qtablewidgetitem.setText(QCoreApplication.translate("MainWindow", u"id", None));
-        ___qtablewidgetitem1 = self.tabla_inventario.horizontalHeaderItem(1)
-        ___qtablewidgetitem1.setText(QCoreApplication.translate("MainWindow", u"Nombre", None));
-        ___qtablewidgetitem2 = self.tabla_inventario.horizontalHeaderItem(2)
-        ___qtablewidgetitem2.setText(QCoreApplication.translate("MainWindow", u"Descripcion", None));
-        ___qtablewidgetitem3 = self.tabla_inventario.horizontalHeaderItem(3)
-        ___qtablewidgetitem3.setText(QCoreApplication.translate("MainWindow", u"Categoria", None));
-        ___qtablewidgetitem4 = self.tabla_inventario.horizontalHeaderItem(4)
-        ___qtablewidgetitem4.setText(QCoreApplication.translate("MainWindow", u"SubCategoria", None));
-        ___qtablewidgetitem5 = self.tabla_inventario.horizontalHeaderItem(5)
-        ___qtablewidgetitem5.setText(QCoreApplication.translate("MainWindow", u"Precio", None));
-        ___qtablewidgetitem6 = self.tabla_inventario.horizontalHeaderItem(6)
-        ___qtablewidgetitem6.setText(QCoreApplication.translate("MainWindow", u"Cantidad", None));
+        ___qtablewidgetitem4 = self.tabla_inventario.horizontalHeaderItem(0)
+        ___qtablewidgetitem4.setText(QCoreApplication.translate("MainWindow", u"id", None));
+        ___qtablewidgetitem5 = self.tabla_inventario.horizontalHeaderItem(1)
+        ___qtablewidgetitem5.setText(QCoreApplication.translate("MainWindow", u"Nombre", None));
+        ___qtablewidgetitem6 = self.tabla_inventario.horizontalHeaderItem(2)
+        ___qtablewidgetitem6.setText(QCoreApplication.translate("MainWindow", u"Descripcion", None));
+        ___qtablewidgetitem7 = self.tabla_inventario.horizontalHeaderItem(3)
+        ___qtablewidgetitem7.setText(QCoreApplication.translate("MainWindow", u"Categoria", None));
+        ___qtablewidgetitem8 = self.tabla_inventario.horizontalHeaderItem(4)
+        ___qtablewidgetitem8.setText(QCoreApplication.translate("MainWindow", u"SubCategoria", None));
+        ___qtablewidgetitem9 = self.tabla_inventario.horizontalHeaderItem(5)
+        ___qtablewidgetitem9.setText(QCoreApplication.translate("MainWindow", u"Precio", None));
+        ___qtablewidgetitem10 = self.tabla_inventario.horizontalHeaderItem(6)
+        ___qtablewidgetitem10.setText(QCoreApplication.translate("MainWindow", u"Cantidad", None));
         self.btn_agregar_inventario.setText(QCoreApplication.translate("MainWindow", u"Agregar", None))
         self.lbl_id.setText(QCoreApplication.translate("MainWindow", u"Tu hermana :D", None))
         self.lbl_nombre.setText(QCoreApplication.translate("MainWindow", u"Nombre Producto", None))
@@ -1277,13 +1417,13 @@ class Ui_MainWindow(object):
         self.btn_eliminar_inventario.setText(QCoreApplication.translate("MainWindow", u"Eliminar", None))
         self.lbl_titulo_ventas.setText(QCoreApplication.translate("MainWindow", u"VENTAS", None))
         self.lineEdit_busqueda_ventas.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Ingrese el producto a buscar", None))
-        ___qtablewidgetitem7 = self.tabla_ventas.horizontalHeaderItem(0)
-        ___qtablewidgetitem7.setText(QCoreApplication.translate("MainWindow", u"ID", None));
-        ___qtablewidgetitem8 = self.tabla_ventas.horizontalHeaderItem(1)
-        ___qtablewidgetitem8.setText(QCoreApplication.translate("MainWindow", u"Nombre", None));
-        ___qtablewidgetitem9 = self.tabla_ventas.horizontalHeaderItem(2)
-        ___qtablewidgetitem9.setText(QCoreApplication.translate("MainWindow", u"Precio", None));
-        ___qtablewidgetitem10 = self.tabla_ventas.horizontalHeaderItem(3)
-        ___qtablewidgetitem10.setText(QCoreApplication.translate("MainWindow", u"Cantidad", None));
+        ___qtablewidgetitem11 = self.tabla_ventas.horizontalHeaderItem(0)
+        ___qtablewidgetitem11.setText(QCoreApplication.translate("MainWindow", u"ID", None));
+        ___qtablewidgetitem12 = self.tabla_ventas.horizontalHeaderItem(1)
+        ___qtablewidgetitem12.setText(QCoreApplication.translate("MainWindow", u"Nombre", None));
+        ___qtablewidgetitem13 = self.tabla_ventas.horizontalHeaderItem(2)
+        ___qtablewidgetitem13.setText(QCoreApplication.translate("MainWindow", u"Precio", None));
+        ___qtablewidgetitem14 = self.tabla_ventas.horizontalHeaderItem(3)
+        ___qtablewidgetitem14.setText(QCoreApplication.translate("MainWindow", u"Cantidad", None));
     # retranslateUi
 
