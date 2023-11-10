@@ -1,12 +1,14 @@
 import sys
 import serial
 import time
+import datetime
 from PyQt6 import QtCore, QtWidgets
 from PyQt6.QtCore import QTimer, QPropertyAnimation, QEasingCurve, Qt
 from PyQt6.QtWidgets import QApplication, QMainWindow
 from PyQt6.uic import loadUi
 
 from Producto import Producto
+from Gasto import Gasto
 
 from Comunicacion import Comunicacion
 
@@ -25,6 +27,7 @@ class MyWindow(QMainWindow):
         self.setWindowOpacity(1)
 
         self.actualizarTablaInventario()
+        self.actualizarResultadosBusqueda()
 
         # self.timer = QTimer(self) # se crea una variable para constante actualizacion
         # self.timer.timeout.connect(lambda:self.actualizarTemperatura())#actualiza el label
@@ -56,7 +59,8 @@ class MyWindow(QMainWindow):
             lambda: self.stackedWidget_menu.setCurrentWidget(self.page_credenciales_eliminar))
         self.btn_editar_inventario.clicked.connect(
             lambda: self.stackedWidget_menu.setCurrentWidget(self.page_credenciales_editar))
-
+        self.btn_anadir_gasto.clicked.connect(
+            lambda: self.stackedWidget_menu.setCurrentWidget(self.page_agregar_gasto))
         # Boton Credenciales
         self.btn_validar_contrasena_editar.clicked.connect(
             lambda: self.validacion_de_credenciales_editar())
@@ -68,6 +72,15 @@ class MyWindow(QMainWindow):
             lambda: self.agregarProductoABaseDeDatos())
         self.btn_agregar_producto_7.clicked.connect(lambda: self.actualizarProducto())
         self.tabla_inventario.cellClicked.connect(self.celda_clicada)
+
+        # Botones de Funcionalidades de CRUD Corte de Caja
+        self.btn_agregar_gasto.clicked.connect(
+            lambda: self.agregarGastoABaseDeDatos())
+        
+        # Botones de Funcionalidades de Ventas
+        self.lineEdit_busqueda_ventas.textChanged.connect(
+            lambda: self.actualizarResultadosBusqueda())
+        
         
         # Funcion para actualizar el comboBox de agregar productos
 
@@ -192,6 +205,16 @@ class MyWindow(QMainWindow):
                 self.tabla_inventario.item(fila, columna+5).text())
             self.lbl_cantidad.setText(
                 self.tabla_inventario.item(fila, columna+6).text())
+    
+    #Funciones Insercion de Gastos
+    def agregarGastoABaseDeDatos(self):
+        fecha_actual = datetime.date.today()
+        fecha_actual_str = fecha_actual.strftime('%Y-%m-%d')
+        gasto = Gasto(self.lineEdit_concepto_gasto.text(), self.lineEdit_monto_gasto.text(), fecha_actual_str)
+        com = Comunicacion()
+        com.insertarGasto(gasto)
+        self.borrarCamposGastosAgregar()
+        
 
     # funcionalidades de borrado de campos
     def borrarCamposInventarioAgregar(self):
@@ -201,6 +224,10 @@ class MyWindow(QMainWindow):
         self.lineEdit_4.setText("")
         self.comboBox.setCurrentIndex(0)
         self.comboBox.setCurrentIndex(1)
+    
+    def borrarCamposGastosAgregar(self):
+        self.lineEdit_concepto_gasto.setText("")
+        self.lineEdit_monto_gasto.setText("")
 
     # funcionalidades para actualizar ComboBox
 
@@ -243,6 +270,20 @@ class MyWindow(QMainWindow):
             self.comboBox_14.addItem("Abarrote")
             self.comboBox_14.addItem("Limpieza")
             self.comboBox_14.addItem("Cremería")
+    
+    #Funciones del apartado Ventas
+    def actualizarResultadosBusqueda(self):
+        com = Comunicacion()
+        resultados = com.traerProductosVentas(self.lineEdit_busqueda_ventas.text())
+        self.tabla_ventas.setRowCount(0)
+        self.tabla_ventas.setRowCount(len(resultados))
+
+        for fila, datos in enumerate(resultados):
+            for columna, valor in enumerate(datos):
+                item = QtWidgets.QTableWidgetItem(str(valor))
+                self.tabla_ventas.setItem(fila, columna, item)
+
+        self.stackedWidget_menu.setCurrentWidget(self.page_ventas)
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)

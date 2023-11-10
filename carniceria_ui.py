@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'carniceria.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.5.2
+## Created by: Qt User Interface Compiler version 6.6.0
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -15,8 +15,8 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QAbstractScrollArea, QApplication, QComboBox, QFrame,
-    QGridLayout, QHBoxLayout, QHeaderView, QLabel,
+from PySide6.QtWidgets import (QAbstractScrollArea, QApplication, QComboBox, QFormLayout,
+    QFrame, QHBoxLayout, QHeaderView, QLabel,
     QLineEdit, QMainWindow, QPushButton, QSizePolicy,
     QSpacerItem, QStackedWidget, QTableWidget, QTableWidgetItem,
     QVBoxLayout, QWidget)
@@ -26,14 +26,12 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(1125, 618)
+        MainWindow.resize(1156, 686)
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
-        self.gridLayout = QGridLayout(self.centralwidget)
-        self.gridLayout.setObjectName(u"gridLayout")
-        self.gridLayout.setContentsMargins(0, 0, 0, 0)
         self.frame = QFrame(self.centralwidget)
         self.frame.setObjectName(u"frame")
+        self.frame.setGeometry(QRect(0, 0, 1157, 684))
         self.frame.setStyleSheet(u"background-color: rgb(253, 240, 213);")
         self.frame.setFrameShape(QFrame.StyledPanel)
         self.frame.setFrameShadow(QFrame.Raised)
@@ -391,21 +389,51 @@ class Ui_MainWindow(object):
 "")
         self.frame_contenido.setFrameShape(QFrame.StyledPanel)
         self.frame_contenido.setFrameShadow(QFrame.Raised)
-        self.horizontalLayout_4 = QHBoxLayout(self.frame_contenido)
-        self.horizontalLayout_4.setSpacing(0)
-        self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
-        self.horizontalLayout_4.setContentsMargins(1, 1, 1, 1)
+        self.verticalLayout_17 = QVBoxLayout(self.frame_contenido)
+        self.verticalLayout_17.setSpacing(0)
+        self.verticalLayout_17.setObjectName(u"verticalLayout_17")
+        self.verticalLayout_17.setContentsMargins(1, 1, 1, 1)
         self.stackedWidget_menu = QStackedWidget(self.frame_contenido)
         self.stackedWidget_menu.setObjectName(u"stackedWidget_menu")
         self.stackedWidget_menu.setEnabled(True)
         self.page_temperaturas = QWidget()
         self.page_temperaturas.setObjectName(u"page_temperaturas")
+        self.verticalLayout_13 = QVBoxLayout(self.page_temperaturas)
+        self.verticalLayout_13.setObjectName(u"verticalLayout_13")
+        self.lbl_titulo_temperaturas = QLabel(self.page_temperaturas)
+        self.lbl_titulo_temperaturas.setObjectName(u"lbl_titulo_temperaturas")
+        self.lbl_titulo_temperaturas.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout_13.addWidget(self.lbl_titulo_temperaturas)
+
         self.stackedWidget_menu.addWidget(self.page_temperaturas)
         self.page_estadisticas = QWidget()
         self.page_estadisticas.setObjectName(u"page_estadisticas")
+        self.verticalLayout_14 = QVBoxLayout(self.page_estadisticas)
+        self.verticalLayout_14.setObjectName(u"verticalLayout_14")
+        self.lbl_titulo_estadisticas = QLabel(self.page_estadisticas)
+        self.lbl_titulo_estadisticas.setObjectName(u"lbl_titulo_estadisticas")
+        self.lbl_titulo_estadisticas.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout_14.addWidget(self.lbl_titulo_estadisticas)
+
         self.stackedWidget_menu.addWidget(self.page_estadisticas)
         self.page_corte_de_caja = QWidget()
         self.page_corte_de_caja.setObjectName(u"page_corte_de_caja")
+        self.verticalLayout_15 = QVBoxLayout(self.page_corte_de_caja)
+        self.verticalLayout_15.setObjectName(u"verticalLayout_15")
+        self.lbl_titulo_corte_de_caja = QLabel(self.page_corte_de_caja)
+        self.lbl_titulo_corte_de_caja.setObjectName(u"lbl_titulo_corte_de_caja")
+        self.lbl_titulo_corte_de_caja.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout_15.addWidget(self.lbl_titulo_corte_de_caja)
+
+        self.btn_anadir_gasto = QPushButton(self.page_corte_de_caja)
+        self.btn_anadir_gasto.setObjectName(u"btn_anadir_gasto")
+        self.btn_anadir_gasto.setMinimumSize(QSize(120, 40))
+
+        self.verticalLayout_15.addWidget(self.btn_anadir_gasto)
+
         self.stackedWidget_menu.addWidget(self.page_corte_de_caja)
         self.page_agregar_inventario = QWidget()
         self.page_agregar_inventario.setObjectName(u"page_agregar_inventario")
@@ -418,7 +446,7 @@ class Ui_MainWindow(object):
         font = QFont()
         font.setFamilies([u"Arial Black"])
         font.setPointSize(12)
-        font.setBold(False)
+        font.setWeight(QFont.)
         font.setItalic(False)
         self.label_7.setFont(font)
         self.label_7.setAlignment(Qt.AlignCenter)
@@ -492,6 +520,9 @@ class Ui_MainWindow(object):
         self.verticalLayout_6.addWidget(self.comboBox)
 
         self.comboBox_2 = QComboBox(self.page_agregar_inventario)
+        self.comboBox_2.addItem("")
+        self.comboBox_2.addItem("")
+        self.comboBox_2.addItem("")
         self.comboBox_2.addItem("")
         self.comboBox_2.setObjectName(u"comboBox_2")
 
@@ -622,6 +653,14 @@ class Ui_MainWindow(object):
 
         self.comboBox_14 = QComboBox(self.page_editar_inventario)
         self.comboBox_14.addItem("")
+        self.comboBox_14.addItem("")
+        self.comboBox_14.addItem("")
+        self.comboBox_14.addItem("")
+        self.comboBox_14.addItem("")
+        self.comboBox_14.addItem("")
+        self.comboBox_14.addItem("")
+        self.comboBox_14.addItem("")
+        self.comboBox_14.addItem("")
         self.comboBox_14.setObjectName(u"comboBox_14")
 
         self.verticalLayout_28.addWidget(self.comboBox_14)
@@ -669,6 +708,90 @@ class Ui_MainWindow(object):
         self.verticalLayout_29.addLayout(self.horizontalLayout_21)
 
         self.stackedWidget_menu.addWidget(self.page_editar_inventario)
+        self.page_agregar_gasto = QWidget()
+        self.page_agregar_gasto.setObjectName(u"page_agregar_gasto")
+        self.verticalLayout_18 = QVBoxLayout(self.page_agregar_gasto)
+        self.verticalLayout_18.setObjectName(u"verticalLayout_18")
+        self.lbl_titulo_gastos = QLabel(self.page_agregar_gasto)
+        self.lbl_titulo_gastos.setObjectName(u"lbl_titulo_gastos")
+        self.lbl_titulo_gastos.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout_18.addWidget(self.lbl_titulo_gastos)
+
+        self.verticalSpacer_6 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.verticalLayout_18.addItem(self.verticalSpacer_6)
+
+        self.horizontalLayout_4 = QHBoxLayout()
+        self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
+        self.verticalLayout_16 = QVBoxLayout()
+        self.verticalLayout_16.setSpacing(23)
+        self.verticalLayout_16.setObjectName(u"verticalLayout_16")
+        self.label_9 = QLabel(self.page_agregar_gasto)
+        self.label_9.setObjectName(u"label_9")
+
+        self.verticalLayout_16.addWidget(self.label_9)
+
+        self.label_10 = QLabel(self.page_agregar_gasto)
+        self.label_10.setObjectName(u"label_10")
+
+        self.verticalLayout_16.addWidget(self.label_10)
+
+
+        self.horizontalLayout_4.addLayout(self.verticalLayout_16)
+
+        self.formLayout_2 = QFormLayout()
+        self.formLayout_2.setObjectName(u"formLayout_2")
+        self.formLayout_2.setVerticalSpacing(50)
+        self.lineEdit_concepto_gasto = QLineEdit(self.page_agregar_gasto)
+        self.lineEdit_concepto_gasto.setObjectName(u"lineEdit_concepto_gasto")
+
+        self.formLayout_2.setWidget(1, QFormLayout.SpanningRole, self.lineEdit_concepto_gasto)
+
+        self.lineEdit_monto_gasto = QLineEdit(self.page_agregar_gasto)
+        self.lineEdit_monto_gasto.setObjectName(u"lineEdit_monto_gasto")
+
+        self.formLayout_2.setWidget(2, QFormLayout.FieldRole, self.lineEdit_monto_gasto)
+
+
+        self.horizontalLayout_4.addLayout(self.formLayout_2)
+
+        self.horizontalSpacer_16 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_4.addItem(self.horizontalSpacer_16)
+
+
+        self.verticalLayout_18.addLayout(self.horizontalLayout_4)
+
+        self.verticalSpacer_10 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.verticalLayout_18.addItem(self.verticalSpacer_10)
+
+        self.verticalSpacer_8 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.verticalLayout_18.addItem(self.verticalSpacer_8)
+
+        self.verticalSpacer_5 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.verticalLayout_18.addItem(self.verticalSpacer_5)
+
+        self.horizontalLayout_13 = QHBoxLayout()
+        self.horizontalLayout_13.setObjectName(u"horizontalLayout_13")
+        self.horizontalSpacer_17 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_13.addItem(self.horizontalSpacer_17)
+
+        self.btn_agregar_gasto = QPushButton(self.page_agregar_gasto)
+        self.btn_agregar_gasto.setObjectName(u"btn_agregar_gasto")
+        self.btn_agregar_gasto.setMinimumSize(QSize(120, 40))
+        self.btn_agregar_gasto.setIconSize(QSize(40, 40))
+
+        self.horizontalLayout_13.addWidget(self.btn_agregar_gasto)
+
+
+        self.verticalLayout_18.addLayout(self.horizontalLayout_13)
+
+        self.stackedWidget_menu.addWidget(self.page_agregar_gasto)
         self.page_credenciales_editar = QWidget()
         self.page_credenciales_editar.setObjectName(u"page_credenciales_editar")
         self.verticalLayout_9 = QVBoxLayout(self.page_credenciales_editar)
@@ -886,7 +1009,7 @@ class Ui_MainWindow(object):
         self.tabla_inventario.setAlternatingRowColors(False)
         self.tabla_inventario.setShowGrid(True)
         self.tabla_inventario.setGridStyle(Qt.SolidLine)
-        self.tabla_inventario.setSortingEnabled(True)
+        self.tabla_inventario.setSortingEnabled(False)
         self.tabla_inventario.horizontalHeader().setVisible(True)
         self.tabla_inventario.horizontalHeader().setCascadingSectionResizes(False)
         self.tabla_inventario.horizontalHeader().setDefaultSectionSize(107)
@@ -920,6 +1043,12 @@ class Ui_MainWindow(object):
         self.page_mostrar_seleccion.setObjectName(u"page_mostrar_seleccion")
         self.verticalLayout_12 = QVBoxLayout(self.page_mostrar_seleccion)
         self.verticalLayout_12.setObjectName(u"verticalLayout_12")
+        self.lbl_id = QLabel(self.page_mostrar_seleccion)
+        self.lbl_id.setObjectName(u"lbl_id")
+        self.lbl_id.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout_12.addWidget(self.lbl_id)
+
         self.lbl_nombre = QLabel(self.page_mostrar_seleccion)
         self.lbl_nombre.setObjectName(u"lbl_nombre")
         self.lbl_nombre.setAlignment(Qt.AlignCenter)
@@ -993,9 +1122,40 @@ class Ui_MainWindow(object):
         self.stackedWidget_menu.addWidget(self.page_mostrar_seleccion)
         self.page_ventas = QWidget()
         self.page_ventas.setObjectName(u"page_ventas")
+        self.verticalLayout = QVBoxLayout(self.page_ventas)
+        self.verticalLayout.setObjectName(u"verticalLayout")
+        self.lbl_titulo_ventas = QLabel(self.page_ventas)
+        self.lbl_titulo_ventas.setObjectName(u"lbl_titulo_ventas")
+        self.lbl_titulo_ventas.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout.addWidget(self.lbl_titulo_ventas)
+
+        self.lineEdit_busqueda_ventas = QLineEdit(self.page_ventas)
+        self.lineEdit_busqueda_ventas.setObjectName(u"lineEdit_busqueda_ventas")
+        self.lineEdit_busqueda_ventas.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout.addWidget(self.lineEdit_busqueda_ventas)
+
+        self.tabla_ventas = QTableWidget(self.page_ventas)
+        if (self.tabla_ventas.columnCount() < 4):
+            self.tabla_ventas.setColumnCount(4)
+        __qtablewidgetitem7 = QTableWidgetItem()
+        self.tabla_ventas.setHorizontalHeaderItem(0, __qtablewidgetitem7)
+        __qtablewidgetitem8 = QTableWidgetItem()
+        self.tabla_ventas.setHorizontalHeaderItem(1, __qtablewidgetitem8)
+        __qtablewidgetitem9 = QTableWidgetItem()
+        self.tabla_ventas.setHorizontalHeaderItem(2, __qtablewidgetitem9)
+        __qtablewidgetitem10 = QTableWidgetItem()
+        self.tabla_ventas.setHorizontalHeaderItem(3, __qtablewidgetitem10)
+        self.tabla_ventas.setObjectName(u"tabla_ventas")
+        self.tabla_ventas.setProperty("showDropIndicator", True)
+        self.tabla_ventas.horizontalHeader().setDefaultSectionSize(195)
+
+        self.verticalLayout.addWidget(self.tabla_ventas)
+
         self.stackedWidget_menu.addWidget(self.page_ventas)
 
-        self.horizontalLayout_4.addWidget(self.stackedWidget_menu)
+        self.verticalLayout_17.addWidget(self.stackedWidget_menu)
 
 
         self.verticalLayout_3.addWidget(self.frame_contenido)
@@ -1007,15 +1167,11 @@ class Ui_MainWindow(object):
         self.verticalLayout_2.addWidget(self.frame_main)
 
         self.verticalLayout_2.setStretch(0, 1)
-        self.verticalLayout_2.setStretch(1, 8)
-
-        self.gridLayout.addWidget(self.frame, 0, 0, 1, 1)
-
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget_menu.setCurrentIndex(7)
+        self.stackedWidget_menu.setCurrentIndex(10)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -1041,6 +1197,10 @@ class Ui_MainWindow(object):
         self.comboBox_temperaturas.setItemText(1, QCoreApplication.translate("MainWindow", u"\u00b0F", None))
         self.comboBox_temperaturas.setItemText(2, QCoreApplication.translate("MainWindow", u"%", None))
 
+        self.lbl_titulo_temperaturas.setText(QCoreApplication.translate("MainWindow", u"TEMPERATURAS", None))
+        self.lbl_titulo_estadisticas.setText(QCoreApplication.translate("MainWindow", u"ESTADISTICAS", None))
+        self.lbl_titulo_corte_de_caja.setText(QCoreApplication.translate("MainWindow", u"CORTE DE CAJA", None))
+        self.btn_anadir_gasto.setText(QCoreApplication.translate("MainWindow", u"A\u00d1ADIR GASTO", None))
         self.label_7.setText(QCoreApplication.translate("MainWindow", u"AGREGAR PRODUCTO", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"Nombre:", None))
         self.label_2.setText(QCoreApplication.translate("MainWindow", u"Descripcion:", None))
@@ -1049,10 +1209,13 @@ class Ui_MainWindow(object):
         self.label_4.setText(QCoreApplication.translate("MainWindow", u"Precio:", None))
         self.label_3.setText(QCoreApplication.translate("MainWindow", u"Cantidad:", None))
         self.comboBox.setItemText(0, QCoreApplication.translate("MainWindow", u"Carne", None))
-        self.comboBox.setItemText(1, QCoreApplication.translate("MainWindow", u"Verdura", None))
+        self.comboBox.setItemText(1, QCoreApplication.translate("MainWindow", u"Despensa", None))
 
         self.comboBox.setCurrentText(QCoreApplication.translate("MainWindow", u"Carne", None))
-        self.comboBox_2.setItemText(0, QCoreApplication.translate("MainWindow", u"Cerdo", None))
+        self.comboBox_2.setItemText(0, QCoreApplication.translate("MainWindow", u"Pollo", None))
+        self.comboBox_2.setItemText(1, QCoreApplication.translate("MainWindow", u"Res", None))
+        self.comboBox_2.setItemText(2, QCoreApplication.translate("MainWindow", u"Cerdo", None))
+        self.comboBox_2.setItemText(3, QCoreApplication.translate("MainWindow", u"Pescado", None))
 
         self.btn_agregar_producto.setText(QCoreApplication.translate("MainWindow", u"Agregar", None))
         self.label_45.setText(QCoreApplication.translate("MainWindow", u"EDITAR PRODUCTO", None))
@@ -1063,12 +1226,24 @@ class Ui_MainWindow(object):
         self.label_43.setText(QCoreApplication.translate("MainWindow", u"Precio:", None))
         self.label_44.setText(QCoreApplication.translate("MainWindow", u"Cantidad:", None))
         self.comboBox_13.setItemText(0, QCoreApplication.translate("MainWindow", u"Carne", None))
-        self.comboBox_13.setItemText(1, QCoreApplication.translate("MainWindow", u"Verdura", None))
+        self.comboBox_13.setItemText(1, QCoreApplication.translate("MainWindow", u"Despensa", None))
 
         self.comboBox_13.setCurrentText(QCoreApplication.translate("MainWindow", u"Carne", None))
-        self.comboBox_14.setItemText(0, QCoreApplication.translate("MainWindow", u"Cerdo", None))
+        self.comboBox_14.setItemText(0, QCoreApplication.translate("MainWindow", u"Pollo", None))
+        self.comboBox_14.setItemText(1, QCoreApplication.translate("MainWindow", u"Res", None))
+        self.comboBox_14.setItemText(2, QCoreApplication.translate("MainWindow", u"Cerdo", None))
+        self.comboBox_14.setItemText(3, QCoreApplication.translate("MainWindow", u"Pescado", None))
+        self.comboBox_14.setItemText(4, QCoreApplication.translate("MainWindow", u"Fruta", None))
+        self.comboBox_14.setItemText(5, QCoreApplication.translate("MainWindow", u"Verdura", None))
+        self.comboBox_14.setItemText(6, QCoreApplication.translate("MainWindow", u"Abarrote", None))
+        self.comboBox_14.setItemText(7, QCoreApplication.translate("MainWindow", u"Limpieza", None))
+        self.comboBox_14.setItemText(8, QCoreApplication.translate("MainWindow", u"Cremer\u00eda", None))
 
         self.btn_agregar_producto_7.setText(QCoreApplication.translate("MainWindow", u"Editar", None))
+        self.lbl_titulo_gastos.setText(QCoreApplication.translate("MainWindow", u"REGISTRAR GASTOS", None))
+        self.label_9.setText(QCoreApplication.translate("MainWindow", u"CONCEPTO:", None))
+        self.label_10.setText(QCoreApplication.translate("MainWindow", u"MONTO:", None))
+        self.btn_agregar_gasto.setText(QCoreApplication.translate("MainWindow", u"Agregar", None))
         self.label_8.setText(QCoreApplication.translate("MainWindow", u"INGRESA LA CONTRASE\u00d1A", None))
         self.lbl_logo_empresa_2.setText("")
         self.btn_validar_contrasena_editar.setText(QCoreApplication.translate("MainWindow", u"Aceptar", None))
@@ -1091,6 +1266,7 @@ class Ui_MainWindow(object):
         ___qtablewidgetitem6 = self.tabla_inventario.horizontalHeaderItem(6)
         ___qtablewidgetitem6.setText(QCoreApplication.translate("MainWindow", u"Cantidad", None));
         self.btn_agregar_inventario.setText(QCoreApplication.translate("MainWindow", u"Agregar", None))
+        self.lbl_id.setText(QCoreApplication.translate("MainWindow", u"Tu hermana :D", None))
         self.lbl_nombre.setText(QCoreApplication.translate("MainWindow", u"Nombre Producto", None))
         self.lbl_descripcion.setText(QCoreApplication.translate("MainWindow", u"Descripcion Producto", None))
         self.lbl_categoria.setText(QCoreApplication.translate("MainWindow", u"Categoria Producto", None))
@@ -1099,5 +1275,15 @@ class Ui_MainWindow(object):
         self.lbl_cantidad.setText(QCoreApplication.translate("MainWindow", u"Cantidad", None))
         self.btn_editar_inventario.setText(QCoreApplication.translate("MainWindow", u"Editar", None))
         self.btn_eliminar_inventario.setText(QCoreApplication.translate("MainWindow", u"Eliminar", None))
+        self.lbl_titulo_ventas.setText(QCoreApplication.translate("MainWindow", u"VENTAS", None))
+        self.lineEdit_busqueda_ventas.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Ingrese el producto a buscar", None))
+        ___qtablewidgetitem7 = self.tabla_ventas.horizontalHeaderItem(0)
+        ___qtablewidgetitem7.setText(QCoreApplication.translate("MainWindow", u"ID", None));
+        ___qtablewidgetitem8 = self.tabla_ventas.horizontalHeaderItem(1)
+        ___qtablewidgetitem8.setText(QCoreApplication.translate("MainWindow", u"Nombre", None));
+        ___qtablewidgetitem9 = self.tabla_ventas.horizontalHeaderItem(2)
+        ___qtablewidgetitem9.setText(QCoreApplication.translate("MainWindow", u"Precio", None));
+        ___qtablewidgetitem10 = self.tabla_ventas.horizontalHeaderItem(3)
+        ___qtablewidgetitem10.setText(QCoreApplication.translate("MainWindow", u"Cantidad", None));
     # retranslateUi
 

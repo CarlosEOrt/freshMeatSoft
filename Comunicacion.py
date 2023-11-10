@@ -1,4 +1,5 @@
 import mysql.connector 
+import datetime
 
 class Comunicacion:
     
@@ -37,3 +38,19 @@ class Comunicacion:
         cursor.execute(sentenciaSQL, (valores))
         self.conexion.commit()
         cursor.close()
+
+    def insertarGasto(self, gasto):
+        cursor = self.conexion.cursor();
+        sentenciaSQL = "INSERT INTO gastos (concepto, monto, fecha) VALUES (%s, %s, %s)"
+        valores = (gasto.getConcepto(), gasto.getMonto(), gasto.getFecha())
+        cursor.execute(sentenciaSQL, (valores))
+        self.conexion.commit()
+        cursor.close()
+
+    def traerProductosVentas(self, cadenaBusqueda):
+        cursor = self.conexion.cursor();
+        sentenciaSQL = "SELECT * FROM inventario WHERE borrado !=1 AND cantidad > 0 AND nombre LIKE %s "
+        valores = ('%'+cadenaBusqueda+'%')
+        cursor.execute(sentenciaSQL, (valores, ))
+        resultados = cursor.fetchall()
+        return resultados
