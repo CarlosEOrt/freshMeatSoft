@@ -46,6 +46,13 @@ class Comunicacion:
         cursor.execute(sentenciaSQL, (valores))
         self.conexion.commit()
         cursor.close()
+    
+    def traerGastos(self):
+        cursor = self.conexion.cursor();
+        sentenciaSQL = "SELECT * FROM gastos "
+        cursor.execute(sentenciaSQL)
+        resultados = cursor.fetchall()
+        return resultados
 
     def traerProductosVentas(self, cadenaBusqueda):
         cursor = self.conexion.cursor();

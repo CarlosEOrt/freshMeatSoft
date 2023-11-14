@@ -25,9 +25,12 @@ class MyWindow(QMainWindow):
         self.control_btn_pestana()
         self.setWindowFlag(QtCore.Qt.WindowType.FramelessWindowHint)
         self.setWindowOpacity(1)
+        self.setWindowTitle('FRESH MEAT SOFT')
 
-        # self.actualizarTablaInventario()
-        # self.actualizarResultadosBusqueda()
+        #Setteo de datos de las tablas
+        self.actualizarTablaInventario()
+        self.actualizarTablaGastos()
+        self.actualizarResultadosBusqueda()
 
         # self.timer = QTimer(self) # se crea una variable para constante actualizacion
         # self.timer.timeout.connect(lambda:self.actualizarTemperatura())#actualiza el label
@@ -81,6 +84,8 @@ class MyWindow(QMainWindow):
         # Botones de Funcionalidades de CRUD Corte de Caja
         self.btn_agregar_gasto.clicked.connect(
             lambda: self.agregarGastoABaseDeDatos())
+        self.btn_generar_corte.clicked.connect(
+            lambda: self.stackedWidget_menu.setCurrentWidget(self.page_agregar_montos))
 
         # Botones de Funcionalidades de Ventas
         self.lineEdit_busqueda_ventas.textChanged.connect(
@@ -232,7 +237,7 @@ class MyWindow(QMainWindow):
             self.stackedWidget_menu.setCurrentWidget(
                 self.page_credenciales_eliminar_temperatura)
 
-    # Funciones Insercion de Gastos
+    # Funciones Corte de Caja
     def agregarGastoABaseDeDatos(self):
         fecha_actual = datetime.date.today()
         fecha_actual_str = fecha_actual.strftime('%Y-%m-%d')
@@ -241,6 +246,20 @@ class MyWindow(QMainWindow):
         com = Comunicacion()
         com.insertarGasto(gasto)
         self.borrarCamposGastosAgregar()
+        self.stackedWidget_menu.setCurrentWidget(self.page_corte_de_caja)
+
+    def actualizarTablaGastos(self):
+        com = Comunicacion()
+        resultados = com.traerGastos()
+        self.tabla_gastos.setRowCount(0)
+        self.tabla_gastos.setRowCount(len(resultados))
+
+        for fila, datos in enumerate(resultados):
+            for columna, valor in enumerate(datos):
+                item = QtWidgets.QTableWidgetItem(str(valor))
+                self.tabla_gastos.setItem(fila, columna, item)
+
+        
 
     # funcionalidades de borrado de campos
 
@@ -311,7 +330,7 @@ class MyWindow(QMainWindow):
                 item = QtWidgets.QTableWidgetItem(str(valor))
                 self.tabla_ventas.setItem(fila, columna, item)
 
-        self.stackedWidget_menu.setCurrentWidget(self.page_ventas)
+        
 
 
 if __name__ == '__main__':
