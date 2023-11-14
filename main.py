@@ -2,6 +2,9 @@ import sys
 import serial
 import time
 import datetime
+from tkinter import *
+from tkinter.simpledialog import askstring
+from tkinter.messagebox import showinfo
 from PyQt6 import QtCore, QtWidgets
 from PyQt6.QtCore import QTimer, QPropertyAnimation, QEasingCurve, Qt
 from PyQt6.QtWidgets import QApplication, QMainWindow
@@ -27,7 +30,7 @@ class MyWindow(QMainWindow):
         self.setWindowOpacity(1)
         self.setWindowTitle('FRESH MEAT SOFT')
 
-        #Setteo de datos de las tablas
+        # Setteo de datos de las tablas
         self.actualizarTablaInventario()
         self.actualizarTablaGastos()
         self.actualizarResultadosBusqueda()
@@ -259,8 +262,6 @@ class MyWindow(QMainWindow):
                 item = QtWidgets.QTableWidgetItem(str(valor))
                 self.tabla_gastos.setItem(fila, columna, item)
 
-        
-
     # funcionalidades de borrado de campos
 
     def borrarCamposInventarioAgregar(self):
@@ -329,8 +330,6 @@ class MyWindow(QMainWindow):
             for columna, valor in enumerate(datos):
                 item = QtWidgets.QTableWidgetItem(str(valor))
                 self.tabla_ventas.setItem(fila, columna, item)
-
-        
 
 
 if __name__ == '__main__':
