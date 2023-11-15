@@ -1125,7 +1125,7 @@ border: 1px: solid: rgb(0, 206, 152);
                             <family>Arial Black</family>
                             <pointsize>10</pointsize>
                             <italic>false</italic>
-                            <fontweight></fontweight>
+                            <bold>false</bold>
                            </font>
                           </property>
                           <property name="cursor">
@@ -1149,7 +1149,7 @@ border: 1px: solid: rgb(0, 206, 152);
                             <family>Arial Black</family>
                             <pointsize>10</pointsize>
                             <italic>false</italic>
-                            <fontweight></fontweight>
+                            <bold>false</bold>
                            </font>
                           </property>
                           <property name="cursor">
@@ -1177,7 +1177,7 @@ border: 1px: solid: rgb(0, 206, 152);
                           <family>Arial Black</family>
                           <pointsize>12</pointsize>
                           <italic>false</italic>
-                          <fontweight></fontweight>
+                          <bold>false</bold>
                          </font>
                         </property>
                         <property name="text">
@@ -1423,7 +1423,7 @@ border: 1px: solid: rgb(0, 206, 152);
                         <family>Arial Black</family>
                         <pointsize>12</pointsize>
                         <italic>false</italic>
-                        <fontweight></fontweight>
+                        <bold>false</bold>
                        </font>
                       </property>
                       <property name="text">
