@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'carniceria.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.5.2
+## Created by: Qt User Interface Compiler version 6.6.0
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -15,11 +15,12 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QAbstractItemView, QAbstractScrollArea, QApplication, QComboBox,
-    QFormLayout, QFrame, QHBoxLayout, QHeaderView,
-    QLabel, QLineEdit, QMainWindow, QPushButton,
-    QSizePolicy, QSpacerItem, QStackedWidget, QTableWidget,
-    QTableWidgetItem, QVBoxLayout, QWidget)
+from PySide6.QtWidgets import (QAbstractItemView, QAbstractScrollArea, QAbstractSpinBox, QApplication,
+    QComboBox, QDoubleSpinBox, QFormLayout, QFrame,
+    QHBoxLayout, QHeaderView, QLabel, QLineEdit,
+    QMainWindow, QPushButton, QSizePolicy, QSpacerItem,
+    QSpinBox, QStackedWidget, QTableWidget, QTableWidgetItem,
+    QVBoxLayout, QWidget)
 import Resource_rc
 
 class Ui_MainWindow(object):
@@ -613,7 +614,7 @@ class Ui_MainWindow(object):
         font1 = QFont()
         font1.setFamilies([u"Arial Black"])
         font1.setPointSize(10)
-        font1.setBold(False)
+        font1.setWeight(QFont.)
         font1.setItalic(False)
         self.btn_generar_corte.setFont(font1)
         self.btn_generar_corte.setCursor(QCursor(Qt.PointingHandCursor))
@@ -646,7 +647,7 @@ class Ui_MainWindow(object):
         font2 = QFont()
         font2.setFamilies([u"Arial Black"])
         font2.setPointSize(12)
-        font2.setBold(False)
+        font2.setWeight(QFont.)
         font2.setItalic(False)
         self.label_7.setFont(font2)
         self.label_7.setAlignment(Qt.AlignCenter)
@@ -994,10 +995,227 @@ class Ui_MainWindow(object):
         self.stackedWidget_menu.addWidget(self.page_agregar_gasto)
         self.page_agregar_montos = QWidget()
         self.page_agregar_montos.setObjectName(u"page_agregar_montos")
+        self.verticalLayout_31 = QVBoxLayout(self.page_agregar_montos)
+        self.verticalLayout_31.setObjectName(u"verticalLayout_31")
         self.lbl_titulo_gastos_2 = QLabel(self.page_agregar_montos)
         self.lbl_titulo_gastos_2.setObjectName(u"lbl_titulo_gastos_2")
-        self.lbl_titulo_gastos_2.setGeometry(QRect(180, 80, 441, 23))
         self.lbl_titulo_gastos_2.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout_31.addWidget(self.lbl_titulo_gastos_2)
+
+        self.horizontalSpacer_27 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.verticalLayout_31.addItem(self.horizontalSpacer_27)
+
+        self.horizontalLayout_30 = QHBoxLayout()
+        self.horizontalLayout_30.setObjectName(u"horizontalLayout_30")
+        self.horizontalLayout_28 = QHBoxLayout()
+        self.horizontalLayout_28.setObjectName(u"horizontalLayout_28")
+        self.verticalLayout_30 = QVBoxLayout()
+        self.verticalLayout_30.setSpacing(28)
+        self.verticalLayout_30.setObjectName(u"verticalLayout_30")
+        self.lbl_monto_500 = QLabel(self.page_agregar_montos)
+        self.lbl_monto_500.setObjectName(u"lbl_monto_500")
+        self.lbl_monto_500.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout_30.addWidget(self.lbl_monto_500)
+
+        self.lbl_monto_200 = QLabel(self.page_agregar_montos)
+        self.lbl_monto_200.setObjectName(u"lbl_monto_200")
+        self.lbl_monto_200.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout_30.addWidget(self.lbl_monto_200)
+
+        self.lbl_monto_100 = QLabel(self.page_agregar_montos)
+        self.lbl_monto_100.setObjectName(u"lbl_monto_100")
+        self.lbl_monto_100.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout_30.addWidget(self.lbl_monto_100)
+
+        self.lbl_monto_50 = QLabel(self.page_agregar_montos)
+        self.lbl_monto_50.setObjectName(u"lbl_monto_50")
+        self.lbl_monto_50.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout_30.addWidget(self.lbl_monto_50)
+
+        self.lbl_monto_20 = QLabel(self.page_agregar_montos)
+        self.lbl_monto_20.setObjectName(u"lbl_monto_20")
+        self.lbl_monto_20.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout_30.addWidget(self.lbl_monto_20)
+
+
+        self.horizontalLayout_28.addLayout(self.verticalLayout_30)
+
+        self.verticalLayout_26 = QVBoxLayout()
+        self.verticalLayout_26.setSpacing(30)
+        self.verticalLayout_26.setObjectName(u"verticalLayout_26")
+        self.spinBox_monto_500 = QSpinBox(self.page_agregar_montos)
+        self.spinBox_monto_500.setObjectName(u"spinBox_monto_500")
+        self.spinBox_monto_500.setFrame(True)
+        self.spinBox_monto_500.setButtonSymbols(QAbstractSpinBox.NoButtons)
+        self.spinBox_monto_500.setCorrectionMode(QAbstractSpinBox.CorrectToPreviousValue)
+        self.spinBox_monto_500.setMaximum(99999)
+        self.spinBox_monto_500.setStepType(QAbstractSpinBox.AdaptiveDecimalStepType)
+        self.spinBox_monto_500.setDisplayIntegerBase(10)
+
+        self.verticalLayout_26.addWidget(self.spinBox_monto_500)
+
+        self.spinBox_monto_200 = QSpinBox(self.page_agregar_montos)
+        self.spinBox_monto_200.setObjectName(u"spinBox_monto_200")
+        self.spinBox_monto_200.setFrame(True)
+        self.spinBox_monto_200.setButtonSymbols(QAbstractSpinBox.NoButtons)
+        self.spinBox_monto_200.setCorrectionMode(QAbstractSpinBox.CorrectToPreviousValue)
+        self.spinBox_monto_200.setMaximum(99999)
+
+        self.verticalLayout_26.addWidget(self.spinBox_monto_200)
+
+        self.spinBox_monto_100 = QSpinBox(self.page_agregar_montos)
+        self.spinBox_monto_100.setObjectName(u"spinBox_monto_100")
+        self.spinBox_monto_100.setFrame(True)
+        self.spinBox_monto_100.setButtonSymbols(QAbstractSpinBox.NoButtons)
+        self.spinBox_monto_100.setCorrectionMode(QAbstractSpinBox.CorrectToPreviousValue)
+        self.spinBox_monto_100.setMaximum(99999)
+
+        self.verticalLayout_26.addWidget(self.spinBox_monto_100)
+
+        self.spinBox_monto_50 = QSpinBox(self.page_agregar_montos)
+        self.spinBox_monto_50.setObjectName(u"spinBox_monto_50")
+        self.spinBox_monto_50.setFrame(True)
+        self.spinBox_monto_50.setButtonSymbols(QAbstractSpinBox.NoButtons)
+        self.spinBox_monto_50.setCorrectionMode(QAbstractSpinBox.CorrectToPreviousValue)
+        self.spinBox_monto_50.setMaximum(99999)
+
+        self.verticalLayout_26.addWidget(self.spinBox_monto_50)
+
+        self.spinBox_monto_20 = QSpinBox(self.page_agregar_montos)
+        self.spinBox_monto_20.setObjectName(u"spinBox_monto_20")
+        self.spinBox_monto_20.setFrame(True)
+        self.spinBox_monto_20.setButtonSymbols(QAbstractSpinBox.NoButtons)
+        self.spinBox_monto_20.setCorrectionMode(QAbstractSpinBox.CorrectToPreviousValue)
+        self.spinBox_monto_20.setMaximum(99999)
+
+        self.verticalLayout_26.addWidget(self.spinBox_monto_20)
+
+
+        self.horizontalLayout_28.addLayout(self.verticalLayout_26)
+
+
+        self.horizontalLayout_30.addLayout(self.horizontalLayout_28)
+
+        self.verticalSpacer_12 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.horizontalLayout_30.addItem(self.verticalSpacer_12)
+
+        self.horizontalLayout_29 = QHBoxLayout()
+        self.horizontalLayout_29.setObjectName(u"horizontalLayout_29")
+        self.verticalLayout_24 = QVBoxLayout()
+        self.verticalLayout_24.setSpacing(28)
+        self.verticalLayout_24.setObjectName(u"verticalLayout_24")
+        self.lbl_monto_21 = QLabel(self.page_agregar_montos)
+        self.lbl_monto_21.setObjectName(u"lbl_monto_21")
+        self.lbl_monto_21.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout_24.addWidget(self.lbl_monto_21)
+
+        self.lbl_monto_22 = QLabel(self.page_agregar_montos)
+        self.lbl_monto_22.setObjectName(u"lbl_monto_22")
+        self.lbl_monto_22.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout_24.addWidget(self.lbl_monto_22)
+
+        self.lbl_monto_23 = QLabel(self.page_agregar_montos)
+        self.lbl_monto_23.setObjectName(u"lbl_monto_23")
+        self.lbl_monto_23.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout_24.addWidget(self.lbl_monto_23)
+
+        self.lbl_monto_24 = QLabel(self.page_agregar_montos)
+        self.lbl_monto_24.setObjectName(u"lbl_monto_24")
+        self.lbl_monto_24.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout_24.addWidget(self.lbl_monto_24)
+
+        self.lbl_monto_25 = QLabel(self.page_agregar_montos)
+        self.lbl_monto_25.setObjectName(u"lbl_monto_25")
+        self.lbl_monto_25.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout_24.addWidget(self.lbl_monto_25)
+
+
+        self.horizontalLayout_29.addLayout(self.verticalLayout_24)
+
+        self.verticalLayout_25 = QVBoxLayout()
+        self.verticalLayout_25.setSpacing(30)
+        self.verticalLayout_25.setObjectName(u"verticalLayout_25")
+        self.spinBox_monto_10 = QSpinBox(self.page_agregar_montos)
+        self.spinBox_monto_10.setObjectName(u"spinBox_monto_10")
+        self.spinBox_monto_10.setFrame(True)
+        self.spinBox_monto_10.setButtonSymbols(QAbstractSpinBox.NoButtons)
+        self.spinBox_monto_10.setCorrectionMode(QAbstractSpinBox.CorrectToPreviousValue)
+        self.spinBox_monto_10.setMaximum(99999)
+
+        self.verticalLayout_25.addWidget(self.spinBox_monto_10)
+
+        self.spinBox_monto_5 = QSpinBox(self.page_agregar_montos)
+        self.spinBox_monto_5.setObjectName(u"spinBox_monto_5")
+        self.spinBox_monto_5.setFrame(True)
+        self.spinBox_monto_5.setButtonSymbols(QAbstractSpinBox.NoButtons)
+        self.spinBox_monto_5.setCorrectionMode(QAbstractSpinBox.CorrectToPreviousValue)
+        self.spinBox_monto_5.setMaximum(99999)
+
+        self.verticalLayout_25.addWidget(self.spinBox_monto_5)
+
+        self.spinBox_monto_2 = QSpinBox(self.page_agregar_montos)
+        self.spinBox_monto_2.setObjectName(u"spinBox_monto_2")
+        self.spinBox_monto_2.setFrame(True)
+        self.spinBox_monto_2.setButtonSymbols(QAbstractSpinBox.NoButtons)
+        self.spinBox_monto_2.setCorrectionMode(QAbstractSpinBox.CorrectToPreviousValue)
+        self.spinBox_monto_2.setMaximum(99999)
+
+        self.verticalLayout_25.addWidget(self.spinBox_monto_2)
+
+        self.spinBox_monto_1 = QSpinBox(self.page_agregar_montos)
+        self.spinBox_monto_1.setObjectName(u"spinBox_monto_1")
+        self.spinBox_monto_1.setFrame(True)
+        self.spinBox_monto_1.setButtonSymbols(QAbstractSpinBox.NoButtons)
+        self.spinBox_monto_1.setCorrectionMode(QAbstractSpinBox.CorrectToPreviousValue)
+        self.spinBox_monto_1.setMaximum(99999)
+
+        self.verticalLayout_25.addWidget(self.spinBox_monto_1)
+
+        self.spinBox_monto_50c = QDoubleSpinBox(self.page_agregar_montos)
+        self.spinBox_monto_50c.setObjectName(u"spinBox_monto_50c")
+        self.spinBox_monto_50c.setCursor(QCursor(Qt.UpArrowCursor))
+        self.spinBox_monto_50c.setButtonSymbols(QAbstractSpinBox.NoButtons)
+        self.spinBox_monto_50c.setAccelerated(False)
+        self.spinBox_monto_50c.setMaximum(99999.990000000005239)
+
+        self.verticalLayout_25.addWidget(self.spinBox_monto_50c)
+
+
+        self.horizontalLayout_29.addLayout(self.verticalLayout_25)
+
+
+        self.horizontalLayout_30.addLayout(self.horizontalLayout_29)
+
+
+        self.verticalLayout_31.addLayout(self.horizontalLayout_30)
+
+        self.verticalSpacer_9 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.verticalLayout_31.addItem(self.verticalSpacer_9)
+
+        self.pushButton = QPushButton(self.page_agregar_montos)
+        self.pushButton.setObjectName(u"pushButton")
+        self.pushButton.setMinimumSize(QSize(120, 40))
+
+        self.verticalLayout_31.addWidget(self.pushButton)
+
+        self.horizontalSpacer_28 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.verticalLayout_31.addItem(self.horizontalSpacer_28)
+
         self.stackedWidget_menu.addWidget(self.page_agregar_montos)
         self.page_credenciales_editar = QWidget()
         self.page_credenciales_editar.setObjectName(u"page_credenciales_editar")
@@ -1388,8 +1606,8 @@ class Ui_MainWindow(object):
         self.horizontalLayout_23.addWidget(self.tabla_ventas)
 
         self.tabla_carrito = QTableWidget(self.page_ventas)
-        if (self.tabla_carrito.columnCount() < 4):
-            self.tabla_carrito.setColumnCount(4)
+        if (self.tabla_carrito.columnCount() < 5):
+            self.tabla_carrito.setColumnCount(5)
         __qtablewidgetitem20 = QTableWidgetItem()
         self.tabla_carrito.setHorizontalHeaderItem(0, __qtablewidgetitem20)
         __qtablewidgetitem21 = QTableWidgetItem()
@@ -1398,8 +1616,10 @@ class Ui_MainWindow(object):
         self.tabla_carrito.setHorizontalHeaderItem(2, __qtablewidgetitem22)
         __qtablewidgetitem23 = QTableWidgetItem()
         self.tabla_carrito.setHorizontalHeaderItem(3, __qtablewidgetitem23)
+        __qtablewidgetitem24 = QTableWidgetItem()
+        self.tabla_carrito.setHorizontalHeaderItem(4, __qtablewidgetitem24)
         self.tabla_carrito.setObjectName(u"tabla_carrito")
-        self.tabla_carrito.horizontalHeader().setDefaultSectionSize(94)
+        self.tabla_carrito.horizontalHeader().setDefaultSectionSize(76)
 
         self.horizontalLayout_23.addWidget(self.tabla_carrito)
 
@@ -1443,7 +1663,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget_menu.setCurrentIndex(1)
+        self.stackedWidget_menu.setCurrentIndex(7)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -1538,6 +1758,21 @@ class Ui_MainWindow(object):
         self.label_10.setText(QCoreApplication.translate("MainWindow", u"MONTO:", None))
         self.btn_agregar_gasto.setText(QCoreApplication.translate("MainWindow", u"Agregar", None))
         self.lbl_titulo_gastos_2.setText(QCoreApplication.translate("MainWindow", u"INGRESO DE MONTOS EFECTIVO", None))
+        self.lbl_monto_500.setText(QCoreApplication.translate("MainWindow", u"$500", None))
+        self.lbl_monto_200.setText(QCoreApplication.translate("MainWindow", u"$200", None))
+        self.lbl_monto_100.setText(QCoreApplication.translate("MainWindow", u"$100", None))
+        self.lbl_monto_50.setText(QCoreApplication.translate("MainWindow", u"$50", None))
+        self.lbl_monto_20.setText(QCoreApplication.translate("MainWindow", u"$20", None))
+        self.spinBox_monto_500.setSpecialValueText("")
+        self.spinBox_monto_500.setPrefix("")
+        self.lbl_monto_21.setText(QCoreApplication.translate("MainWindow", u"$10", None))
+        self.lbl_monto_22.setText(QCoreApplication.translate("MainWindow", u"$5", None))
+        self.lbl_monto_23.setText(QCoreApplication.translate("MainWindow", u"$2", None))
+        self.lbl_monto_24.setText(QCoreApplication.translate("MainWindow", u"$1", None))
+        self.lbl_monto_25.setText(QCoreApplication.translate("MainWindow", u"$0.50", None))
+        self.spinBox_monto_50c.setSpecialValueText("")
+        self.spinBox_monto_50c.setPrefix(QCoreApplication.translate("MainWindow", u"$", None))
+        self.pushButton.setText(QCoreApplication.translate("MainWindow", u"Aceptar", None))
         self.label_8.setText(QCoreApplication.translate("MainWindow", u"INGRESA LA CONTRASE\u00d1A", None))
         self.lbl_logo_empresa_2.setText("")
         self.btn_validar_contrasena_editar.setText(QCoreApplication.translate("MainWindow", u"Aceptar", None))
@@ -1578,15 +1813,17 @@ class Ui_MainWindow(object):
         ___qtablewidgetitem16 = self.tabla_ventas.horizontalHeaderItem(1)
         ___qtablewidgetitem16.setText(QCoreApplication.translate("MainWindow", u"Nombre", None));
         ___qtablewidgetitem17 = self.tabla_ventas.horizontalHeaderItem(2)
-        ___qtablewidgetitem17.setText(QCoreApplication.translate("MainWindow", u"Precio", None));
+        ___qtablewidgetitem17.setText(QCoreApplication.translate("MainWindow", u"Cantidad", None));
         ___qtablewidgetitem18 = self.tabla_ventas.horizontalHeaderItem(3)
-        ___qtablewidgetitem18.setText(QCoreApplication.translate("MainWindow", u"Cantidad", None));
+        ___qtablewidgetitem18.setText(QCoreApplication.translate("MainWindow", u"Precio", None));
         ___qtablewidgetitem19 = self.tabla_carrito.horizontalHeaderItem(0)
         ___qtablewidgetitem19.setText(QCoreApplication.translate("MainWindow", u"ID", None));
         ___qtablewidgetitem20 = self.tabla_carrito.horizontalHeaderItem(1)
         ___qtablewidgetitem20.setText(QCoreApplication.translate("MainWindow", u"Nombre", None));
         ___qtablewidgetitem21 = self.tabla_carrito.horizontalHeaderItem(2)
         ___qtablewidgetitem21.setText(QCoreApplication.translate("MainWindow", u"Cantidad", None));
+        ___qtablewidgetitem22 = self.tabla_carrito.horizontalHeaderItem(3)
+        ___qtablewidgetitem22.setText(QCoreApplication.translate("MainWindow", u"Precio", None));
         self.btn_realizar_venta.setText(QCoreApplication.translate("MainWindow", u"Realizar Venta", None))
     # retranslateUi
 

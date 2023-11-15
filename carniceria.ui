@@ -703,7 +703,7 @@ border: 1px: solid: rgb(0, 206, 152);
                    <bool>true</bool>
                   </property>
                   <property name="currentIndex">
-                   <number>12</number>
+                   <number>7</number>
                   </property>
                   <widget class="QWidget" name="page_temperaturas">
                    <layout class="QVBoxLayout" name="verticalLayout_22">
@@ -1125,7 +1125,7 @@ border: 1px: solid: rgb(0, 206, 152);
                             <family>Arial Black</family>
                             <pointsize>10</pointsize>
                             <italic>false</italic>
-                            <bold>false</bold>
+                            <fontweight></fontweight>
                            </font>
                           </property>
                           <property name="cursor">
@@ -1149,7 +1149,7 @@ border: 1px: solid: rgb(0, 206, 152);
                             <family>Arial Black</family>
                             <pointsize>10</pointsize>
                             <italic>false</italic>
-                            <bold>false</bold>
+                            <fontweight></fontweight>
                            </font>
                           </property>
                           <property name="cursor">
@@ -1177,7 +1177,7 @@ border: 1px: solid: rgb(0, 206, 152);
                           <family>Arial Black</family>
                           <pointsize>12</pointsize>
                           <italic>false</italic>
-                          <bold>false</bold>
+                          <fontweight></fontweight>
                          </font>
                         </property>
                         <property name="text">
@@ -1423,7 +1423,7 @@ border: 1px: solid: rgb(0, 206, 152);
                         <family>Arial Black</family>
                         <pointsize>12</pointsize>
                         <italic>false</italic>
-                        <bold>false</bold>
+                        <fontweight></fontweight>
                        </font>
                       </property>
                       <property name="text">
@@ -1837,22 +1837,401 @@ border: 1px: solid: rgb(0, 206, 152);
                    </layout>
                   </widget>
                   <widget class="QWidget" name="page_agregar_montos">
-                   <widget class="QLabel" name="lbl_titulo_gastos_2">
-                    <property name="geometry">
-                     <rect>
-                      <x>180</x>
-                      <y>80</y>
-                      <width>441</width>
-                      <height>23</height>
-                     </rect>
-                    </property>
-                    <property name="text">
-                     <string>INGRESO DE MONTOS EFECTIVO</string>
-                    </property>
-                    <property name="alignment">
-                     <set>Qt::AlignCenter</set>
-                    </property>
-                   </widget>
+                   <layout class="QVBoxLayout" name="verticalLayout_31">
+                    <item>
+                     <widget class="QLabel" name="lbl_titulo_gastos_2">
+                      <property name="text">
+                       <string>INGRESO DE MONTOS EFECTIVO</string>
+                      </property>
+                      <property name="alignment">
+                       <set>Qt::AlignCenter</set>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <spacer name="horizontalSpacer_27">
+                      <property name="orientation">
+                       <enum>Qt::Horizontal</enum>
+                      </property>
+                      <property name="sizeHint" stdset="0">
+                       <size>
+                        <width>40</width>
+                        <height>20</height>
+                       </size>
+                      </property>
+                     </spacer>
+                    </item>
+                    <item>
+                     <layout class="QHBoxLayout" name="horizontalLayout_30">
+                      <item>
+                       <layout class="QHBoxLayout" name="horizontalLayout_28">
+                        <item>
+                         <layout class="QVBoxLayout" name="verticalLayout_30">
+                          <property name="spacing">
+                           <number>28</number>
+                          </property>
+                          <item>
+                           <widget class="QLabel" name="lbl_monto_500">
+                            <property name="text">
+                             <string>$500</string>
+                            </property>
+                            <property name="alignment">
+                             <set>Qt::AlignCenter</set>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QLabel" name="lbl_monto_200">
+                            <property name="text">
+                             <string>$200</string>
+                            </property>
+                            <property name="alignment">
+                             <set>Qt::AlignCenter</set>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QLabel" name="lbl_monto_100">
+                            <property name="text">
+                             <string>$100</string>
+                            </property>
+                            <property name="alignment">
+                             <set>Qt::AlignCenter</set>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QLabel" name="lbl_monto_50">
+                            <property name="text">
+                             <string>$50</string>
+                            </property>
+                            <property name="alignment">
+                             <set>Qt::AlignCenter</set>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QLabel" name="lbl_monto_20">
+                            <property name="text">
+                             <string>$20</string>
+                            </property>
+                            <property name="alignment">
+                             <set>Qt::AlignCenter</set>
+                            </property>
+                           </widget>
+                          </item>
+                         </layout>
+                        </item>
+                        <item>
+                         <layout class="QVBoxLayout" name="verticalLayout_26">
+                          <property name="spacing">
+                           <number>30</number>
+                          </property>
+                          <item>
+                           <widget class="QSpinBox" name="spinBox_monto_500">
+                            <property name="frame">
+                             <bool>true</bool>
+                            </property>
+                            <property name="buttonSymbols">
+                             <enum>QAbstractSpinBox::NoButtons</enum>
+                            </property>
+                            <property name="specialValueText">
+                             <string/>
+                            </property>
+                            <property name="correctionMode">
+                             <enum>QAbstractSpinBox::CorrectToPreviousValue</enum>
+                            </property>
+                            <property name="prefix">
+                             <string/>
+                            </property>
+                            <property name="maximum">
+                             <number>99999</number>
+                            </property>
+                            <property name="stepType">
+                             <enum>QAbstractSpinBox::AdaptiveDecimalStepType</enum>
+                            </property>
+                            <property name="displayIntegerBase">
+                             <number>10</number>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QSpinBox" name="spinBox_monto_200">
+                            <property name="frame">
+                             <bool>true</bool>
+                            </property>
+                            <property name="buttonSymbols">
+                             <enum>QAbstractSpinBox::NoButtons</enum>
+                            </property>
+                            <property name="correctionMode">
+                             <enum>QAbstractSpinBox::CorrectToPreviousValue</enum>
+                            </property>
+                            <property name="maximum">
+                             <number>99999</number>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QSpinBox" name="spinBox_monto_100">
+                            <property name="frame">
+                             <bool>true</bool>
+                            </property>
+                            <property name="buttonSymbols">
+                             <enum>QAbstractSpinBox::NoButtons</enum>
+                            </property>
+                            <property name="correctionMode">
+                             <enum>QAbstractSpinBox::CorrectToPreviousValue</enum>
+                            </property>
+                            <property name="maximum">
+                             <number>99999</number>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QSpinBox" name="spinBox_monto_50">
+                            <property name="frame">
+                             <bool>true</bool>
+                            </property>
+                            <property name="buttonSymbols">
+                             <enum>QAbstractSpinBox::NoButtons</enum>
+                            </property>
+                            <property name="correctionMode">
+                             <enum>QAbstractSpinBox::CorrectToPreviousValue</enum>
+                            </property>
+                            <property name="maximum">
+                             <number>99999</number>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QSpinBox" name="spinBox_monto_20">
+                            <property name="frame">
+                             <bool>true</bool>
+                            </property>
+                            <property name="buttonSymbols">
+                             <enum>QAbstractSpinBox::NoButtons</enum>
+                            </property>
+                            <property name="correctionMode">
+                             <enum>QAbstractSpinBox::CorrectToPreviousValue</enum>
+                            </property>
+                            <property name="maximum">
+                             <number>99999</number>
+                            </property>
+                           </widget>
+                          </item>
+                         </layout>
+                        </item>
+                       </layout>
+                      </item>
+                      <item>
+                       <spacer name="verticalSpacer_12">
+                        <property name="orientation">
+                         <enum>Qt::Vertical</enum>
+                        </property>
+                        <property name="sizeHint" stdset="0">
+                         <size>
+                          <width>20</width>
+                          <height>40</height>
+                         </size>
+                        </property>
+                       </spacer>
+                      </item>
+                      <item>
+                       <layout class="QHBoxLayout" name="horizontalLayout_29">
+                        <item>
+                         <layout class="QVBoxLayout" name="verticalLayout_24">
+                          <property name="spacing">
+                           <number>28</number>
+                          </property>
+                          <item>
+                           <widget class="QLabel" name="lbl_monto_21">
+                            <property name="text">
+                             <string>$10</string>
+                            </property>
+                            <property name="alignment">
+                             <set>Qt::AlignCenter</set>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QLabel" name="lbl_monto_22">
+                            <property name="text">
+                             <string>$5</string>
+                            </property>
+                            <property name="alignment">
+                             <set>Qt::AlignCenter</set>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QLabel" name="lbl_monto_23">
+                            <property name="text">
+                             <string>$2</string>
+                            </property>
+                            <property name="alignment">
+                             <set>Qt::AlignCenter</set>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QLabel" name="lbl_monto_24">
+                            <property name="text">
+                             <string>$1</string>
+                            </property>
+                            <property name="alignment">
+                             <set>Qt::AlignCenter</set>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QLabel" name="lbl_monto_25">
+                            <property name="text">
+                             <string>$0.50</string>
+                            </property>
+                            <property name="alignment">
+                             <set>Qt::AlignCenter</set>
+                            </property>
+                           </widget>
+                          </item>
+                         </layout>
+                        </item>
+                        <item>
+                         <layout class="QVBoxLayout" name="verticalLayout_25">
+                          <property name="spacing">
+                           <number>30</number>
+                          </property>
+                          <item>
+                           <widget class="QSpinBox" name="spinBox_monto_10">
+                            <property name="frame">
+                             <bool>true</bool>
+                            </property>
+                            <property name="buttonSymbols">
+                             <enum>QAbstractSpinBox::NoButtons</enum>
+                            </property>
+                            <property name="correctionMode">
+                             <enum>QAbstractSpinBox::CorrectToPreviousValue</enum>
+                            </property>
+                            <property name="maximum">
+                             <number>99999</number>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QSpinBox" name="spinBox_monto_5">
+                            <property name="frame">
+                             <bool>true</bool>
+                            </property>
+                            <property name="buttonSymbols">
+                             <enum>QAbstractSpinBox::NoButtons</enum>
+                            </property>
+                            <property name="correctionMode">
+                             <enum>QAbstractSpinBox::CorrectToPreviousValue</enum>
+                            </property>
+                            <property name="maximum">
+                             <number>99999</number>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QSpinBox" name="spinBox_monto_2">
+                            <property name="frame">
+                             <bool>true</bool>
+                            </property>
+                            <property name="buttonSymbols">
+                             <enum>QAbstractSpinBox::NoButtons</enum>
+                            </property>
+                            <property name="correctionMode">
+                             <enum>QAbstractSpinBox::CorrectToPreviousValue</enum>
+                            </property>
+                            <property name="maximum">
+                             <number>99999</number>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QSpinBox" name="spinBox_monto_1">
+                            <property name="frame">
+                             <bool>true</bool>
+                            </property>
+                            <property name="buttonSymbols">
+                             <enum>QAbstractSpinBox::NoButtons</enum>
+                            </property>
+                            <property name="correctionMode">
+                             <enum>QAbstractSpinBox::CorrectToPreviousValue</enum>
+                            </property>
+                            <property name="maximum">
+                             <number>99999</number>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QDoubleSpinBox" name="spinBox_monto_50c">
+                            <property name="cursor">
+                             <cursorShape>UpArrowCursor</cursorShape>
+                            </property>
+                            <property name="buttonSymbols">
+                             <enum>QAbstractSpinBox::NoButtons</enum>
+                            </property>
+                            <property name="specialValueText">
+                             <string/>
+                            </property>
+                            <property name="accelerated">
+                             <bool>false</bool>
+                            </property>
+                            <property name="prefix">
+                             <string>$</string>
+                            </property>
+                            <property name="maximum">
+                             <double>99999.990000000005239</double>
+                            </property>
+                           </widget>
+                          </item>
+                         </layout>
+                        </item>
+                       </layout>
+                      </item>
+                     </layout>
+                    </item>
+                    <item>
+                     <spacer name="verticalSpacer_9">
+                      <property name="orientation">
+                       <enum>Qt::Vertical</enum>
+                      </property>
+                      <property name="sizeHint" stdset="0">
+                       <size>
+                        <width>20</width>
+                        <height>40</height>
+                       </size>
+                      </property>
+                     </spacer>
+                    </item>
+                    <item>
+                     <widget class="QPushButton" name="pushButton">
+                      <property name="minimumSize">
+                       <size>
+                        <width>120</width>
+                        <height>40</height>
+                       </size>
+                      </property>
+                      <property name="text">
+                       <string>Aceptar</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <spacer name="horizontalSpacer_28">
+                      <property name="orientation">
+                       <enum>Qt::Horizontal</enum>
+                      </property>
+                      <property name="sizeHint" stdset="0">
+                       <size>
+                        <width>40</width>
+                        <height>20</height>
+                       </size>
+                      </property>
+                     </spacer>
+                    </item>
+                   </layout>
                   </widget>
                   <widget class="QWidget" name="page_credenciales_editar">
                    <layout class="QVBoxLayout" name="verticalLayout_9">
