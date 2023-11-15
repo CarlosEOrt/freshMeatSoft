@@ -333,14 +333,19 @@ class MyWindow(QMainWindow):
             for columna, valor in enumerate(datos):
                 item = QtWidgets.QTableWidgetItem(str(valor))
                 self.tabla_ventas.setItem(fila, columna, item)
-    
-    
+
+    def desbloquearPrograma(self, booleano):
+        self.frame_control.setEnabled(booleano)
+        self.frame_contenido.setEnabled(booleano)
+        self.frame_superior.setEnabled(booleano)
+
     def agregarProductoACarrito(self, fila, columna):
         valor = self.tabla_ventas.item(fila, columna).text()
         try:
-            self.setEnabled(False)
+            self.desbloquearPrograma(False)
             cantidadProducto = askstring('CANTIDAD DEL PRODUCTO', 'Proporcione la cantidad del producto a agregar al carrito:')
-            self.setEnabled(True)
+            self.desbloquearPrograma(True)
+            
             # Vamos a verificar que en la tabla haya otro producto para agregarlo ahi mismo o denegar la venta por exceso de stock
             filaConProductoExistenteEnCarrito=self.verificarProductoExistenteEnCarrito(self.tabla_inventario.item(fila, 0).text())
             cantidadExistenteEnCarrito=self.obtenerValorDeCantidadEnCarrito(filaConProductoExistenteEnCarrito)
@@ -372,7 +377,7 @@ class MyWindow(QMainWindow):
             else:
                 messagebox.showwarning('NUMERO INVÁLIDO', 'El numero proporcionado no fue válido o excede la cantidad de producto en el inventario...')
         except:
-            self.setEnabled(True)
+            self.desbloquearPrograma(True)
             messagebox.showwarning('PROCESO INTERRUMPIDO', 'El proceso fue cancelado o fallo durante la ejecución...')
 
     def verificarProductoExistenteEnCarrito(self, idBuscar):
@@ -395,21 +400,21 @@ class MyWindow(QMainWindow):
         if(columna==4 and filaSeleccionada >= 0):
             try:
                 respuesta=messagebox.askokcancel('ELIMINAR PRODUCTO DEL CARRITO','¿Desea borrar el elemento seleccionado de la venta?')
-                self.setEnabled(False)
+                self.desbloquearPrograma(False)
                 if(respuesta==1):
                     self.tabla_carrito.removeRow(filaSeleccionada)
                 else:
                     messagebox.showInfo('ELIMINAR PRODUCTO DEL CARRITO','El elemento seguirá en el carrito de ventas')
-                self.setEnabled(True)
+                self.desbloquearPrograma(True)
             except:
-                self.setEnabled(True)
+                self.desbloquearPrograma(True)
                 messagebox.showwarning('PROCESO INTERRUMPIDO', 'El proceso fue cancelado o fallo durante la ejecución...')
         # Modificar la fila seleccionada
         elif(columna==2):
             if(True):
-                self.setEnabled(False)
+                self.desbloquearPrograma(False)
                 cantidadProducto = askstring('CANTIDAD DEL PRODUCTO', 'Proporcione la cantidad del producto a modificar al carrito:')
-                self.setEnabled(True)
+                self.desbloquearPrograma(True)
                 #Verificamos el producto
                 com = Comunicacion()
                 resultadoCantidad = com.traerCantidadDeProductoVentas(self.tabla_carrito.item(fila, 0).text())
@@ -424,7 +429,7 @@ class MyWindow(QMainWindow):
                 else:
                     messagebox.showwarning('NUMERO INVÁLIDO', 'El numero proporcionado no fue válido o excede la cantidad de producto en el inventario...')
             else:
-                self.setEnabled(True)
+                self.desbloquearPrograma(True)
                 messagebox.showwarning('PROCESO INTERRUMPIDO', 'El proceso fue cancelado o fallo durante la ejecución...')
 
     def realizarVentaDeCarrito(self):
