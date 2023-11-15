@@ -78,3 +78,34 @@ class Comunicacion:
         cursor.execute(sentenciaSQL, (valores, ))
         resultado = cursor.fetchone()
         return resultado
+    
+    def insertarVenta(self, venta):
+        cursor = self.conexion.cursor();
+        sentenciaSQL = "INSERT INTO ventas (fecha, monto) VALUES (%s, %s)"
+        valores = (venta.getFecha(), venta.getMonto())
+        cursor.execute(sentenciaSQL, (valores))
+        self.conexion.commit()
+        cursor.close()
+
+    def traerUltimoIdDeVenta(self):
+        cursor = self.conexion.cursor();
+        sentenciaSQL = "SELECT MAX(id) FROM ventas"
+        cursor.execute(sentenciaSQL)
+        resultado = cursor.fetchone()
+        return resultado
+
+    def insertarVentaInventario(self, idVenta, idProducto, cantidad):
+        cursor = self.conexion.cursor();
+        sentenciaSQL = "INSERT INTO inventario_ventas (idVenta, idProducto, cantidad) VALUES (%s, %s, %s)"
+        valores = (idVenta, idProducto, cantidad)
+        cursor.execute(sentenciaSQL, (valores))
+        self.conexion.commit()
+        cursor.close()
+    
+    def actualizarStockDeVenta(self, idProducto, cantidadDeVenta):
+        cursor = self.conexion.cursor();
+        sentenciaSQL = "UPDATE inventario SET cantidad = cantidad - %s WHERE id = %s"
+        valores = (cantidadDeVenta, idProducto)
+        cursor.execute(sentenciaSQL, (valores))
+        self.conexion.commit()
+        cursor.close()

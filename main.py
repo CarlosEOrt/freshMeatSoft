@@ -12,9 +12,9 @@ from PyQt6.uic import loadUi
 
 from Producto import Producto
 from Gasto import Gasto
+from Venta import Venta
 
 from Comunicacion import Comunicacion
-
 
 class MyWindow(QMainWindow):
     global arduino
@@ -245,14 +245,18 @@ class MyWindow(QMainWindow):
 
     # Funciones Corte de Caja
     def agregarGastoABaseDeDatos(self):
-        fecha_actual = datetime.date.today()
-        fecha_actual_str = fecha_actual.strftime('%Y-%m-%d')
+        fecha_actual_str = self.obtenerFechaActual()
         gasto = Gasto(self.lineEdit_concepto_gasto.text(),
                       self.lineEdit_monto_gasto.text(), fecha_actual_str)
         com = Comunicacion()
         com.insertarGasto(gasto)
         self.borrarCamposGastosAgregar()
         self.stackedWidget_menu.setCurrentWidget(self.page_corte_de_caja)
+
+    def obtenerFechaActual(self):
+        fecha_actual = datetime.date.today()
+        fecha_actual_str = fecha_actual.strftime('%Y-%m-%d')
+        return fecha_actual_str
 
     def actualizarTablaGastos(self):
         com = Comunicacion()
@@ -411,7 +415,7 @@ class MyWindow(QMainWindow):
                 messagebox.showwarning('PROCESO INTERRUMPIDO', 'El proceso fue cancelado o fallo durante la ejecución...')
         # Modificar la fila seleccionada
         elif(columna==2):
-            if(True):
+            try:
                 self.desbloquearPrograma(False)
                 cantidadProducto = askstring('CANTIDAD DEL PRODUCTO', 'Proporcione la cantidad del producto a modificar al carrito:')
                 self.desbloquearPrograma(True)
@@ -428,25 +432,48 @@ class MyWindow(QMainWindow):
                     self.tabla_carrito.setItem(fila, 3, itemPrecio)
                 else:
                     messagebox.showwarning('NUMERO INVÁLIDO', 'El numero proporcionado no fue válido o excede la cantidad de producto en el inventario...')
-            else:
+            except:
                 self.desbloquearPrograma(True)
                 messagebox.showwarning('PROCESO INTERRUMPIDO', 'El proceso fue cancelado o fallo durante la ejecución...')
 
+    def obtenerPrecioTotalDeCarrito(self):
+        precioTotal=0
+        for fila in range(self.tabla_carrito.rowCount()):
+            precioTotal+=float(self.tabla_carrito.item(fila, 3).text())
+        #regresamos el valor del precio total de las filas de la tabla del carrito
+        return precioTotal
+
     def realizarVentaDeCarrito(self):
-        # Actualizar tabla de venta con id :c
+        if(self.tabla_carrito.rowCount()!=0):
+            # Actualizar tabla de venta con id :D
+            fecha_actual_str = self.obtenerFechaActual()
+            precioTotal = self.obtenerPrecioTotalDeCarrito()
+            ventaCarrito=Venta(fecha_actual_str, precioTotal)
 
-        
-        # Actualizar stock en inventario :c
-        
-        
-        # Actualizar tabla de inventario_venta :c
-        
+            com = Comunicacion()
+            com.insertarVenta(ventaCarrito)
+            
+            # Actualizar tabla de inventario_venta :D
+            # Actualizar stock en inventario :D
+            com = Comunicacion()
+            ultimoID=com.traerUltimoIdDeVenta()
+            self.insertarProductosEnVentasSeparadas(com, ultimoID)
 
-        # Actualizar tablas :D
-        self.actualizarTablaGastos()
-        self.lineEdit_busqueda_ventas.setText("")
-        self.actualizarResultadosBusqueda()
-        self.tabla_carrito.setRowCount(0)
+            # Actualizar tablas :D
+            self.actualizarTablaGastos()
+            self.lineEdit_busqueda_ventas.setText("")
+            self.actualizarResultadosBusqueda()
+            self.tabla_carrito.setRowCount(0)
+        else:
+            messagebox.showwarning('CARRITO VACIO', 'El carrito no cuenta con productos suficientes para una venta...')
+
+    def insertarProductosEnVentasSeparadas(self, com, ultimoIDVenta):
+        for fila in range(self.tabla_carrito.rowCount()):
+            #Pasamos los datos del carrito a la tabla de inventario_ventas, pasandole el id del producto y la cantidad
+            com.insertarVentaInventario(ultimoIDVenta[0], int(self.tabla_carrito.item(fila, 0).text()), int(self.tabla_carrito.item(fila, 2).text()))
+            #Ahora actualizaremos el stock con la venta que realizamos
+            com.actualizarStockDeVenta(int(self.tabla_carrito.item(fila, 0).text()), int(self.tabla_carrito.item(fila, 2).text()))
+    
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
