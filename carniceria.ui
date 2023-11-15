@@ -2636,12 +2636,12 @@ border: 1px: solid: rgb(0, 206, 152);
                         </column>
                         <column>
                          <property name="text">
-                          <string>Precio</string>
+                          <string>Cantidad</string>
                          </property>
                         </column>
                         <column>
                          <property name="text">
-                          <string>Cantidad</string>
+                          <string>Precio</string>
                          </property>
                         </column>
                        </widget>
@@ -2649,7 +2649,7 @@ border: 1px: solid: rgb(0, 206, 152);
                       <item>
                        <widget class="QTableWidget" name="tabla_carrito">
                         <attribute name="horizontalHeaderDefaultSectionSize">
-                         <number>94</number>
+                         <number>76</number>
                         </attribute>
                         <column>
                          <property name="text">
@@ -2664,6 +2664,11 @@ border: 1px: solid: rgb(0, 206, 152);
                         <column>
                          <property name="text">
                           <string>Cantidad</string>
+                         </property>
+                        </column>
+                        <column>
+                         <property name="text">
+                          <string>Precio</string>
                          </property>
                         </column>
                         <column>

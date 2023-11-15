@@ -4,7 +4,7 @@ import time
 import datetime
 from tkinter import *
 from tkinter.simpledialog import askstring
-from tkinter.messagebox import showinfo
+from tkinter import messagebox
 from PyQt6 import QtCore, QtWidgets
 from PyQt6.QtCore import QTimer, QPropertyAnimation, QEasingCurve, Qt
 from PyQt6.QtWidgets import QApplication, QMainWindow
@@ -93,6 +93,9 @@ class MyWindow(QMainWindow):
         # Botones de Funcionalidades de Ventas
         self.lineEdit_busqueda_ventas.textChanged.connect(
             lambda: self.actualizarResultadosBusqueda())
+        self.tabla_ventas.cellClicked.connect(self.agregarProductoACarrito)
+        self.tabla_carrito.cellClicked.connect(self.seleccionarProductoDeCarrito)
+        self.btn_realizar_venta.clicked.connect(lambda: self.realizarVentaDeCarrito())
 
         # Funcion para actualizar el comboBox de agregar productos
 
@@ -330,7 +333,115 @@ class MyWindow(QMainWindow):
             for columna, valor in enumerate(datos):
                 item = QtWidgets.QTableWidgetItem(str(valor))
                 self.tabla_ventas.setItem(fila, columna, item)
+    
+    
+    def agregarProductoACarrito(self, fila, columna):
+        valor = self.tabla_ventas.item(fila, columna).text()
+        try:
+            self.setEnabled(False)
+            cantidadProducto = askstring('CANTIDAD DEL PRODUCTO', 'Proporcione la cantidad del producto a agregar al carrito:')
+            self.setEnabled(True)
+            # Vamos a verificar que en la tabla haya otro producto para agregarlo ahi mismo o denegar la venta por exceso de stock
+            filaConProductoExistenteEnCarrito=self.verificarProductoExistenteEnCarrito(self.tabla_inventario.item(fila, 0).text())
+            cantidadExistenteEnCarrito=self.obtenerValorDeCantidadEnCarrito(filaConProductoExistenteEnCarrito)
+            #Verificamos el producto
+            if(cantidadProducto.isdigit() and int(cantidadProducto)>0 and (int(cantidadProducto)+int(cantidadExistenteEnCarrito))<=int(self.tabla_ventas.item(fila, 2).text())):
+                #Verificamos si ya existe el producto en la tabla de venta
+                if(filaConProductoExistenteEnCarrito!=-1):
+                    #Vamos a modificar
+                    cantidadTotalProducto=int(cantidadProducto)+int(cantidadExistenteEnCarrito)
+                    itemCantidad = QtWidgets.QTableWidgetItem(str(cantidadTotalProducto))
+                    itemPrecio = QtWidgets.QTableWidgetItem(str(float(cantidadTotalProducto)*float(self.tabla_ventas.item(fila, 3).text())))
+                    self.tabla_carrito.setItem(filaConProductoExistenteEnCarrito, 2, itemCantidad)
+                    self.tabla_carrito.setItem(filaConProductoExistenteEnCarrito, 3, itemPrecio)
+                else:
+                    # Movemos a la tabla en dado caso de que no encontro coincidencia
+                    rowPosition = self.tabla_carrito.rowCount()
+                    self.tabla_carrito.insertRow(rowPosition)
+                    itemId = QtWidgets.QTableWidgetItem(self.tabla_ventas.item(fila, 0).text())
+                    itemNombre = QtWidgets.QTableWidgetItem(self.tabla_ventas.item(fila, 1).text())
+                    itemCantidad = QtWidgets.QTableWidgetItem(cantidadProducto)
+                    itemPrecio = QtWidgets.QTableWidgetItem(str(float(cantidadProducto)*float(self.tabla_ventas.item(fila, 3).text())))
+                    itemEliminar = QtWidgets.QTableWidgetItem("Eliminar")
+                    self.tabla_carrito.setItem(rowPosition, 0, itemId)
+                    self.tabla_carrito.setItem(rowPosition, 1, itemNombre)
+                    self.tabla_carrito.setItem(rowPosition, 2, itemCantidad)
+                    self.tabla_carrito.setItem(rowPosition, 3, itemPrecio)
+                    self.tabla_carrito.setItem(rowPosition, 4, itemEliminar)
+                    
+            else:
+                messagebox.showwarning('NUMERO INVÁLIDO', 'El numero proporcionado no fue válido o excede la cantidad de producto en el inventario...')
+        except:
+            self.setEnabled(True)
+            messagebox.showwarning('PROCESO INTERRUMPIDO', 'El proceso fue cancelado o fallo durante la ejecución...')
 
+    def verificarProductoExistenteEnCarrito(self, idBuscar):
+        for fila in range(self.tabla_carrito.rowCount()):
+            if(idBuscar in self.tabla_carrito.item(fila, 0).text()):
+                #regresamos la fila pues el id ya existe
+                return fila
+        #regresamos -1 como dato que no lo encontro
+        return -1
+    
+    def obtenerValorDeCantidadEnCarrito(self, fila):
+        if(fila==-1):
+            return 0
+        else:
+            return self.tabla_carrito.item(fila, 2).text()
+
+    def seleccionarProductoDeCarrito(self, fila, columna):
+        filaSeleccionada = self.tabla_carrito.currentRow()
+        # Eliminar la fila seleccionada
+        if(columna==4 and filaSeleccionada >= 0):
+            try:
+                respuesta=messagebox.askokcancel('ELIMINAR PRODUCTO DEL CARRITO','¿Desea borrar el elemento seleccionado de la venta?')
+                self.setEnabled(False)
+                if(respuesta==1):
+                    self.tabla_carrito.removeRow(filaSeleccionada)
+                else:
+                    messagebox.showInfo('ELIMINAR PRODUCTO DEL CARRITO','El elemento seguirá en el carrito de ventas')
+                self.setEnabled(True)
+            except:
+                self.setEnabled(True)
+                messagebox.showwarning('PROCESO INTERRUMPIDO', 'El proceso fue cancelado o fallo durante la ejecución...')
+        # Modificar la fila seleccionada
+        elif(columna==2):
+            if(True):
+                self.setEnabled(False)
+                cantidadProducto = askstring('CANTIDAD DEL PRODUCTO', 'Proporcione la cantidad del producto a modificar al carrito:')
+                self.setEnabled(True)
+                #Verificamos el producto
+                com = Comunicacion()
+                resultadoCantidad = com.traerCantidadDeProductoVentas(self.tabla_carrito.item(fila, 0).text())
+                resultadosPrecio = com.traerPrecioDeProductoVentas(self.tabla_carrito.item(fila, 0).text())
+                if(cantidadProducto.isdigit() and int(cantidadProducto)>0 and int(cantidadProducto)<=int(resultadoCantidad[0])):
+                    # Modificamos la cantidad del producto a la tabla en dado caso de que sea valido
+                    # Cambiar esto con validación de número
+                    itemCantidad = QtWidgets.QTableWidgetItem(cantidadProducto)
+                    itemPrecio = QtWidgets.QTableWidgetItem(str(float(cantidadProducto)*float(resultadosPrecio[0])))
+                    self.tabla_carrito.setItem(fila, 2, itemCantidad)
+                    self.tabla_carrito.setItem(fila, 3, itemPrecio)
+                else:
+                    messagebox.showwarning('NUMERO INVÁLIDO', 'El numero proporcionado no fue válido o excede la cantidad de producto en el inventario...')
+            else:
+                self.setEnabled(True)
+                messagebox.showwarning('PROCESO INTERRUMPIDO', 'El proceso fue cancelado o fallo durante la ejecución...')
+
+    def realizarVentaDeCarrito(self):
+        # Actualizar tabla de venta con id :c
+
+        
+        # Actualizar stock en inventario :c
+        
+        
+        # Actualizar tabla de inventario_venta :c
+        
+
+        # Actualizar tablas :D
+        self.actualizarTablaGastos()
+        self.lineEdit_busqueda_ventas.setText("")
+        self.actualizarResultadosBusqueda()
+        self.tabla_carrito.setRowCount(0)
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)

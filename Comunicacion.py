@@ -54,10 +54,27 @@ class Comunicacion:
         resultados = cursor.fetchall()
         return resultados
 
+    #Cambio realizado a la consulta de traer ventas
     def traerProductosVentas(self, cadenaBusqueda):
         cursor = self.conexion.cursor();
-        sentenciaSQL = "SELECT * FROM inventario WHERE borrado !=1 AND cantidad > 0 AND nombre LIKE %s "
+        sentenciaSQL = "SELECT id, nombre, cantidad, precio FROM inventario WHERE borrado !=1 AND cantidad > 0 AND nombre LIKE %s "
         valores = ('%'+cadenaBusqueda+'%')
         cursor.execute(sentenciaSQL, (valores, ))
         resultados = cursor.fetchall()
         return resultados
+    
+    def traerCantidadDeProductoVentas(self, idProducto):
+        cursor = self.conexion.cursor();
+        sentenciaSQL = "SELECT cantidad FROM inventario WHERE %s = id"
+        valores = (idProducto)
+        cursor.execute(sentenciaSQL, (valores, ))
+        resultado = cursor.fetchone()
+        return resultado
+    
+    def traerPrecioDeProductoVentas(self, idProducto):
+        cursor = self.conexion.cursor();
+        sentenciaSQL = "SELECT precio FROM inventario WHERE %s = id"
+        valores = (idProducto)
+        cursor.execute(sentenciaSQL, (valores, ))
+        resultado = cursor.fetchone()
+        return resultado
