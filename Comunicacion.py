@@ -39,6 +39,7 @@ class Comunicacion:
         self.conexion.commit()
         cursor.close()
 
+    #Consultas Corte de Caja
     def insertarGasto(self, gasto):
         cursor = self.conexion.cursor();
         sentenciaSQL = "INSERT INTO gastos (concepto, monto, fecha) VALUES (%s, %s, %s)"
@@ -53,7 +54,26 @@ class Comunicacion:
         cursor.execute(sentenciaSQL)
         resultados = cursor.fetchall()
         return resultados
-
+    
+    def sumaGastos(self, fecha):
+        cursor = self.conexion.cursor();
+        sentenciaSQL = "SELECT ROUND(SUM(monto), 2) FROM gastos WHERE fecha = %s; "
+        valores = (fecha)
+        cursor.execute(sentenciaSQL, (valores, ))
+        resultado = cursor.fetchone()[0]
+        print("Gasto DIA:",resultado)
+        return resultado
+    
+    def sumaVentas(self, fecha):
+        cursor = self.conexion.cursor();
+        sentenciaSQL = "SELECT ROUND(SUM(monto), 2) FROM ventas WHERE fecha = %s; "
+        valores = (fecha)
+        cursor.execute(sentenciaSQL, (valores, ))
+        resultado = cursor.fetchone()[0]
+        print("VENTA DIA:",resultado)
+        return resultado
+    
+    #Consultas Ventas
     #Cambio realizado a la consulta de traer ventas
     def traerProductosVentas(self, cadenaBusqueda):
         cursor = self.conexion.cursor();

@@ -1206,11 +1206,12 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_31.addItem(self.verticalSpacer_9)
 
-        self.pushButton = QPushButton(self.page_agregar_montos)
-        self.pushButton.setObjectName(u"pushButton")
-        self.pushButton.setMinimumSize(QSize(120, 40))
+        self.btn_agregar_montos = QPushButton(self.page_agregar_montos)
+        self.btn_agregar_montos.setObjectName(u"btn_agregar_montos")
+        self.btn_agregar_montos.setMinimumSize(QSize(120, 40))
+        self.btn_agregar_montos.setCursor(QCursor(Qt.PointingHandCursor))
 
-        self.verticalLayout_31.addWidget(self.pushButton)
+        self.verticalLayout_31.addWidget(self.btn_agregar_montos)
 
         self.horizontalSpacer_28 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
@@ -1772,7 +1773,7 @@ class Ui_MainWindow(object):
         self.lbl_monto_25.setText(QCoreApplication.translate("MainWindow", u"$0.50", None))
         self.spinBox_monto_50c.setSpecialValueText("")
         self.spinBox_monto_50c.setPrefix(QCoreApplication.translate("MainWindow", u"$", None))
-        self.pushButton.setText(QCoreApplication.translate("MainWindow", u"Aceptar", None))
+        self.btn_agregar_montos.setText(QCoreApplication.translate("MainWindow", u"Aceptar", None))
         self.label_8.setText(QCoreApplication.translate("MainWindow", u"INGRESA LA CONTRASE\u00d1A", None))
         self.lbl_logo_empresa_2.setText("")
         self.btn_validar_contrasena_editar.setText(QCoreApplication.translate("MainWindow", u"Aceptar", None))

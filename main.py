@@ -2,6 +2,7 @@ import sys
 import serial
 import time
 import datetime
+import tempfile
 from tkinter import *
 from tkinter.simpledialog import askstring
 from tkinter import messagebox
@@ -89,6 +90,8 @@ class MyWindow(QMainWindow):
             lambda: self.agregarGastoABaseDeDatos())
         self.btn_generar_corte.clicked.connect(
             lambda: self.stackedWidget_menu.setCurrentWidget(self.page_agregar_montos))
+        self.btn_agregar_montos.clicked.connect(
+            lambda: self.agregarMontosABaseDeDatos())
 
         # Botones de Funcionalidades de Ventas
         self.lineEdit_busqueda_ventas.textChanged.connect(
@@ -268,6 +271,53 @@ class MyWindow(QMainWindow):
             for columna, valor in enumerate(datos):
                 item = QtWidgets.QTableWidgetItem(str(valor))
                 self.tabla_gastos.setItem(fila, columna, item)
+        
+    def guardarTemporalMontos(self, monto50c, monto1, monto2, monto5, monto10, monto20, monto50, monto100, monto200, monto500):
+    # Crear un archivo temporal
+        with tempfile.NamedTemporaryFile(mode='w+', delete=False) as temp_file:
+        # Escribir los valores en el archivo
+            temp_file.write(f"{monto50c}\n{monto1}\n{monto2}\n{monto5}\n{monto10}\n{monto20}\n{monto50}\n{monto100}\n{monto200}\n{monto500}")
+
+        # Obtener la ruta del archivo temporal
+            temp_file_path = temp_file.name
+        return temp_file_path
+
+    def leerTemporalMontos(self, archivo_temporal):
+    # Leer los valores desde el archivo temporal
+        with open(archivo_temporal, 'r') as temp_file:
+            lineas = temp_file.readlines()
+        # Obtener los montos desde el archivo
+            monto50c = float(lineas[0].strip())
+            monto1 = float(lineas[1].strip())
+            monto2 = float(lineas[2].strip())
+            monto5 = float(lineas[3].strip())
+            monto10 = float(lineas[4].strip())
+            monto20 = float(lineas[5].strip())
+            monto50 = float(lineas[6].strip())
+            monto100 = float(lineas[7].strip())
+            monto200 = float(lineas[8].strip())
+            monto500 = float(lineas[9].strip())
+        #Sumatoria total de los montos en caja
+        efectivoTotalCaja = monto50c+monto1+monto2+monto5+monto10+monto20+monto50+monto100+monto200+monto500
+        com = Comunicacion()
+        resultados = com.sumaGastos(self.obtenerFechaActual())
+        
+        return efectivoTotalCaja 
+    
+    def agregarMontosABaseDeDatos(self):
+        monto500 = self.spinBox_monto_500.value()
+        monto200 = self.spinBox_monto_200.value()
+        monto100 = self.spinBox_monto_100.value()
+        monto50 = self.spinBox_monto_50.value()
+        monto20 = self.spinBox_monto_20.value()
+        monto10 = self.spinBox_monto_10.value()
+        monto5 = self.spinBox_monto_5.value()
+        monto2 = self.spinBox_monto_2.value()
+        monto1 = self.spinBox_monto_1.value()
+        monto50c = self.spinBox_monto_50c.value()
+
+        self.guardarTemporalMontos(monto50c, monto1, monto2, monto5, monto10, monto20, monto50, monto100, monto200, monto500)
+        self.borrarCamposMontosAgregar()
 
     # funcionalidades de borrado de campos
 
@@ -282,6 +332,18 @@ class MyWindow(QMainWindow):
     def borrarCamposGastosAgregar(self):
         self.lineEdit_concepto_gasto.setText("")
         self.lineEdit_monto_gasto.setText("")
+    
+    def borrarCamposMontosAgregar(self):
+        self.spinBox_monto_500.setValue(0)
+        self.spinBox_monto_200.setValue(0)
+        self.spinBox_monto_100.setValue(0)
+        self.spinBox_monto_50.setValue(0)
+        self.spinBox_monto_20.setValue(0)
+        self.spinBox_monto_10.setValue(0)
+        self.spinBox_monto_5.setValue(0)
+        self.spinBox_monto_2.setValue(0)
+        self.spinBox_monto_1.setValue(0)
+        self.spinBox_monto_50c.setValue(0)
 
     # funcionalidades para actualizar ComboBox
 

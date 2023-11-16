@@ -2206,12 +2206,15 @@ border: 1px: solid: rgb(0, 206, 152);
                      </spacer>
                     </item>
                     <item>
-                     <widget class="QPushButton" name="pushButton">
+                     <widget class="QPushButton" name="btn_agregar_montos">
                       <property name="minimumSize">
                        <size>
                         <width>120</width>
                         <height>40</height>
                        </size>
+                      </property>
+                      <property name="cursor">
+                       <cursorShape>PointingHandCursor</cursorShape>
                       </property>
                       <property name="text">
                        <string>Aceptar</string>
