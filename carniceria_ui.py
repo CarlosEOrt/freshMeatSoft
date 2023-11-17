@@ -1218,6 +1218,14 @@ class Ui_MainWindow(object):
         self.verticalLayout_31.addItem(self.horizontalSpacer_28)
 
         self.stackedWidget_menu.addWidget(self.page_agregar_montos)
+        self.page_resultado_corte = QWidget()
+        self.page_resultado_corte.setObjectName(u"page_resultado_corte")
+        self.lbl_titulo_resultado_corte = QLabel(self.page_resultado_corte)
+        self.lbl_titulo_resultado_corte.setObjectName(u"lbl_titulo_resultado_corte")
+        self.lbl_titulo_resultado_corte.setGeometry(QRect(290, 40, 143, 23))
+        self.lbl_titulo_resultado_corte.setLayoutDirection(Qt.LeftToRight)
+        self.lbl_titulo_resultado_corte.setAlignment(Qt.AlignCenter)
+        self.stackedWidget_menu.addWidget(self.page_resultado_corte)
         self.page_credenciales_editar = QWidget()
         self.page_credenciales_editar.setObjectName(u"page_credenciales_editar")
         self.verticalLayout_9 = QVBoxLayout(self.page_credenciales_editar)
@@ -1664,7 +1672,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget_menu.setCurrentIndex(7)
+        self.stackedWidget_menu.setCurrentIndex(8)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -1774,6 +1782,7 @@ class Ui_MainWindow(object):
         self.spinBox_monto_50c.setSpecialValueText("")
         self.spinBox_monto_50c.setPrefix(QCoreApplication.translate("MainWindow", u"$", None))
         self.btn_agregar_montos.setText(QCoreApplication.translate("MainWindow", u"Aceptar", None))
+        self.lbl_titulo_resultado_corte.setText(QCoreApplication.translate("MainWindow", u"Resultado Corte", None))
         self.label_8.setText(QCoreApplication.translate("MainWindow", u"INGRESA LA CONTRASE\u00d1A", None))
         self.lbl_logo_empresa_2.setText("")
         self.btn_validar_contrasena_editar.setText(QCoreApplication.translate("MainWindow", u"Aceptar", None))

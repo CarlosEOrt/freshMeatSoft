@@ -50,7 +50,7 @@ class Comunicacion:
     
     def traerGastos(self):
         cursor = self.conexion.cursor();
-        sentenciaSQL = "SELECT * FROM gastos "
+        sentenciaSQL = "SELECT * FROM gastos ORDER BY fecha DESC;"
         cursor.execute(sentenciaSQL)
         resultados = cursor.fetchall()
         return resultados

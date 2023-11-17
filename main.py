@@ -3,6 +3,8 @@ import serial
 import time
 import datetime
 import tempfile
+import jinja2
+import pdfkit
 from tkinter import *
 from tkinter.simpledialog import askstring
 from tkinter import messagebox
@@ -318,6 +320,30 @@ class MyWindow(QMainWindow):
 
         self.guardarTemporalMontos(monto50c, monto1, monto2, monto5, monto10, monto20, monto50, monto100, monto200, monto500)
         self.borrarCamposMontosAgregar()
+        self.generar_pdf_corte()
+        self.stackedWidget_menu.setCurrentWidget(self.page_resultado_corte)
+        
+    def generar_pdf_corte(self):
+        
+        template_loader= jinja2.FileSystemLoader('./')
+        template_env= jinja2.Environment(loader=template_loader)
+
+        html_template= 'corte_caja_plantilla.html'
+        template= template_env.get_template(html_template)
+        ##Insertar datos de Corte de caja
+        output_text = template.render({"today_date":"FECHAAA HOY", "num_corte":"NUMERO CORTEEE", "subtotal_gastos":"SUBTOTALGASTOOS", "subtotal_montos":"SUBTOTALMONTOSS",
+                "totalVentas":"TOTALVEMTASS","subtotal_gastos":"SUBTOTALGASTOS", "subtotal_venta":"SUBTOTALVENTAS", "totalGanancias":"TOTALGANANCIAS",
+                "fecha_hoy":"FECHAHOY2"})
+        option ={ 'page-size': 'Letter',
+                    'margin-top': '0.05in',
+                    'margin-left': '0.05in',
+                    'margin-right': '0.05in',
+                    'margin-bottom': '0.05in',
+                    'encoding': 'UTF-8'}
+        
+        config = pdfkit.configuration(wkhtmltopdf=r"C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe")
+        ruta_salida='Cortes de Caja/cortecaja.pdf'
+        pdfkit.from_string(output_text,ruta_salida,css='estilos.css',options=option,configuration=config)
 
     # funcionalidades de borrado de campos
 

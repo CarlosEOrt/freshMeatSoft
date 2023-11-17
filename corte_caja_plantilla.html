@@ -1,0 +1,117 @@
+<meta charset="UTF-8">
+<div class="logo-container"><img style="height: 18px;" src="https://app.useanvil.com/img/email-logo-black.png" /></div>
+<body style="background-color: lightgoldenrodyellow;">
+<table class="invoice-info-container" style="background-color: lightgoldenrodyellow;">
+<tbody>
+<tr>
+  <td class="client-name" rowspan="2"><bold>Reporte Corte de Caja</bold></td>
+<td>FreshMeatSoft</td>
+</tr>
+<tr>
+<td>Centro Universitario de Ciencias Exactas e Ingenerias</td>
+</tr>
+<tr>
+<td>Fecha de Corte: <strong>{{today_date}}</strong></td>
+<td>Chivalacticas v3.0 </td>
+</tr>
+<tr>
+<td>Corte No: <strong>{{num_corte}}</strong></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table class="line-items-container">
+<thead>
+<tr>
+<th class="heading-quantity">&nbsp;</th>
+<th class="heading-description">Apartado</th>
+<th class="heading-price">&nbsp;</th>
+<th class="heading-subtotal">Subtotal</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&nbsp;</td>
+<td>Gastos</td>
+<td class="right">&nbsp;</td>
+<td class="bold">{{subtotal_gastos}}</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>Saldo en Caja</td>
+<td class="right">&nbsp;</td>
+<td class="bold">{{subtotal_montos}}</td>
+</tr>
+
+</tbody>
+</table>
+<table class="line-items-container has-bottom-border">
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th>Venta total</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="payment-info">
+<div></div>
+<div></div>
+</td>
+<td class="large"></td>
+<td class="large total">{{totalVentas}}</td>
+</tr>
+
+</tbody>
+</table>
+<table class="line-items-container">
+<thead>
+<tr>
+<th class="heading-quantity">&nbsp;</th>
+<th class="heading-description">Apartado</th>
+<th class="heading-price">&nbsp;</th>
+<th class="heading-subtotal">Subtotal</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&nbsp;</td>
+<td>Gastos</td>
+<td class="right">&nbsp;</td>
+<td class="bold">{{subtotal_gastos}}</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>Venta Total</td>
+<td class="right">&nbsp;</td>
+<td class="bold">{{subtotal_venta}}</td>
+</tr>
+
+</tbody>
+</table>
+<table class="line-items-container has-bottom-border">
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th>Ganancia total</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="payment-info">
+<div></div>
+<div></div>
+</td>
+<td class="large"></td>
+<td class="large total">{{totalGanancias}}</td>
+</tr>
+
+</tbody>
+</table>
+</body>
+<div class="footer">
+<div class="footer-info">{{fecha_hoy}}</div>
+<div class="footer-thanks"><img src="https://github.com/anvilco/html-pdf-invoice-template/raw/main/img/heart.png" alt="heart" />UwU</div>
+</div>

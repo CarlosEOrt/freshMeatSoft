@@ -703,7 +703,7 @@ border: 1px: solid: rgb(0, 206, 152);
                    <bool>true</bool>
                   </property>
                   <property name="currentIndex">
-                   <number>7</number>
+                   <number>8</number>
                   </property>
                   <widget class="QWidget" name="page_temperaturas">
                    <layout class="QVBoxLayout" name="verticalLayout_22">
@@ -2235,6 +2235,27 @@ border: 1px: solid: rgb(0, 206, 152);
                      </spacer>
                     </item>
                    </layout>
+                  </widget>
+                  <widget class="QWidget" name="page_resultado_corte">
+                   <widget class="QLabel" name="lbl_titulo_resultado_corte">
+                    <property name="geometry">
+                     <rect>
+                      <x>290</x>
+                      <y>40</y>
+                      <width>143</width>
+                      <height>23</height>
+                     </rect>
+                    </property>
+                    <property name="layoutDirection">
+                     <enum>Qt::LeftToRight</enum>
+                    </property>
+                    <property name="text">
+                     <string>Resultado Corte</string>
+                    </property>
+                    <property name="alignment">
+                     <set>Qt::AlignCenter</set>
+                    </property>
+                   </widget>
                   </widget>
                   <widget class="QWidget" name="page_credenciales_editar">
                    <layout class="QVBoxLayout" name="verticalLayout_9">
