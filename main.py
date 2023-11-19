@@ -5,6 +5,7 @@ import datetime
 import tempfile
 import jinja2
 import pdfkit
+import os.path
 from tkinter import *
 from tkinter.simpledialog import askstring
 from tkinter import messagebox
@@ -12,6 +13,8 @@ from PyQt6 import QtCore, QtWidgets
 from PyQt6.QtCore import QTimer, QPropertyAnimation, QEasingCurve, Qt
 from PyQt6.QtWidgets import QApplication, QMainWindow
 from PyQt6.uic import loadUi
+from datetime import date
+from os import remove
 
 from Producto import Producto
 from Gasto import Gasto
@@ -21,7 +24,9 @@ from Comunicacion import Comunicacion
 
 class MyWindow(QMainWindow):
     global arduino
-    # arduino = serial.Serial('COM3', 9600)
+    arduino = serial.Serial('COM3', 9600) # Puerto y baud-rate en los que funciona el Arduino
+    global pathTemperatura
+    pathTemperatura = "Documentos\\Temperatura\\"
 
     def __init__(self):
         super(MyWindow, self).__init__()
@@ -33,14 +38,18 @@ class MyWindow(QMainWindow):
         self.setWindowOpacity(1)
         self.setWindowTitle('FRESH MEAT SOFT')
 
+        global nombreArchivo
+        nombreArchivo = "Reporte Temperatura " + self.obtenerFechaActual() + ".txt" # Nombre del archivo donde se guardan las temperaturas
+
         # Setteo de datos de las tablas
         self.actualizarTablaInventario()
         self.actualizarTablaGastos()
+        self.actualizarTablaTemperaturas()
         self.actualizarResultadosBusqueda()
 
-        # self.timer = QTimer(self) # se crea una variable para constante actualizacion
-        # self.timer.timeout.connect(lambda:self.actualizarTemperatura())#actualiza el label
-        # self.timer.start(5000)#tiempo que tarda en el contador
+        self.timer = QTimer(self) # se crea una variable para constante actualizacion
+        self.timer.timeout.connect(lambda:self.actualizarTemperatura())#actualiza el label
+        self.timer.start(100)#tiempo que tarda en el contador
 
         # Redireccion de botones menu
         self.btn_inventario.clicked.connect(
@@ -112,6 +121,12 @@ class MyWindow(QMainWindow):
         self.comboBox_13.currentIndexChanged.connect(
             lambda: self.actualizarComboBoxEditarProducto())
 
+        # Botón de conversión de temperaturas
+
+        self.btn_convertir_temperaturas.clicked.connect(
+            lambda: self.convertirTablaTemperaturas()
+        )
+
     # validacion de credenciales
     def validacion_de_credenciales_editar(self):
         contrasena = self.lbl_contrasena_editar.text()
@@ -143,29 +158,63 @@ class MyWindow(QMainWindow):
         contrasena = self.lbl_contrasena_eliminar_temperatura.text()
         if contrasena == '123':
             # en esta linea se realizara la eliminacion de la temperatura
+            com = Comunicacion()
+            com.eliminarTemperatura(self.tabla_temperaturas.item(self.tabla_temperaturas.currentRow(), 0).text())
             self.lbl_contrasena_eliminar_temperatura.setText("")
             self.stackedWidget_menu.setCurrentWidget(self.page_temperaturas)
+            self.actualizarTablaTemperaturas()
         else:
             self.lbl_contrasena_eliminar_temperatura.setText("")
             self.stackedWidget_menu.setCurrentWidget(self.page_temperaturas)
 
     def actualizarTemperatura(self):
+        # Leer los datos que manda el Arduino
         datosCelsius = arduino.readline()
         datosFahrenheit = arduino.readline()
         datosHumedad = arduino.readline()
 
-        if self.comboBox_temperaturas.currentIndex() == 0:
-            # Este es el label que muestra la temperatura actual
-            self.lbl_temperatura_actual.setText(
-                str(datosCelsius.decode('utf-8')))
-        elif self.comboBox_temperaturas.currentIndex() == 1:
-            # Este es el label que muestra la temperatura actual
-            self.lbl_temperatura_actual.setText(
-                str(datosFahrenheit.decode('utf-8')))
-        else:
-            # Este es el label que muestra la temperatura actual
-            self.lbl_temperatura_actual.setText(
-                str(datosHumedad.decode('utf-8')))
+        if self.comboBox_temperaturas.currentIndex() == 0: # Caso grados Celsius
+            self.lbl_temperatura_actual.setText("\n" + str(datosCelsius.decode('utf-8')))
+        elif self.comboBox_temperaturas.currentIndex() == 1: # Caso grados fahrenheit
+            self.lbl_temperatura_actual.setText("\n" + str(datosFahrenheit.decode('utf-8')))
+        else: # Caso humedad
+            self.lbl_temperatura_actual.setText("\n" + str(datosHumedad.decode('utf-8')))
+        
+        com = Comunicacion()
+
+        if com.verificarFechaTemperaturas(self.obtenerFechaActual()) is None:
+            if(os.path.isfile(pathTemperatura + nombreArchivo)):
+                archivo = open(pathTemperatura + nombreArchivo, "a") # Abre el archivo si ya existe
+            else:
+                archivo = open(pathTemperatura + nombreArchivo, "x") # Crea el archivo si no existe
+
+            archivo.write(str(datosCelsius.decode('utf-8')).strip() + "\n") # Escribe la temperatura en el archivo txt creado
+            archivo.close()
+
+    def convertirTablaTemperaturas(self):
+        if self.tabla_temperaturas.rowCount() > 0:
+            com = Comunicacion()
+
+            lista = com.verificarUnidadesTemperatura()
+            string = ','.join([str(i) for i in lista])
+            string = string.replace('(', '').replace(')', '').replace(',', '')
+
+            if float(string) == float(self.tabla_temperaturas.item(0, 1).text()):
+                self.conversionTemperaturas(1)
+            else:
+                self.conversionTemperaturas(2)
+
+    def conversionTemperaturas(self, boolean):
+        for i in range(1, 4):
+            for j in range(0, self.tabla_temperaturas.rowCount()):
+                temperaturaAConvertir = float(self.tabla_temperaturas.item(j, i).text())
+                if boolean == 1:
+                    temperaturaAConvertir = (temperaturaAConvertir * (9/5)) + 32
+                else:
+                    temperaturaAConvertir = (temperaturaAConvertir - 32)*(5/9)
+                temperaturaAConvertir = round(temperaturaAConvertir, 1)
+                item = QtWidgets.QTableWidgetItem(str(temperaturaAConvertir))
+                self.tabla_temperaturas.setItem(j, i, item)
 
     def control_btn_minimizar(self):
         self.showMinimized()
@@ -222,7 +271,6 @@ class MyWindow(QMainWindow):
 
     def celda_clicada(self, fila, columna):
         # Acción específica cuando una celda se hace clic
-        valor = self.tabla_inventario.item(fila, columna).text()
         if columna == 0:  # si es la columna de id nos lleva a mostrar el producto
             self.stackedWidget_menu.setCurrentWidget(
                 self.page_mostrar_seleccion)
@@ -243,8 +291,7 @@ class MyWindow(QMainWindow):
 
     def celda_clicada_tabla_temperaturas(self, fila, columna):
         # Acción específica cuando una celda se hace clic
-        valor = self.tabla_temperaturas.item(fila, columna).text()
-        if columna == 4:  # si es la columna de borrado nos lleva a la insercion de contraseña
+        if columna == 5:  # si es la columna de borrado nos lleva a la insercion de contraseña
             self.stackedWidget_menu.setCurrentWidget(
                 self.page_credenciales_eliminar_temperatura)
 
@@ -273,7 +320,20 @@ class MyWindow(QMainWindow):
             for columna, valor in enumerate(datos):
                 item = QtWidgets.QTableWidgetItem(str(valor))
                 self.tabla_gastos.setItem(fila, columna, item)
-        
+
+    def actualizarTablaTemperaturas(self):
+        com = Comunicacion()
+        resultados = com.traerTemperaturas()
+        self.tabla_temperaturas.setRowCount(0)
+        self.tabla_temperaturas.setRowCount(len(resultados))
+
+        for fila, datos in enumerate(resultados):
+            for columna, valor in enumerate(datos):
+                item = QtWidgets.QTableWidgetItem(str(valor))
+                itemEliminar = QtWidgets.QTableWidgetItem("Eliminar")
+                self.tabla_temperaturas.setItem(fila, columna, item)
+                self.tabla_temperaturas.setItem(fila, 5, itemEliminar)
+
     def guardarTemporalMontos(self, monto50c, monto1, monto2, monto5, monto10, monto20, monto50, monto100, monto200, monto500):
     # Crear un archivo temporal
         with tempfile.NamedTemporaryFile(mode='w+', delete=False) as temp_file:
@@ -320,9 +380,34 @@ class MyWindow(QMainWindow):
 
         self.guardarTemporalMontos(monto50c, monto1, monto2, monto5, monto10, monto20, monto50, monto100, monto200, monto500)
         self.borrarCamposMontosAgregar()
+        self.generarReporteTemperaturas()
         self.generar_pdf_corte()
         self.stackedWidget_menu.setCurrentWidget(self.page_resultado_corte)
         
+    def generarReporteTemperaturas(self):
+        archivo = open(pathTemperatura + nombreArchivo, "r")
+        lista = archivo.readlines()
+
+        for i in range(0, len(lista)):
+            lista[i] = float(lista[i].strip())
+        
+        lista.sort()
+
+        temperaturaMin = lista[0]
+        temperaturaMax = lista[len(lista)-1]
+        temperaturaPromedio = sum(lista)/len(lista)
+
+        archivo.close()
+
+        com = Comunicacion()
+        com.insertarTemperatura(self.obtenerFechaActual(), round(temperaturaPromedio, 1), temperaturaMax, temperaturaMin)
+
+        os.remove(pathTemperatura + nombreArchivo)
+
+        
+        self.actualizarTablaTemperaturas()
+
+
     def generar_pdf_corte(self):
         
         template_loader= jinja2.FileSystemLoader('./')

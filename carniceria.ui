@@ -703,7 +703,7 @@ border: 1px: solid: rgb(0, 206, 152);
                    <bool>true</bool>
                   </property>
                   <property name="currentIndex">
-                   <number>8</number>
+                   <number>0</number>
                   </property>
                   <widget class="QWidget" name="page_temperaturas">
                    <layout class="QVBoxLayout" name="verticalLayout_22">
@@ -732,7 +732,7 @@ border: 1px: solid: rgb(0, 206, 152);
                         </property>
                         <property name="minimumSize">
                          <size>
-                          <width>0</width>
+                          <width>758</width>
                           <height>0</height>
                          </size>
                         </property>
@@ -773,7 +773,7 @@ border: 1px: solid: rgb(0, 206, 152);
                          <bool>false</bool>
                         </attribute>
                         <attribute name="horizontalHeaderDefaultSectionSize">
-                         <number>152</number>
+                         <number>128</number>
                         </attribute>
                         <attribute name="horizontalHeaderHighlightSections">
                          <bool>true</bool>
@@ -789,21 +789,17 @@ border: 1px: solid: rgb(0, 206, 152);
                         </attribute>
                         <column>
                          <property name="text">
-                          <string>Fecha</string>
+                          <string>ID</string>
                          </property>
-                         <property name="font">
-                          <font>
-                           <family>Arial Black</family>
-                          </font>
+                        </column>
+                        <column>
+                         <property name="text">
+                          <string>Temp Mínima</string>
                          </property>
-                         <property name="foreground">
-                          <brush brushstyle="Dense2Pattern">
-                           <color alpha="255">
-                            <red>0</red>
-                            <green>0</green>
-                            <blue>0</blue>
-                           </color>
-                          </brush>
+                        </column>
+                        <column>
+                         <property name="text">
+                          <string>Temp Máxima</string>
                          </property>
                         </column>
                         <column>
@@ -813,12 +809,7 @@ border: 1px: solid: rgb(0, 206, 152);
                         </column>
                         <column>
                          <property name="text">
-                          <string>Temp Maxima</string>
-                         </property>
-                        </column>
-                        <column>
-                         <property name="text">
-                          <string>Temp Minima</string>
+                          <string>Fecha</string>
                          </property>
                         </column>
                         <column>
@@ -826,6 +817,13 @@ border: 1px: solid: rgb(0, 206, 152);
                           <string/>
                          </property>
                         </column>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QPushButton" name="btn_convertir_temperaturas">
+                        <property name="text">
+                         <string>Cambiar unidad</string>
+                        </property>
                        </widget>
                       </item>
                      </layout>
@@ -1125,7 +1123,7 @@ border: 1px: solid: rgb(0, 206, 152);
                             <family>Arial Black</family>
                             <pointsize>10</pointsize>
                             <italic>false</italic>
-                            <bold>false</bold>
+                            <fontweight></fontweight>
                            </font>
                           </property>
                           <property name="cursor">
@@ -1149,7 +1147,7 @@ border: 1px: solid: rgb(0, 206, 152);
                             <family>Arial Black</family>
                             <pointsize>10</pointsize>
                             <italic>false</italic>
-                            <bold>false</bold>
+                            <fontweight></fontweight>
                            </font>
                           </property>
                           <property name="cursor">
@@ -1177,7 +1175,7 @@ border: 1px: solid: rgb(0, 206, 152);
                           <family>Arial Black</family>
                           <pointsize>12</pointsize>
                           <italic>false</italic>
-                          <bold>false</bold>
+                          <fontweight></fontweight>
                          </font>
                         </property>
                         <property name="text">
@@ -1423,7 +1421,7 @@ border: 1px: solid: rgb(0, 206, 152);
                         <family>Arial Black</family>
                         <pointsize>12</pointsize>
                         <italic>false</italic>
-                        <bold>false</bold>
+                        <fontweight></fontweight>
                        </font>
                       </property>
                       <property name="text">
@@ -2697,7 +2695,7 @@ border: 1px: solid: rgb(0, 206, 152);
                         </attribute>
                         <column>
                          <property name="text">
-                          <string>id</string>
+                          <string>ID</string>
                          </property>
                          <property name="font">
                           <font>

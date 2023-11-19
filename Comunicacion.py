@@ -129,3 +129,41 @@ class Comunicacion:
         cursor.execute(sentenciaSQL, (valores))
         self.conexion.commit()
         cursor.close()
+
+    def insertarTemperatura(self, fecha, tempPromedio, tempMax, tempMin):
+        cursor = self.conexion.cursor();
+        sentenciaSQL = "INSERT INTO temperaturas (minima, maxima, promedio, fecha) VALUES (%s, %s, %s, %s)"
+        valores = (tempMin, tempMax, tempPromedio, fecha)
+        cursor.execute(sentenciaSQL, (valores))
+        self.conexion.commit()
+        cursor.close()
+
+    def traerTemperaturas(self):
+        cursor = self.conexion.cursor()
+        sentenciaSQL = "SELECT * FROM temperaturas;"
+        cursor.execute(sentenciaSQL)
+        resultados = cursor.fetchall()
+        return resultados
+    
+    def verificarFechaTemperaturas(self, fecha):
+        cursor = self.conexion.cursor()
+        sentenciaSQL = "SELECT id FROM temperaturas WHERE %s = fecha;"
+        valores = (fecha)
+        cursor.execute(sentenciaSQL, (valores, ))
+        resultado = cursor.fetchone()
+        return resultado
+    
+    def verificarUnidadesTemperatura(self):
+        cursor = self.conexion.cursor()
+        sentenciaSQL = "SELECT minima FROM temperaturas WHERE id = (SELECT Min(id) FROM temperaturas);"
+        cursor.execute(sentenciaSQL)
+        resultado = cursor.fetchone()
+        return resultado
+    
+    def eliminarTemperatura(self, idTemperatura):
+        cursor = self.conexion.cursor();
+        sentenciaSQL = "DELETE FROM temperaturas WHERE id = %s"
+        valores = (idTemperatura)
+        cursor.execute(sentenciaSQL, (valores, ))
+        self.conexion.commit()
+        cursor.close()
