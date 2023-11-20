@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'carniceria.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.6.0
+## Created by: Qt User Interface Compiler version 6.5.2
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -410,9 +410,7 @@ class Ui_MainWindow(object):
         self.stackedWidget_menu.setEnabled(True)
         self.page_temperaturas = QWidget()
         self.page_temperaturas.setObjectName(u"page_temperaturas")
-        self.verticalLayout_22 = QVBoxLayout(self.page_temperaturas)
-        self.verticalLayout_22.setObjectName(u"verticalLayout_22")
-        self.verticalLayout_13 = QVBoxLayout()
+        self.verticalLayout_13 = QVBoxLayout(self.page_temperaturas)
         self.verticalLayout_13.setObjectName(u"verticalLayout_13")
         self.label_11 = QLabel(self.page_temperaturas)
         self.label_11.setObjectName(u"label_11")
@@ -455,7 +453,7 @@ class Ui_MainWindow(object):
         self.tabla_temperaturas.setSortingEnabled(False)
         self.tabla_temperaturas.horizontalHeader().setVisible(True)
         self.tabla_temperaturas.horizontalHeader().setCascadingSectionResizes(False)
-        self.tabla_temperaturas.horizontalHeader().setDefaultSectionSize(128)
+        self.tabla_temperaturas.horizontalHeader().setDefaultSectionSize(130)
         self.tabla_temperaturas.horizontalHeader().setHighlightSections(True)
         self.tabla_temperaturas.verticalHeader().setVisible(False)
         self.tabla_temperaturas.verticalHeader().setCascadingSectionResizes(False)
@@ -463,13 +461,21 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_13.addWidget(self.tabla_temperaturas)
 
+        self.horizontalLayout_32 = QHBoxLayout()
+        self.horizontalLayout_32.setObjectName(u"horizontalLayout_32")
+        self.horizontalSpacer_41 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_32.addItem(self.horizontalSpacer_41)
+
         self.btn_convertir_temperaturas = QPushButton(self.page_temperaturas)
         self.btn_convertir_temperaturas.setObjectName(u"btn_convertir_temperaturas")
+        self.btn_convertir_temperaturas.setMinimumSize(QSize(130, 40))
+        self.btn_convertir_temperaturas.setMaximumSize(QSize(16777215, 16777215))
 
-        self.verticalLayout_13.addWidget(self.btn_convertir_temperaturas)
+        self.horizontalLayout_32.addWidget(self.btn_convertir_temperaturas)
 
 
-        self.verticalLayout_22.addLayout(self.verticalLayout_13)
+        self.verticalLayout_13.addLayout(self.horizontalLayout_32)
 
         self.stackedWidget_menu.addWidget(self.page_temperaturas)
         self.page_credenciales_eliminar_temperatura = QWidget()
@@ -560,6 +566,124 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_14.addWidget(self.lbl_titulo_estadisticas)
 
+        self.horizontalLayout_34 = QHBoxLayout()
+        self.horizontalLayout_34.setObjectName(u"horizontalLayout_34")
+        self.frame_grafica1 = QFrame(self.page_estadisticas)
+        self.frame_grafica1.setObjectName(u"frame_grafica1")
+        self.frame_grafica1.setStyleSheet(u"background-color: rgb(255, 255, 255);\n"
+"border-radius: 30px;\n"
+"border: 4px solid #003049;\n"
+"")
+        self.frame_grafica1.setFrameShape(QFrame.StyledPanel)
+        self.frame_grafica1.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_22 = QVBoxLayout(self.frame_grafica1)
+        self.verticalLayout_22.setObjectName(u"verticalLayout_22")
+        self.label_14 = QLabel(self.frame_grafica1)
+        self.label_14.setObjectName(u"label_14")
+        self.label_14.setStyleSheet(u"border: 0px")
+        self.label_14.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout_22.addWidget(self.label_14)
+
+        self.grafica1 = QVBoxLayout()
+        self.grafica1.setObjectName(u"grafica1")
+
+        self.verticalLayout_22.addLayout(self.grafica1)
+
+        self.verticalLayout_22.setStretch(0, 1)
+        self.verticalLayout_22.setStretch(1, 5)
+
+        self.horizontalLayout_34.addWidget(self.frame_grafica1)
+
+        self.frame_grafica2 = QFrame(self.page_estadisticas)
+        self.frame_grafica2.setObjectName(u"frame_grafica2")
+        self.frame_grafica2.setStyleSheet(u"background-color: rgb(255, 255, 255);\n"
+"border-radius: 30px;\n"
+"border: 4px solid #003049;\n"
+"")
+        self.frame_grafica2.setFrameShape(QFrame.StyledPanel)
+        self.frame_grafica2.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_36 = QVBoxLayout(self.frame_grafica2)
+        self.verticalLayout_36.setObjectName(u"verticalLayout_36")
+        self.label_15 = QLabel(self.frame_grafica2)
+        self.label_15.setObjectName(u"label_15")
+        self.label_15.setStyleSheet(u"border: 0px")
+        self.label_15.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout_36.addWidget(self.label_15)
+
+        self.grafica2 = QVBoxLayout()
+        self.grafica2.setObjectName(u"grafica2")
+
+        self.verticalLayout_36.addLayout(self.grafica2)
+
+        self.verticalLayout_36.setStretch(0, 1)
+        self.verticalLayout_36.setStretch(1, 5)
+
+        self.horizontalLayout_34.addWidget(self.frame_grafica2)
+
+
+        self.verticalLayout_14.addLayout(self.horizontalLayout_34)
+
+        self.horizontalLayout_35 = QHBoxLayout()
+        self.horizontalLayout_35.setObjectName(u"horizontalLayout_35")
+        self.frame_grafica3 = QFrame(self.page_estadisticas)
+        self.frame_grafica3.setObjectName(u"frame_grafica3")
+        self.frame_grafica3.setStyleSheet(u"background-color: rgb(255, 255, 255);\n"
+"border-radius: 30px;\n"
+"border: 4px solid #003049;\n"
+"")
+        self.frame_grafica3.setFrameShape(QFrame.StyledPanel)
+        self.frame_grafica3.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_37 = QVBoxLayout(self.frame_grafica3)
+        self.verticalLayout_37.setObjectName(u"verticalLayout_37")
+        self.label_16 = QLabel(self.frame_grafica3)
+        self.label_16.setObjectName(u"label_16")
+        self.label_16.setStyleSheet(u"border: 0px")
+        self.label_16.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout_37.addWidget(self.label_16)
+
+        self.grafica3 = QVBoxLayout()
+        self.grafica3.setObjectName(u"grafica3")
+
+        self.verticalLayout_37.addLayout(self.grafica3)
+
+        self.verticalLayout_37.setStretch(0, 1)
+        self.verticalLayout_37.setStretch(1, 5)
+
+        self.horizontalLayout_35.addWidget(self.frame_grafica3)
+
+        self.frame_grafica4 = QFrame(self.page_estadisticas)
+        self.frame_grafica4.setObjectName(u"frame_grafica4")
+        self.frame_grafica4.setStyleSheet(u"background-color: rgb(255, 255, 255);\n"
+"border-radius: 30px;\n"
+"border: 4px solid #003049;\n"
+"")
+        self.frame_grafica4.setFrameShape(QFrame.StyledPanel)
+        self.frame_grafica4.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_38 = QVBoxLayout(self.frame_grafica4)
+        self.verticalLayout_38.setObjectName(u"verticalLayout_38")
+        self.label_20 = QLabel(self.frame_grafica4)
+        self.label_20.setObjectName(u"label_20")
+        self.label_20.setStyleSheet(u"border: 0px")
+        self.label_20.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout_38.addWidget(self.label_20)
+
+        self.grafica4 = QVBoxLayout()
+        self.grafica4.setObjectName(u"grafica4")
+
+        self.verticalLayout_38.addLayout(self.grafica4)
+
+        self.verticalLayout_38.setStretch(0, 1)
+        self.verticalLayout_38.setStretch(1, 5)
+
+        self.horizontalLayout_35.addWidget(self.frame_grafica4)
+
+
+        self.verticalLayout_14.addLayout(self.horizontalLayout_35)
+
         self.stackedWidget_menu.addWidget(self.page_estadisticas)
         self.page_corte_de_caja = QWidget()
         self.page_corte_de_caja.setObjectName(u"page_corte_de_caja")
@@ -595,7 +719,7 @@ class Ui_MainWindow(object):
         self.tabla_gastos.setShowGrid(True)
         self.tabla_gastos.setSortingEnabled(False)
         self.tabla_gastos.setCornerButtonEnabled(True)
-        self.tabla_gastos.horizontalHeader().setDefaultSectionSize(144)
+        self.tabla_gastos.horizontalHeader().setDefaultSectionSize(145)
         self.tabla_gastos.verticalHeader().setVisible(False)
 
         self.horizontalLayout_18.addWidget(self.tabla_gastos)
@@ -604,14 +728,14 @@ class Ui_MainWindow(object):
         self.verticalLayout_15.setObjectName(u"verticalLayout_15")
         self.btn_anadir_gasto = QPushButton(self.page_corte_de_caja)
         self.btn_anadir_gasto.setObjectName(u"btn_anadir_gasto")
-        self.btn_anadir_gasto.setMinimumSize(QSize(120, 40))
+        self.btn_anadir_gasto.setMinimumSize(QSize(140, 40))
         self.btn_anadir_gasto.setCursor(QCursor(Qt.PointingHandCursor))
 
         self.verticalLayout_15.addWidget(self.btn_anadir_gasto)
 
         self.btn_generar_corte = QPushButton(self.page_corte_de_caja)
         self.btn_generar_corte.setObjectName(u"btn_generar_corte")
-        self.btn_generar_corte.setMinimumSize(QSize(120, 40))
+        self.btn_generar_corte.setMinimumSize(QSize(140, 40))
         font = QFont()
         font.setFamilies([u"Arial Black"])
         font.setPointSize(10)
@@ -624,7 +748,7 @@ class Ui_MainWindow(object):
 
         self.btn_mostrar_corte = QPushButton(self.page_corte_de_caja)
         self.btn_mostrar_corte.setObjectName(u"btn_mostrar_corte")
-        self.btn_mostrar_corte.setMinimumSize(QSize(120, 40))
+        self.btn_mostrar_corte.setMinimumSize(QSize(140, 40))
         self.btn_mostrar_corte.setFont(font)
         self.btn_mostrar_corte.setCursor(QCursor(Qt.PointingHandCursor))
 
@@ -1531,7 +1655,7 @@ class Ui_MainWindow(object):
         self.tabla_inventario.setSortingEnabled(False)
         self.tabla_inventario.horizontalHeader().setVisible(True)
         self.tabla_inventario.horizontalHeader().setCascadingSectionResizes(False)
-        self.tabla_inventario.horizontalHeader().setDefaultSectionSize(109)
+        self.tabla_inventario.horizontalHeader().setDefaultSectionSize(111)
         self.tabla_inventario.horizontalHeader().setHighlightSections(True)
         self.tabla_inventario.verticalHeader().setVisible(False)
         self.tabla_inventario.verticalHeader().setCascadingSectionResizes(False)
@@ -1698,7 +1822,7 @@ class Ui_MainWindow(object):
         self.tabla_ventas.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
         self.tabla_ventas.setEditTriggers(QAbstractItemView.NoEditTriggers)
         self.tabla_ventas.setProperty("showDropIndicator", True)
-        self.tabla_ventas.horizontalHeader().setDefaultSectionSize(94)
+        self.tabla_ventas.horizontalHeader().setDefaultSectionSize(97)
         self.tabla_ventas.verticalHeader().setVisible(False)
 
         self.horizontalLayout_23.addWidget(self.tabla_ventas)
@@ -1717,7 +1841,7 @@ class Ui_MainWindow(object):
         __qtablewidgetitem25 = QTableWidgetItem()
         self.tabla_carrito.setHorizontalHeaderItem(4, __qtablewidgetitem25)
         self.tabla_carrito.setObjectName(u"tabla_carrito")
-        self.tabla_carrito.horizontalHeader().setDefaultSectionSize(76)
+        self.tabla_carrito.horizontalHeader().setDefaultSectionSize(77)
 
         self.horizontalLayout_23.addWidget(self.tabla_carrito)
 
@@ -1761,7 +1885,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget_menu.setCurrentIndex(8)
+        self.stackedWidget_menu.setCurrentIndex(2)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -1803,6 +1927,10 @@ class Ui_MainWindow(object):
         self.lbl_logo_empresa_5.setText("")
         self.btn_validar_contrasena_eliminar_temperatura.setText(QCoreApplication.translate("MainWindow", u"Aceptar", None))
         self.lbl_titulo_estadisticas.setText(QCoreApplication.translate("MainWindow", u"ESTADISTICAS", None))
+        self.label_14.setText(QCoreApplication.translate("MainWindow", u"Grafica", None))
+        self.label_15.setText(QCoreApplication.translate("MainWindow", u"Grafica", None))
+        self.label_16.setText(QCoreApplication.translate("MainWindow", u"Grafica", None))
+        self.label_20.setText(QCoreApplication.translate("MainWindow", u"Grafica", None))
         self.lbl_titulo_corte_de_caja.setText(QCoreApplication.translate("MainWindow", u"CORTE DE CAJA", None))
         ___qtablewidgetitem5 = self.tabla_gastos.horizontalHeaderItem(0)
         ___qtablewidgetitem5.setText(QCoreApplication.translate("MainWindow", u"ID", None));
