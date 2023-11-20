@@ -27,11 +27,11 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(1156, 686)
+        MainWindow.resize(1175, 686)
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
-        self.horizontalLayout_17 = QHBoxLayout(self.centralwidget)
-        self.horizontalLayout_17.setObjectName(u"horizontalLayout_17")
+        self.horizontalLayout_33 = QHBoxLayout(self.centralwidget)
+        self.horizontalLayout_33.setObjectName(u"horizontalLayout_33")
         self.frame = QFrame(self.centralwidget)
         self.frame.setObjectName(u"frame")
         self.frame.setStyleSheet(u"background-color: rgb(253, 240, 213);")
@@ -615,7 +615,7 @@ class Ui_MainWindow(object):
         font = QFont()
         font.setFamilies([u"Arial Black"])
         font.setPointSize(10)
-        font.setWeight(QFont.)
+        font.setBold(False)
         font.setItalic(False)
         self.btn_generar_corte.setFont(font)
         self.btn_generar_corte.setCursor(QCursor(Qt.PointingHandCursor))
@@ -648,7 +648,7 @@ class Ui_MainWindow(object):
         font1 = QFont()
         font1.setFamilies([u"Arial Black"])
         font1.setPointSize(12)
-        font1.setWeight(QFont.)
+        font1.setBold(False)
         font1.setItalic(False)
         self.label_7.setFont(font1)
         self.label_7.setAlignment(Qt.AlignCenter)
@@ -1221,11 +1221,97 @@ class Ui_MainWindow(object):
         self.stackedWidget_menu.addWidget(self.page_agregar_montos)
         self.page_resultado_corte = QWidget()
         self.page_resultado_corte.setObjectName(u"page_resultado_corte")
-        self.lbl_titulo_resultado_corte = QLabel(self.page_resultado_corte)
-        self.lbl_titulo_resultado_corte.setObjectName(u"lbl_titulo_resultado_corte")
-        self.lbl_titulo_resultado_corte.setGeometry(QRect(290, 40, 143, 23))
-        self.lbl_titulo_resultado_corte.setLayoutDirection(Qt.LeftToRight)
-        self.lbl_titulo_resultado_corte.setAlignment(Qt.AlignCenter)
+        self.verticalLayout_35 = QVBoxLayout(self.page_resultado_corte)
+        self.verticalLayout_35.setObjectName(u"verticalLayout_35")
+        self.label_19 = QLabel(self.page_resultado_corte)
+        self.label_19.setObjectName(u"label_19")
+        self.label_19.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout_35.addWidget(self.label_19)
+
+        self.verticalLayout_34 = QVBoxLayout()
+        self.verticalLayout_34.setObjectName(u"verticalLayout_34")
+        self.verticalLayout_32 = QVBoxLayout()
+        self.verticalLayout_32.setObjectName(u"verticalLayout_32")
+        self.verticalSpacer_15 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Fixed)
+
+        self.verticalLayout_32.addItem(self.verticalSpacer_15)
+
+        self.horizontalLayout_17 = QHBoxLayout()
+        self.horizontalLayout_17.setObjectName(u"horizontalLayout_17")
+        self.horizontalSpacer_35 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_17.addItem(self.horizontalSpacer_35)
+
+        self.lbl_logo_empresa_6 = QLabel(self.page_resultado_corte)
+        self.lbl_logo_empresa_6.setObjectName(u"lbl_logo_empresa_6")
+        self.lbl_logo_empresa_6.setMinimumSize(QSize(120, 120))
+        self.lbl_logo_empresa_6.setMaximumSize(QSize(120, 120))
+        self.lbl_logo_empresa_6.setPixmap(QPixmap(u"Imagenes/portrait.svg"))
+        self.lbl_logo_empresa_6.setScaledContents(True)
+
+        self.horizontalLayout_17.addWidget(self.lbl_logo_empresa_6)
+
+        self.horizontalSpacer_36 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_17.addItem(self.horizontalSpacer_36)
+
+
+        self.verticalLayout_32.addLayout(self.horizontalLayout_17)
+
+
+        self.verticalLayout_34.addLayout(self.verticalLayout_32)
+
+        self.verticalSpacer_17 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.verticalLayout_34.addItem(self.verticalSpacer_17)
+
+        self.verticalLayout_33 = QVBoxLayout()
+        self.verticalLayout_33.setObjectName(u"verticalLayout_33")
+        self.horizontalLayout_31 = QHBoxLayout()
+        self.horizontalLayout_31.setObjectName(u"horizontalLayout_31")
+        self.horizontalSpacer_39 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_31.addItem(self.horizontalSpacer_39)
+
+        self.lbl_contrasena_corte = QLineEdit(self.page_resultado_corte)
+        self.lbl_contrasena_corte.setObjectName(u"lbl_contrasena_corte")
+        self.lbl_contrasena_corte.setEchoMode(QLineEdit.Password)
+
+        self.horizontalLayout_31.addWidget(self.lbl_contrasena_corte)
+
+        self.horizontalSpacer_40 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_31.addItem(self.horizontalSpacer_40)
+
+
+        self.verticalLayout_33.addLayout(self.horizontalLayout_31)
+
+        self.verticalSpacer_16 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.verticalLayout_33.addItem(self.verticalSpacer_16)
+
+        self.horizontalSpacer_38 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.verticalLayout_33.addItem(self.horizontalSpacer_38)
+
+        self.btn_validar_contrasena_corte = QPushButton(self.page_resultado_corte)
+        self.btn_validar_contrasena_corte.setObjectName(u"btn_validar_contrasena_corte")
+        self.btn_validar_contrasena_corte.setMinimumSize(QSize(120, 40))
+        self.btn_validar_contrasena_corte.setCursor(QCursor(Qt.PointingHandCursor))
+
+        self.verticalLayout_33.addWidget(self.btn_validar_contrasena_corte)
+
+        self.horizontalSpacer_37 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.verticalLayout_33.addItem(self.horizontalSpacer_37)
+
+
+        self.verticalLayout_34.addLayout(self.verticalLayout_33)
+
+
+        self.verticalLayout_35.addLayout(self.verticalLayout_34)
+
         self.stackedWidget_menu.addWidget(self.page_resultado_corte)
         self.page_credenciales_editar = QWidget()
         self.page_credenciales_editar.setObjectName(u"page_credenciales_editar")
@@ -1660,11 +1746,6 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_3.addWidget(self.frame_contenido)
 
-        self.botonTemp = QPushButton(self.frame_paginas)
-        self.botonTemp.setObjectName(u"botonTemp")
-
-        self.verticalLayout_3.addWidget(self.botonTemp)
-
 
         self.horizontalLayout_2.addWidget(self.frame_paginas)
 
@@ -1674,13 +1755,13 @@ class Ui_MainWindow(object):
         self.verticalLayout_2.setStretch(0, 1)
         self.verticalLayout_2.setStretch(1, 8)
 
-        self.horizontalLayout_17.addWidget(self.frame)
+        self.horizontalLayout_33.addWidget(self.frame)
 
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget_menu.setCurrentIndex(0)
+        self.stackedWidget_menu.setCurrentIndex(8)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -1793,7 +1874,9 @@ class Ui_MainWindow(object):
         self.spinBox_monto_50c.setSpecialValueText("")
         self.spinBox_monto_50c.setPrefix(QCoreApplication.translate("MainWindow", u"$", None))
         self.btn_agregar_montos.setText(QCoreApplication.translate("MainWindow", u"Aceptar", None))
-        self.lbl_titulo_resultado_corte.setText(QCoreApplication.translate("MainWindow", u"Resultado Corte", None))
+        self.label_19.setText(QCoreApplication.translate("MainWindow", u"INGRESA LA CONTRASE\u00d1A", None))
+        self.lbl_logo_empresa_6.setText("")
+        self.btn_validar_contrasena_corte.setText(QCoreApplication.translate("MainWindow", u"Aceptar", None))
         self.label_8.setText(QCoreApplication.translate("MainWindow", u"INGRESA LA CONTRASE\u00d1A", None))
         self.lbl_logo_empresa_2.setText("")
         self.btn_validar_contrasena_editar.setText(QCoreApplication.translate("MainWindow", u"Aceptar", None))
@@ -1846,6 +1929,5 @@ class Ui_MainWindow(object):
         ___qtablewidgetitem23 = self.tabla_carrito.horizontalHeaderItem(3)
         ___qtablewidgetitem23.setText(QCoreApplication.translate("MainWindow", u"Precio", None));
         self.btn_realizar_venta.setText(QCoreApplication.translate("MainWindow", u"Realizar Venta", None))
-        self.botonTemp.setText(QCoreApplication.translate("MainWindow", u"P\u00edcame we", None))
     # retranslateUi
 

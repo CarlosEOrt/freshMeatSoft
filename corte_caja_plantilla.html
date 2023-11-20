@@ -1,5 +1,14 @@
 <meta charset="UTF-8">
-<div class="logo-container"><img style="height: 18px;" src="https://app.useanvil.com/img/email-logo-black.png" /></div>
+<header style="background-color: lightsalmon;">
+  <div class="logo-container" ">
+    <img style="height: 100px; background-color: lightsalmon;"src="https://picfiles.alphacoders.com/931/93100.png" />
+  
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <img style="height: 100px; background-color: lightsalmon; text-align: right;" src="https://unitar.org/sites/default/files/styles/col_4_landscape_380x215_/public/media/image/Logo-UdeG-03.png?itok=oc1qSpL4" />
+  </div>
+</header>
 <body style="background-color: lightgoldenrodyellow;">
 <table class="invoice-info-container" style="background-color: lightgoldenrodyellow;">
 <tbody>
@@ -34,15 +43,14 @@
 <td>&nbsp;</td>
 <td>Gastos</td>
 <td class="right">&nbsp;</td>
-<td class="bold">{{subtotal_gastos}}</td>
+<td class="bold">${{subtotal_gastos}}</td>
 </tr>
 <tr>
 <td>&nbsp;</td>
 <td>Saldo en Caja</td>
 <td class="right">&nbsp;</td>
-<td class="bold">{{subtotal_montos}}</td>
+<td class="bold">${{subtotal_montos}}</td>
 </tr>
-
 </tbody>
 </table>
 <table class="line-items-container has-bottom-border">
@@ -60,7 +68,7 @@
 <div></div>
 </td>
 <td class="large"></td>
-<td class="large total">{{totalVentas}}</td>
+<td class="large total">${{totalVentas}}</td>
 </tr>
 
 </tbody>
@@ -79,13 +87,13 @@
 <td>&nbsp;</td>
 <td>Gastos</td>
 <td class="right">&nbsp;</td>
-<td class="bold">{{subtotal_gastos}}</td>
+<td class="bold">${{subtotal_gastos}}</td>
 </tr>
 <tr>
 <td>&nbsp;</td>
 <td>Venta Total</td>
 <td class="right">&nbsp;</td>
-<td class="bold">{{subtotal_venta}}</td>
+<td class="bold">${{subtotal_venta}}</td>
 </tr>
 
 </tbody>
@@ -105,13 +113,17 @@
 <div></div>
 </td>
 <td class="large"></td>
-<td class="large total">{{totalGanancias}}</td>
+<td class="large total">${{totalGanancias}}</td>
 </tr>
-
 </tbody>
 </table>
+<h4 style="text-align: center;"> Registro  de Temperaturas </h4>
+<h4 style="text-align: center;"> Minima: {{minTemp}} °C</h4>
+<h4 style="text-align: center;"> Maxima: {{maxTemp}} °C</h4>
+<h4 style="text-align: center;"> Promedio: {{promTemp}} °C</h4>
 </body>
-<div class="footer">
-<div class="footer-info">{{fecha_hoy}}</div>
-<div class="footer-thanks"><img src="https://github.com/anvilco/html-pdf-invoice-template/raw/main/img/heart.png" alt="heart" />UwU</div>
+</body>
 </div>
+<footer style="float: center; margin-top: 5px; font-size: 0.75em; color: black">
+  <p> FreshMeatSoft© 2023</p>
+</footer>

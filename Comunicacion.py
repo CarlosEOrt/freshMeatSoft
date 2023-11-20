@@ -61,7 +61,8 @@ class Comunicacion:
         valores = (fecha)
         cursor.execute(sentenciaSQL, (valores, ))
         resultado = cursor.fetchone()[0]
-        print("Gasto DIA:",resultado)
+        resultado = resultado if resultado is not None else 0
+        cursor.close()
         return resultado
     
     def sumaVentas(self, fecha):
@@ -70,8 +71,47 @@ class Comunicacion:
         valores = (fecha)
         cursor.execute(sentenciaSQL, (valores, ))
         resultado = cursor.fetchone()[0]
-        print("VENTA DIA:",resultado)
+        resultado = resultado if resultado is not None else 0
+        cursor.close()
         return resultado
+    
+    def insertarCorte(self, monto, fecha, efectivoEnCaja):
+        cursor = self.conexion.cursor();
+        sentenciaSQL = "INSERT INTO cortedecaja (monto, fecha, efectivoEnCaja) VALUES (%s, %s, %s)"
+        valores = (monto, fecha, efectivoEnCaja)
+        cursor.execute(sentenciaSQL, (valores))
+        self.conexion.commit()
+        cursor.close()
+    
+    def traerIDCorte(self, fecha):
+        cursor = self.conexion.cursor();
+        sentenciaSQL = "SELECT id FROM cortedecaja WHERE fecha = %s; "
+        valores = (fecha)
+        cursor.execute(sentenciaSQL, (valores, ))
+        resultado = cursor.fetchone()[0]
+        resultado = resultado if resultado is not None else 0
+        cursor.close()
+        return resultado
+    
+    def verificacionCorteEnBase(self, fecha):
+        cursor = self.conexion.cursor();
+        try:
+            # Consulta para verificar si no hay datos para la fecha de hoy
+            consulta = f"SELECT * FROM cortedecaja WHERE fecha = '{fecha}'"
+            
+            # Ejecutar la consulta
+            cursor.execute(consulta)
+
+            # Obtener resultados
+            resultados = cursor.fetchall()
+
+            # Verificar si no hay resultados para la fecha de hoy
+            return not resultados
+
+        finally:
+        # Cerrar el cursor y la conexión
+            cursor.close()
+            self.conexion.close()
     
     #Consultas Ventas
     #Cambio realizado a la consulta de traer ventas
@@ -130,6 +170,7 @@ class Comunicacion:
         self.conexion.commit()
         cursor.close()
 
+    #Consultas Temperaturas
     def insertarTemperatura(self, fecha, tempPromedio, tempMax, tempMin):
         cursor = self.conexion.cursor();
         sentenciaSQL = "INSERT INTO temperaturas (minima, maxima, promedio, fecha) VALUES (%s, %s, %s, %s)"
@@ -144,6 +185,33 @@ class Comunicacion:
         cursor.execute(sentenciaSQL)
         resultados = cursor.fetchall()
         return resultados
+    
+    def traerTemperaturaMin(self, fecha):
+        cursor = self.conexion.cursor();
+        sentenciaSQL = "SELECT minima FROM temperaturas WHERE fecha = %s; "
+        valores = (fecha)
+        cursor.execute(sentenciaSQL, (valores, ))
+        resultado = cursor.fetchone()[0]
+        cursor.close()
+        return resultado
+    
+    def traerTemperaturaMax(self, fecha):
+        cursor = self.conexion.cursor();
+        sentenciaSQL = "SELECT maxima FROM temperaturas WHERE fecha = %s; "
+        valores = (fecha)
+        cursor.execute(sentenciaSQL, (valores, ))
+        resultado = cursor.fetchone()[0]
+        cursor.close()
+        return resultado
+    
+    def traerTemperaturaProm(self, fecha):
+        cursor = self.conexion.cursor();
+        sentenciaSQL = "SELECT promedio FROM temperaturas WHERE fecha = %s; "
+        valores = (fecha)
+        cursor.execute(sentenciaSQL, (valores, ))
+        resultado = cursor.fetchone()[0]
+        cursor.close()
+        return resultado
     
     def verificarFechaTemperaturas(self, fecha):
         cursor = self.conexion.cursor()

@@ -5,6 +5,8 @@ import datetime
 import tempfile
 import jinja2
 import pdfkit
+import webbrowser
+import os
 import os.path
 from tkinter import *
 from tkinter.simpledialog import askstring
@@ -24,7 +26,7 @@ from Comunicacion import Comunicacion
 
 class MyWindow(QMainWindow):
     global arduino
-    arduino = serial.Serial('COM3', 9600) # Puerto y baud-rate en los que funciona el Arduino
+    #arduino = serial.Serial('COM3', 9600) # Puerto y baud-rate en los que funciona el Arduino
     global pathTemperatura
     pathTemperatura = "Documentos\\Temperatura\\"
 
@@ -47,9 +49,9 @@ class MyWindow(QMainWindow):
         self.actualizarTablaTemperaturas()
         self.actualizarResultadosBusqueda()
 
-        self.timer = QTimer(self) # se crea una variable para constante actualizacion
-        self.timer.timeout.connect(lambda:self.actualizarTemperatura())#actualiza el label
-        self.timer.start(100)#tiempo que tarda en el contador
+        #self.timer = QTimer(self) # se crea una variable para constante actualizacion
+        #self.timer.timeout.connect(lambda:self.actualizarTemperatura())#actualiza el label
+        #self.timer.start(100)#tiempo que tarda en el contador
 
         # Redireccion de botones menu
         self.btn_inventario.clicked.connect(
@@ -79,6 +81,7 @@ class MyWindow(QMainWindow):
             lambda: self.stackedWidget_menu.setCurrentWidget(self.page_credenciales_editar))
         self.btn_anadir_gasto.clicked.connect(
             lambda: self.stackedWidget_menu.setCurrentWidget(self.page_agregar_gasto))
+        
         # Boton Credenciales
         self.btn_validar_contrasena_editar.clicked.connect(
             lambda: self.validacion_de_credenciales_editar())
@@ -86,6 +89,8 @@ class MyWindow(QMainWindow):
             lambda: self.validacion_de_credenciales_eliminar())
         self.btn_validar_contrasena_eliminar_temperatura.clicked.connect(
             lambda: self.validacion_de_credenciales_eliminar_temperatura())
+        self.btn_validar_contrasena_corte.clicked.connect(
+            lambda: self.validacion_de_credenciales_corte())
 
         # Botones de Funcionalidades de CRUD Inventario
         self.btn_agregar_producto.clicked.connect(
@@ -100,9 +105,11 @@ class MyWindow(QMainWindow):
         self.btn_agregar_gasto.clicked.connect(
             lambda: self.agregarGastoABaseDeDatos())
         self.btn_generar_corte.clicked.connect(
-            lambda: self.stackedWidget_menu.setCurrentWidget(self.page_agregar_montos))
+            lambda: self.stackedWidget_menu.setCurrentWidget(self.page_resultado_corte))
         self.btn_agregar_montos.clicked.connect(
-            lambda: self.agregarMontosABaseDeDatos())
+            lambda: self.agregarMontosATemporal())
+        self.btn_mostrar_corte.clicked.connect(
+            lambda: self.abrirPDFCorte())
 
         # Botones de Funcionalidades de Ventas
         self.lineEdit_busqueda_ventas.textChanged.connect(
@@ -166,6 +173,18 @@ class MyWindow(QMainWindow):
         else:
             self.lbl_contrasena_eliminar_temperatura.setText("")
             self.stackedWidget_menu.setCurrentWidget(self.page_temperaturas)
+    
+    def validacion_de_credenciales_corte(self):
+        contrasena = self.lbl_contrasena_corte.text()
+        if contrasena == '123':
+            self.stackedWidget_menu.setCurrentWidget(self.page_agregar_montos)
+            self.lbl_contrasena_corte.setText("")
+            
+            
+        else:
+            self.lbl_contrasena_corte.setText("")
+            messagebox.showwarning('ERROR DE CREDENCIALES', 'La contraseña no coincide con las de permiso para acceder a esta área.')
+            self.stackedWidget_menu.setCurrentWidget(self.page_corte_de_caja)
 
     def actualizarTemperatura(self):
         # Leer los datos que manda el Arduino
@@ -289,12 +308,6 @@ class MyWindow(QMainWindow):
             self.lbl_cantidad.setText(
                 self.tabla_inventario.item(fila, columna+6).text())
 
-    def celda_clicada_tabla_temperaturas(self, fila, columna):
-        # Acción específica cuando una celda se hace clic
-        if columna == 5:  # si es la columna de borrado nos lleva a la insercion de contraseña
-            self.stackedWidget_menu.setCurrentWidget(
-                self.page_credenciales_eliminar_temperatura)
-
     # Funciones Corte de Caja
     def agregarGastoABaseDeDatos(self):
         fecha_actual_str = self.obtenerFechaActual()
@@ -304,6 +317,7 @@ class MyWindow(QMainWindow):
         com.insertarGasto(gasto)
         self.borrarCamposGastosAgregar()
         self.stackedWidget_menu.setCurrentWidget(self.page_corte_de_caja)
+        self.actualizarTablaGastos()
 
     def obtenerFechaActual(self):
         fecha_actual = datetime.date.today()
@@ -320,19 +334,6 @@ class MyWindow(QMainWindow):
             for columna, valor in enumerate(datos):
                 item = QtWidgets.QTableWidgetItem(str(valor))
                 self.tabla_gastos.setItem(fila, columna, item)
-
-    def actualizarTablaTemperaturas(self):
-        com = Comunicacion()
-        resultados = com.traerTemperaturas()
-        self.tabla_temperaturas.setRowCount(0)
-        self.tabla_temperaturas.setRowCount(len(resultados))
-
-        for fila, datos in enumerate(resultados):
-            for columna, valor in enumerate(datos):
-                item = QtWidgets.QTableWidgetItem(str(valor))
-                itemEliminar = QtWidgets.QTableWidgetItem("Eliminar")
-                self.tabla_temperaturas.setItem(fila, columna, item)
-                self.tabla_temperaturas.setItem(fila, 5, itemEliminar)
 
     def guardarTemporalMontos(self, monto50c, monto1, monto2, monto5, monto10, monto20, monto50, monto100, monto200, monto500):
     # Crear un archivo temporal
@@ -361,12 +362,11 @@ class MyWindow(QMainWindow):
             monto500 = float(lineas[9].strip())
         #Sumatoria total de los montos en caja
         efectivoTotalCaja = monto50c+monto1+monto2+monto5+monto10+monto20+monto50+monto100+monto200+monto500
-        com = Comunicacion()
-        resultados = com.sumaGastos(self.obtenerFechaActual())
-        
+
         return efectivoTotalCaja 
     
-    def agregarMontosABaseDeDatos(self):
+    def agregarMontosATemporal(self):
+        
         monto500 = self.spinBox_monto_500.value()
         monto200 = self.spinBox_monto_200.value()
         monto100 = self.spinBox_monto_100.value()
@@ -378,12 +378,90 @@ class MyWindow(QMainWindow):
         monto1 = self.spinBox_monto_1.value()
         monto50c = self.spinBox_monto_50c.value()
 
-        self.guardarTemporalMontos(monto50c, monto1, monto2, monto5, monto10, monto20, monto50, monto100, monto200, monto500)
+        efectivoTotalCaja = self.leerTemporalMontos(self.guardarTemporalMontos(monto50c, monto1, monto2, monto5, monto10, monto20, monto50, monto100, monto200, monto500))
         self.borrarCamposMontosAgregar()
-        self.generarReporteTemperaturas()
-        self.generar_pdf_corte()
-        self.stackedWidget_menu.setCurrentWidget(self.page_resultado_corte)
-        
+        #self.generarReporteTemperaturas()
+        self.generar_pdf_corte(efectivoTotalCaja)
+
+    def verificarExistenciaCorte(self):
+        validacion=False
+        ruta_archivo= 'Documentos\Reportes Corte de caja\cortedecaja_'+ self.obtenerFechaActual() + '.pdf'
+        if os.path.exists(ruta_archivo):
+            validacion=True
+        else:
+            validacion=False
+        return validacion
+    
+    def agregarCorteABaseDeDatos(self, efectivoTotalCaja):
+        com = Comunicacion()
+        sumaGastos = com.sumaGastos(self.obtenerFechaActual())
+        ventaBase = com.sumaVentas(self.obtenerFechaActual())
+        fecha=self.obtenerFechaActual()
+        gananciaDia = ventaBase - sumaGastos
+        com.insertarCorte(gananciaDia,fecha,efectivoTotalCaja)
+       
+    
+    def generar_pdf_corte(self, efectivoTotalCaja):
+        com = Comunicacion()
+        fecha = self.obtenerFechaActual()
+        validacion=0
+        #validacion = com.verificacionCorteEnBase(fecha)
+        #print("Verificacion",com.verificacionCorteEnBase(fecha))
+        #com.verificacionCorteEnBase(fecha)
+        if not self.verificarExistenciaCorte():
+            if(com.verificacionCorteEnBase(fecha)):
+                cam = Comunicacion()
+                self.agregarCorteABaseDeDatos(efectivoTotalCaja)
+                gastos = cam.sumaGastos(fecha)
+                venta = cam.sumaVentas(fecha)
+                gananciaDia = venta - gastos
+                tempMin = cam.traerTemperaturaMin(fecha)
+                tempMax = cam.traerTemperaturaMax(fecha)
+                tempProm = cam.traerTemperaturaProm(fecha)
+                idcorte = cam.traerIDCorte(fecha)
+                template_loader= jinja2.FileSystemLoader('./')
+                template_env= jinja2.Environment(loader=template_loader)
+
+                html_template= 'corte_caja_plantilla.html'
+                template= template_env.get_template(html_template)
+                ##Insertar datos de Corte de caja
+                output_text = template.render({"today_date": fecha, "num_corte":idcorte, "subtotal_gastos": gastos, "subtotal_montos": efectivoTotalCaja,
+                        "totalVentas":venta, "subtotal_venta":venta, "totalGanancias": gananciaDia,
+                        "minTemp":tempMin, "maxTemp":tempMax, "promTemp":tempProm})
+                option ={ 'page-size': 'Legal',
+                            'margin-top': '0.05in',
+                            'margin-left': '0.05in',
+                            'margin-right': '0.05in',
+                            'margin-bottom': '0.05in',
+                            'encoding': 'UTF-8'}
+                
+                config = pdfkit.configuration(wkhtmltopdf=r"C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe")
+                fechaReportePDF = 'cortedecaja_'+ self.obtenerFechaActual() + '.pdf'
+                ruta_salida='Documentos/Reportes Corte de caja/'+fechaReportePDF 
+                pdfkit.from_string(output_text,ruta_salida,css='estilos.css',options=option,configuration=config)
+                self.stackedWidget_menu.setCurrentWidget(self.page_corte_de_caja)
+            else:
+                self.desbloquearPrograma(False)
+                messagebox.showwarning('CORTE DE CAJA EXISTENTE EN BASE DE DATOS', 'Se ha generado un corte de caja con la fecha del día actual, verifique el documento')
+                self.desbloquearPrograma(True)
+                self.stackedWidget_menu.setCurrentWidget(self.page_corte_de_caja)       
+        else:
+            self.desbloquearPrograma(False)
+            messagebox.showwarning('CORTE DE CAJA EXISTENTE', 'Se ha generado un corte de caja con la fecha del día actual, verifique el documento')
+            self.desbloquearPrograma(True)
+            self.stackedWidget_menu.setCurrentWidget(self.page_corte_de_caja)
+    
+    def abrirPDFCorte(self):
+        if self.verificarExistenciaCorte():
+            ruta_archivo = 'Documentos\Reportes Corte de caja\cortedecaja_'+ self.obtenerFechaActual() + '.pdf'
+            ruta_absoluta = os.path.abspath(ruta_archivo)
+            webbrowser.open('file://' + ruta_absoluta)
+        else:
+            self.desbloquearPrograma(False)
+            messagebox.showwarning('CORTE DE CAJA INEXISTENTE', 'No se ha generado aun un corte el día actual, intente generar uno previamente')
+            self.desbloquearPrograma(True)
+
+    #Funcionalidades Temperaturas
     def generarReporteTemperaturas(self):
         archivo = open(pathTemperatura + nombreArchivo, "r")
         lista = archivo.readlines()
@@ -404,31 +482,27 @@ class MyWindow(QMainWindow):
 
         os.remove(pathTemperatura + nombreArchivo)
 
-        
         self.actualizarTablaTemperaturas()
+    
+    def celda_clicada_tabla_temperaturas(self, fila, columna):
+        # Acción específica cuando una celda se hace clic
+        if columna == 5:  # si es la columna de borrado nos lleva a la insercion de contraseña
+            self.stackedWidget_menu.setCurrentWidget(
+                self.page_credenciales_eliminar_temperatura)
+    
+    def actualizarTablaTemperaturas(self):
+        com = Comunicacion()
+        resultados = com.traerTemperaturas()
+        self.tabla_temperaturas.setRowCount(0)
+        self.tabla_temperaturas.setRowCount(len(resultados))
 
+        for fila, datos in enumerate(resultados):
+            for columna, valor in enumerate(datos):
+                item = QtWidgets.QTableWidgetItem(str(valor))
+                itemEliminar = QtWidgets.QTableWidgetItem("Eliminar")
+                self.tabla_temperaturas.setItem(fila, columna, item)
+                self.tabla_temperaturas.setItem(fila, 5, itemEliminar)
 
-    def generar_pdf_corte(self):
-        
-        template_loader= jinja2.FileSystemLoader('./')
-        template_env= jinja2.Environment(loader=template_loader)
-
-        html_template= 'corte_caja_plantilla.html'
-        template= template_env.get_template(html_template)
-        ##Insertar datos de Corte de caja
-        output_text = template.render({"today_date":"FECHAAA HOY", "num_corte":"NUMERO CORTEEE", "subtotal_gastos":"SUBTOTALGASTOOS", "subtotal_montos":"SUBTOTALMONTOSS",
-                "totalVentas":"TOTALVEMTASS","subtotal_gastos":"SUBTOTALGASTOS", "subtotal_venta":"SUBTOTALVENTAS", "totalGanancias":"TOTALGANANCIAS",
-                "fecha_hoy":"FECHAHOY2"})
-        option ={ 'page-size': 'Letter',
-                    'margin-top': '0.05in',
-                    'margin-left': '0.05in',
-                    'margin-right': '0.05in',
-                    'margin-bottom': '0.05in',
-                    'encoding': 'UTF-8'}
-        
-        config = pdfkit.configuration(wkhtmltopdf=r"C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe")
-        ruta_salida='Cortes de Caja/cortecaja.pdf'
-        pdfkit.from_string(output_text,ruta_salida,css='estilos.css',options=option,configuration=config)
 
     # funcionalidades de borrado de campos
 
@@ -455,6 +529,8 @@ class MyWindow(QMainWindow):
         self.spinBox_monto_2.setValue(0)
         self.spinBox_monto_1.setValue(0)
         self.spinBox_monto_50c.setValue(0)
+    
+    #Funcionalidades Temperaturas
 
     # funcionalidades para actualizar ComboBox
 
