@@ -28,6 +28,7 @@ class Ui_MainWindow(object):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
         MainWindow.resize(1175, 686)
+        MainWindow.setMinimumSize(QSize(140, 0))
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.horizontalLayout_33 = QHBoxLayout(self.centralwidget)
@@ -558,7 +559,9 @@ class Ui_MainWindow(object):
         self.stackedWidget_menu.addWidget(self.page_credenciales_eliminar_temperatura)
         self.page_estadisticas = QWidget()
         self.page_estadisticas.setObjectName(u"page_estadisticas")
-        self.verticalLayout_14 = QVBoxLayout(self.page_estadisticas)
+        self.verticalLayout_41 = QVBoxLayout(self.page_estadisticas)
+        self.verticalLayout_41.setObjectName(u"verticalLayout_41")
+        self.verticalLayout_14 = QVBoxLayout()
         self.verticalLayout_14.setObjectName(u"verticalLayout_14")
         self.lbl_titulo_estadisticas = QLabel(self.page_estadisticas)
         self.lbl_titulo_estadisticas.setObjectName(u"lbl_titulo_estadisticas")
@@ -566,125 +569,234 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_14.addWidget(self.lbl_titulo_estadisticas)
 
-        self.horizontalLayout_34 = QHBoxLayout()
-        self.horizontalLayout_34.setObjectName(u"horizontalLayout_34")
-        self.frame_grafica1 = QFrame(self.page_estadisticas)
-        self.frame_grafica1.setObjectName(u"frame_grafica1")
-        self.frame_grafica1.setStyleSheet(u"background-color: rgb(255, 255, 255);\n"
+        self.horizontalLayout_38 = QHBoxLayout()
+        self.horizontalLayout_38.setSpacing(90)
+        self.horizontalLayout_38.setObjectName(u"horizontalLayout_38")
+        self.lbl_logo_empresa_3 = QLabel(self.page_estadisticas)
+        self.lbl_logo_empresa_3.setObjectName(u"lbl_logo_empresa_3")
+        self.lbl_logo_empresa_3.setMinimumSize(QSize(80, 80))
+        self.lbl_logo_empresa_3.setMaximumSize(QSize(80, 80))
+        self.lbl_logo_empresa_3.setPixmap(QPixmap(u"Imagenes/sack-dollar.svg"))
+        self.lbl_logo_empresa_3.setScaledContents(True)
+
+        self.horizontalLayout_38.addWidget(self.lbl_logo_empresa_3)
+
+        self.lbl_logo_empresa_7 = QLabel(self.page_estadisticas)
+        self.lbl_logo_empresa_7.setObjectName(u"lbl_logo_empresa_7")
+        self.lbl_logo_empresa_7.setMinimumSize(QSize(80, 80))
+        self.lbl_logo_empresa_7.setMaximumSize(QSize(80, 80))
+        self.lbl_logo_empresa_7.setPixmap(QPixmap(u"Imagenes/usd-circle.svg"))
+        self.lbl_logo_empresa_7.setScaledContents(True)
+
+        self.horizontalLayout_38.addWidget(self.lbl_logo_empresa_7)
+
+        self.lbl_logo_empresa_8 = QLabel(self.page_estadisticas)
+        self.lbl_logo_empresa_8.setObjectName(u"lbl_logo_empresa_8")
+        self.lbl_logo_empresa_8.setMinimumSize(QSize(80, 80))
+        self.lbl_logo_empresa_8.setMaximumSize(QSize(80, 80))
+        self.lbl_logo_empresa_8.setPixmap(QPixmap(u"Imagenes/shopping-bag.svg"))
+        self.lbl_logo_empresa_8.setScaledContents(True)
+
+        self.horizontalLayout_38.addWidget(self.lbl_logo_empresa_8)
+
+
+        self.verticalLayout_14.addLayout(self.horizontalLayout_38)
+
+        self.verticalSpacer_19 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Minimum)
+
+        self.verticalLayout_14.addItem(self.verticalSpacer_19)
+
+        self.horizontalLayout_37 = QHBoxLayout()
+        self.horizontalLayout_37.setObjectName(u"horizontalLayout_37")
+        self.btn_grafica_ventas = QPushButton(self.page_estadisticas)
+        self.btn_grafica_ventas.setObjectName(u"btn_grafica_ventas")
+        self.btn_grafica_ventas.setMinimumSize(QSize(140, 40))
+
+        self.horizontalLayout_37.addWidget(self.btn_grafica_ventas)
+
+        self.btn_grafica_gastos = QPushButton(self.page_estadisticas)
+        self.btn_grafica_gastos.setObjectName(u"btn_grafica_gastos")
+        self.btn_grafica_gastos.setMinimumSize(QSize(140, 40))
+
+        self.horizontalLayout_37.addWidget(self.btn_grafica_gastos)
+
+        self.btn_grafica_productos = QPushButton(self.page_estadisticas)
+        self.btn_grafica_productos.setObjectName(u"btn_grafica_productos")
+        self.btn_grafica_productos.setMinimumSize(QSize(140, 40))
+
+        self.horizontalLayout_37.addWidget(self.btn_grafica_productos)
+
+
+        self.verticalLayout_14.addLayout(self.horizontalLayout_37)
+
+
+        self.verticalLayout_41.addLayout(self.verticalLayout_14)
+
+        self.verticalSpacer_18 = QSpacerItem(20, 120, QSizePolicy.Minimum, QSizePolicy.Preferred)
+
+        self.verticalLayout_41.addItem(self.verticalSpacer_18)
+
+        self.stackedWidget_menu.addWidget(self.page_estadisticas)
+        self.page_busqueda_ticket = QWidget()
+        self.page_busqueda_ticket.setObjectName(u"page_busqueda_ticket")
+        self.verticalLayout_42 = QVBoxLayout(self.page_busqueda_ticket)
+        self.verticalLayout_42.setObjectName(u"verticalLayout_42")
+        self.label_20 = QLabel(self.page_busqueda_ticket)
+        self.label_20.setObjectName(u"label_20")
+        self.label_20.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout_42.addWidget(self.label_20)
+
+        self.lineEdit_busqueda_ticket = QLineEdit(self.page_busqueda_ticket)
+        self.lineEdit_busqueda_ticket.setObjectName(u"lineEdit_busqueda_ticket")
+
+        self.verticalLayout_42.addWidget(self.lineEdit_busqueda_ticket)
+
+        self.tabla_busqueda_ticket = QTableWidget(self.page_busqueda_ticket)
+        if (self.tabla_busqueda_ticket.columnCount() < 5):
+            self.tabla_busqueda_ticket.setColumnCount(5)
+        __qtablewidgetitem6 = QTableWidgetItem()
+        self.tabla_busqueda_ticket.setHorizontalHeaderItem(0, __qtablewidgetitem6)
+        __qtablewidgetitem7 = QTableWidgetItem()
+        self.tabla_busqueda_ticket.setHorizontalHeaderItem(1, __qtablewidgetitem7)
+        __qtablewidgetitem8 = QTableWidgetItem()
+        self.tabla_busqueda_ticket.setHorizontalHeaderItem(2, __qtablewidgetitem8)
+        __qtablewidgetitem9 = QTableWidgetItem()
+        self.tabla_busqueda_ticket.setHorizontalHeaderItem(3, __qtablewidgetitem9)
+        __qtablewidgetitem10 = QTableWidgetItem()
+        self.tabla_busqueda_ticket.setHorizontalHeaderItem(4, __qtablewidgetitem10)
+        self.tabla_busqueda_ticket.setObjectName(u"tabla_busqueda_ticket")
+        self.tabla_busqueda_ticket.horizontalHeader().setDefaultSectionSize(156)
+
+        self.verticalLayout_42.addWidget(self.tabla_busqueda_ticket)
+
+        self.label_21 = QLabel(self.page_busqueda_ticket)
+        self.label_21.setObjectName(u"label_21")
+        self.label_21.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout_42.addWidget(self.label_21)
+
+        self.horizontalLayout_39 = QHBoxLayout()
+        self.horizontalLayout_39.setObjectName(u"horizontalLayout_39")
+        self.horizontalSpacer_45 = QSpacerItem(117, 37, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_39.addItem(self.horizontalSpacer_45)
+
+        self.btn_regresar_ventas = QPushButton(self.page_busqueda_ticket)
+        self.btn_regresar_ventas.setObjectName(u"btn_regresar_ventas")
+        self.btn_regresar_ventas.setMinimumSize(QSize(120, 40))
+
+        self.horizontalLayout_39.addWidget(self.btn_regresar_ventas)
+
+
+        self.verticalLayout_42.addLayout(self.horizontalLayout_39)
+
+        self.stackedWidget_menu.addWidget(self.page_busqueda_ticket)
+        self.page_grafica_ventas = QWidget()
+        self.page_grafica_ventas.setObjectName(u"page_grafica_ventas")
+        self.verticalLayout_40 = QVBoxLayout(self.page_grafica_ventas)
+        self.verticalLayout_40.setObjectName(u"verticalLayout_40")
+        self.frame_grafica_ventas = QFrame(self.page_grafica_ventas)
+        self.frame_grafica_ventas.setObjectName(u"frame_grafica_ventas")
+        self.frame_grafica_ventas.setStyleSheet(u"background-color: rgb(255, 255, 255);\n"
 "border-radius: 30px;\n"
 "border: 4px solid #003049;\n"
 "")
-        self.frame_grafica1.setFrameShape(QFrame.StyledPanel)
-        self.frame_grafica1.setFrameShadow(QFrame.Raised)
-        self.verticalLayout_22 = QVBoxLayout(self.frame_grafica1)
-        self.verticalLayout_22.setObjectName(u"verticalLayout_22")
-        self.label_14 = QLabel(self.frame_grafica1)
-        self.label_14.setObjectName(u"label_14")
-        self.label_14.setStyleSheet(u"border: 0px")
-        self.label_14.setAlignment(Qt.AlignCenter)
-
-        self.verticalLayout_22.addWidget(self.label_14)
-
-        self.grafica1 = QVBoxLayout()
-        self.grafica1.setObjectName(u"grafica1")
-
-        self.verticalLayout_22.addLayout(self.grafica1)
-
-        self.verticalLayout_22.setStretch(0, 1)
-        self.verticalLayout_22.setStretch(1, 5)
-
-        self.horizontalLayout_34.addWidget(self.frame_grafica1)
-
-        self.frame_grafica2 = QFrame(self.page_estadisticas)
-        self.frame_grafica2.setObjectName(u"frame_grafica2")
-        self.frame_grafica2.setStyleSheet(u"background-color: rgb(255, 255, 255);\n"
-"border-radius: 30px;\n"
-"border: 4px solid #003049;\n"
-"")
-        self.frame_grafica2.setFrameShape(QFrame.StyledPanel)
-        self.frame_grafica2.setFrameShadow(QFrame.Raised)
-        self.verticalLayout_36 = QVBoxLayout(self.frame_grafica2)
-        self.verticalLayout_36.setObjectName(u"verticalLayout_36")
-        self.label_15 = QLabel(self.frame_grafica2)
-        self.label_15.setObjectName(u"label_15")
-        self.label_15.setStyleSheet(u"border: 0px")
-        self.label_15.setAlignment(Qt.AlignCenter)
-
-        self.verticalLayout_36.addWidget(self.label_15)
-
-        self.grafica2 = QVBoxLayout()
-        self.grafica2.setObjectName(u"grafica2")
-
-        self.verticalLayout_36.addLayout(self.grafica2)
-
-        self.verticalLayout_36.setStretch(0, 1)
-        self.verticalLayout_36.setStretch(1, 5)
-
-        self.horizontalLayout_34.addWidget(self.frame_grafica2)
-
-
-        self.verticalLayout_14.addLayout(self.horizontalLayout_34)
-
-        self.horizontalLayout_35 = QHBoxLayout()
-        self.horizontalLayout_35.setObjectName(u"horizontalLayout_35")
-        self.frame_grafica3 = QFrame(self.page_estadisticas)
-        self.frame_grafica3.setObjectName(u"frame_grafica3")
-        self.frame_grafica3.setStyleSheet(u"background-color: rgb(255, 255, 255);\n"
-"border-radius: 30px;\n"
-"border: 4px solid #003049;\n"
-"")
-        self.frame_grafica3.setFrameShape(QFrame.StyledPanel)
-        self.frame_grafica3.setFrameShadow(QFrame.Raised)
-        self.verticalLayout_37 = QVBoxLayout(self.frame_grafica3)
-        self.verticalLayout_37.setObjectName(u"verticalLayout_37")
-        self.label_16 = QLabel(self.frame_grafica3)
+        self.frame_grafica_ventas.setFrameShape(QFrame.StyledPanel)
+        self.frame_grafica_ventas.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_39 = QVBoxLayout(self.frame_grafica_ventas)
+        self.verticalLayout_39.setObjectName(u"verticalLayout_39")
+        self.label_16 = QLabel(self.frame_grafica_ventas)
         self.label_16.setObjectName(u"label_16")
         self.label_16.setStyleSheet(u"border: 0px")
         self.label_16.setAlignment(Qt.AlignCenter)
 
-        self.verticalLayout_37.addWidget(self.label_16)
+        self.verticalLayout_39.addWidget(self.label_16)
 
-        self.grafica3 = QVBoxLayout()
-        self.grafica3.setObjectName(u"grafica3")
+        self.grafica_ventas = QVBoxLayout()
+        self.grafica_ventas.setObjectName(u"grafica_ventas")
 
-        self.verticalLayout_37.addLayout(self.grafica3)
+        self.verticalLayout_39.addLayout(self.grafica_ventas)
 
-        self.verticalLayout_37.setStretch(0, 1)
-        self.verticalLayout_37.setStretch(1, 5)
+        self.verticalLayout_39.setStretch(0, 1)
+        self.verticalLayout_39.setStretch(1, 5)
 
-        self.horizontalLayout_35.addWidget(self.frame_grafica3)
+        self.verticalLayout_40.addWidget(self.frame_grafica_ventas)
 
-        self.frame_grafica4 = QFrame(self.page_estadisticas)
-        self.frame_grafica4.setObjectName(u"frame_grafica4")
-        self.frame_grafica4.setStyleSheet(u"background-color: rgb(255, 255, 255);\n"
+        self.horizontalLayout_36 = QHBoxLayout()
+        self.horizontalLayout_36.setObjectName(u"horizontalLayout_36")
+        self.horizontalSpacer_44 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_36.addItem(self.horizontalSpacer_44)
+
+        self.btn_regresar_estadisticas = QPushButton(self.page_grafica_ventas)
+        self.btn_regresar_estadisticas.setObjectName(u"btn_regresar_estadisticas")
+        self.btn_regresar_estadisticas.setMinimumSize(QSize(140, 40))
+
+        self.horizontalLayout_36.addWidget(self.btn_regresar_estadisticas)
+
+
+        self.verticalLayout_40.addLayout(self.horizontalLayout_36)
+
+        self.stackedWidget_menu.addWidget(self.page_grafica_ventas)
+        self.page_grafica_producto = QWidget()
+        self.page_grafica_producto.setObjectName(u"page_grafica_producto")
+        self.verticalLayout_38 = QVBoxLayout(self.page_grafica_producto)
+        self.verticalLayout_38.setObjectName(u"verticalLayout_38")
+        self.frame_grafica_productos = QFrame(self.page_grafica_producto)
+        self.frame_grafica_productos.setObjectName(u"frame_grafica_productos")
+        self.frame_grafica_productos.setStyleSheet(u"background-color: rgb(255, 255, 255);\n"
 "border-radius: 30px;\n"
 "border: 4px solid #003049;\n"
 "")
-        self.frame_grafica4.setFrameShape(QFrame.StyledPanel)
-        self.frame_grafica4.setFrameShadow(QFrame.Raised)
-        self.verticalLayout_38 = QVBoxLayout(self.frame_grafica4)
-        self.verticalLayout_38.setObjectName(u"verticalLayout_38")
-        self.label_20 = QLabel(self.frame_grafica4)
-        self.label_20.setObjectName(u"label_20")
-        self.label_20.setStyleSheet(u"border: 0px")
-        self.label_20.setAlignment(Qt.AlignCenter)
+        self.frame_grafica_productos.setFrameShape(QFrame.StyledPanel)
+        self.frame_grafica_productos.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_37 = QVBoxLayout(self.frame_grafica_productos)
+        self.verticalLayout_37.setObjectName(u"verticalLayout_37")
+        self.label_15 = QLabel(self.frame_grafica_productos)
+        self.label_15.setObjectName(u"label_15")
+        self.label_15.setStyleSheet(u"border: 0px")
+        self.label_15.setAlignment(Qt.AlignCenter)
 
-        self.verticalLayout_38.addWidget(self.label_20)
+        self.verticalLayout_37.addWidget(self.label_15)
 
-        self.grafica4 = QVBoxLayout()
-        self.grafica4.setObjectName(u"grafica4")
+        self.lineEdit_grafica_productos = QLineEdit(self.frame_grafica_productos)
+        self.lineEdit_grafica_productos.setObjectName(u"lineEdit_grafica_productos")
+        self.lineEdit_grafica_productos.setStyleSheet(u"QLineEdit{\n"
+"border:0px;\n"
+"color:rgb(0, 48, 73);\n"
+"border-bottom:2px solid rgb(61,61,61);\n"
+"font: 75 12pt \"Times New Roman\";\n"
+"}")
 
-        self.verticalLayout_38.addLayout(self.grafica4)
+        self.verticalLayout_37.addWidget(self.lineEdit_grafica_productos)
 
-        self.verticalLayout_38.setStretch(0, 1)
-        self.verticalLayout_38.setStretch(1, 5)
+        self.grafica_productos = QVBoxLayout()
+        self.grafica_productos.setObjectName(u"grafica_productos")
 
-        self.horizontalLayout_35.addWidget(self.frame_grafica4)
+        self.verticalLayout_37.addLayout(self.grafica_productos)
+
+        self.verticalLayout_37.setStretch(0, 1)
+        self.verticalLayout_37.setStretch(2, 5)
+
+        self.verticalLayout_38.addWidget(self.frame_grafica_productos)
+
+        self.horizontalLayout_35 = QHBoxLayout()
+        self.horizontalLayout_35.setObjectName(u"horizontalLayout_35")
+        self.horizontalSpacer_43 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_35.addItem(self.horizontalSpacer_43)
+
+        self.btn_regresar_estadisticas2 = QPushButton(self.page_grafica_producto)
+        self.btn_regresar_estadisticas2.setObjectName(u"btn_regresar_estadisticas2")
+        self.btn_regresar_estadisticas2.setMinimumSize(QSize(140, 40))
+
+        self.horizontalLayout_35.addWidget(self.btn_regresar_estadisticas2)
 
 
-        self.verticalLayout_14.addLayout(self.horizontalLayout_35)
+        self.verticalLayout_38.addLayout(self.horizontalLayout_35)
 
-        self.stackedWidget_menu.addWidget(self.page_estadisticas)
+        self.stackedWidget_menu.addWidget(self.page_grafica_producto)
         self.page_corte_de_caja = QWidget()
         self.page_corte_de_caja.setObjectName(u"page_corte_de_caja")
         self.verticalLayout_23 = QVBoxLayout(self.page_corte_de_caja)
@@ -700,14 +812,14 @@ class Ui_MainWindow(object):
         self.tabla_gastos = QTableWidget(self.page_corte_de_caja)
         if (self.tabla_gastos.columnCount() < 4):
             self.tabla_gastos.setColumnCount(4)
-        __qtablewidgetitem6 = QTableWidgetItem()
-        self.tabla_gastos.setHorizontalHeaderItem(0, __qtablewidgetitem6)
-        __qtablewidgetitem7 = QTableWidgetItem()
-        self.tabla_gastos.setHorizontalHeaderItem(1, __qtablewidgetitem7)
-        __qtablewidgetitem8 = QTableWidgetItem()
-        self.tabla_gastos.setHorizontalHeaderItem(2, __qtablewidgetitem8)
-        __qtablewidgetitem9 = QTableWidgetItem()
-        self.tabla_gastos.setHorizontalHeaderItem(3, __qtablewidgetitem9)
+        __qtablewidgetitem11 = QTableWidgetItem()
+        self.tabla_gastos.setHorizontalHeaderItem(0, __qtablewidgetitem11)
+        __qtablewidgetitem12 = QTableWidgetItem()
+        self.tabla_gastos.setHorizontalHeaderItem(1, __qtablewidgetitem12)
+        __qtablewidgetitem13 = QTableWidgetItem()
+        self.tabla_gastos.setHorizontalHeaderItem(2, __qtablewidgetitem13)
+        __qtablewidgetitem14 = QTableWidgetItem()
+        self.tabla_gastos.setHorizontalHeaderItem(3, __qtablewidgetitem14)
         self.tabla_gastos.setObjectName(u"tabla_gastos")
         self.tabla_gastos.setFrameShape(QFrame.StyledPanel)
         self.tabla_gastos.setFrameShadow(QFrame.Sunken)
@@ -1118,6 +1230,53 @@ class Ui_MainWindow(object):
         self.verticalLayout_18.addLayout(self.horizontalLayout_13)
 
         self.stackedWidget_menu.addWidget(self.page_agregar_gasto)
+        self.page_grafica_gastos = QWidget()
+        self.page_grafica_gastos.setObjectName(u"page_grafica_gastos")
+        self.verticalLayout_36 = QVBoxLayout(self.page_grafica_gastos)
+        self.verticalLayout_36.setObjectName(u"verticalLayout_36")
+        self.frame_grafica_gastos = QFrame(self.page_grafica_gastos)
+        self.frame_grafica_gastos.setObjectName(u"frame_grafica_gastos")
+        self.frame_grafica_gastos.setStyleSheet(u"background-color: rgb(255, 255, 255);\n"
+"border-radius: 30px;\n"
+"border: 4px solid #003049;\n"
+"")
+        self.frame_grafica_gastos.setFrameShape(QFrame.StyledPanel)
+        self.frame_grafica_gastos.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_22 = QVBoxLayout(self.frame_grafica_gastos)
+        self.verticalLayout_22.setObjectName(u"verticalLayout_22")
+        self.label_14 = QLabel(self.frame_grafica_gastos)
+        self.label_14.setObjectName(u"label_14")
+        self.label_14.setStyleSheet(u"border: 0px")
+        self.label_14.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout_22.addWidget(self.label_14)
+
+        self.grafica_gastos = QVBoxLayout()
+        self.grafica_gastos.setObjectName(u"grafica_gastos")
+
+        self.verticalLayout_22.addLayout(self.grafica_gastos)
+
+        self.verticalLayout_22.setStretch(0, 1)
+        self.verticalLayout_22.setStretch(1, 5)
+
+        self.verticalLayout_36.addWidget(self.frame_grafica_gastos)
+
+        self.horizontalLayout_34 = QHBoxLayout()
+        self.horizontalLayout_34.setObjectName(u"horizontalLayout_34")
+        self.horizontalSpacer_42 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_34.addItem(self.horizontalSpacer_42)
+
+        self.btn_regresar_estadisticas3 = QPushButton(self.page_grafica_gastos)
+        self.btn_regresar_estadisticas3.setObjectName(u"btn_regresar_estadisticas3")
+        self.btn_regresar_estadisticas3.setMinimumSize(QSize(140, 40))
+
+        self.horizontalLayout_34.addWidget(self.btn_regresar_estadisticas3)
+
+
+        self.verticalLayout_36.addLayout(self.horizontalLayout_34)
+
+        self.stackedWidget_menu.addWidget(self.page_grafica_gastos)
         self.page_agregar_montos = QWidget()
         self.page_agregar_montos.setObjectName(u"page_agregar_montos")
         self.verticalLayout_31 = QVBoxLayout(self.page_agregar_montos)
@@ -1622,22 +1781,22 @@ class Ui_MainWindow(object):
         brush.setStyle(Qt.Dense2Pattern)
         font2 = QFont()
         font2.setFamilies([u"Arial Black"])
-        __qtablewidgetitem10 = QTableWidgetItem()
-        __qtablewidgetitem10.setFont(font2);
-        __qtablewidgetitem10.setForeground(brush);
-        self.tabla_inventario.setHorizontalHeaderItem(0, __qtablewidgetitem10)
-        __qtablewidgetitem11 = QTableWidgetItem()
-        self.tabla_inventario.setHorizontalHeaderItem(1, __qtablewidgetitem11)
-        __qtablewidgetitem12 = QTableWidgetItem()
-        self.tabla_inventario.setHorizontalHeaderItem(2, __qtablewidgetitem12)
-        __qtablewidgetitem13 = QTableWidgetItem()
-        self.tabla_inventario.setHorizontalHeaderItem(3, __qtablewidgetitem13)
-        __qtablewidgetitem14 = QTableWidgetItem()
-        self.tabla_inventario.setHorizontalHeaderItem(4, __qtablewidgetitem14)
         __qtablewidgetitem15 = QTableWidgetItem()
-        self.tabla_inventario.setHorizontalHeaderItem(5, __qtablewidgetitem15)
+        __qtablewidgetitem15.setFont(font2);
+        __qtablewidgetitem15.setForeground(brush);
+        self.tabla_inventario.setHorizontalHeaderItem(0, __qtablewidgetitem15)
         __qtablewidgetitem16 = QTableWidgetItem()
-        self.tabla_inventario.setHorizontalHeaderItem(6, __qtablewidgetitem16)
+        self.tabla_inventario.setHorizontalHeaderItem(1, __qtablewidgetitem16)
+        __qtablewidgetitem17 = QTableWidgetItem()
+        self.tabla_inventario.setHorizontalHeaderItem(2, __qtablewidgetitem17)
+        __qtablewidgetitem18 = QTableWidgetItem()
+        self.tabla_inventario.setHorizontalHeaderItem(3, __qtablewidgetitem18)
+        __qtablewidgetitem19 = QTableWidgetItem()
+        self.tabla_inventario.setHorizontalHeaderItem(4, __qtablewidgetitem19)
+        __qtablewidgetitem20 = QTableWidgetItem()
+        self.tabla_inventario.setHorizontalHeaderItem(5, __qtablewidgetitem20)
+        __qtablewidgetitem21 = QTableWidgetItem()
+        self.tabla_inventario.setHorizontalHeaderItem(6, __qtablewidgetitem21)
         self.tabla_inventario.setObjectName(u"tabla_inventario")
         self.tabla_inventario.setEnabled(True)
         sizePolicy.setHeightForWidth(self.tabla_inventario.sizePolicy().hasHeightForWidth())
@@ -1810,14 +1969,14 @@ class Ui_MainWindow(object):
         self.tabla_ventas = QTableWidget(self.page_ventas)
         if (self.tabla_ventas.columnCount() < 4):
             self.tabla_ventas.setColumnCount(4)
-        __qtablewidgetitem17 = QTableWidgetItem()
-        self.tabla_ventas.setHorizontalHeaderItem(0, __qtablewidgetitem17)
-        __qtablewidgetitem18 = QTableWidgetItem()
-        self.tabla_ventas.setHorizontalHeaderItem(1, __qtablewidgetitem18)
-        __qtablewidgetitem19 = QTableWidgetItem()
-        self.tabla_ventas.setHorizontalHeaderItem(2, __qtablewidgetitem19)
-        __qtablewidgetitem20 = QTableWidgetItem()
-        self.tabla_ventas.setHorizontalHeaderItem(3, __qtablewidgetitem20)
+        __qtablewidgetitem22 = QTableWidgetItem()
+        self.tabla_ventas.setHorizontalHeaderItem(0, __qtablewidgetitem22)
+        __qtablewidgetitem23 = QTableWidgetItem()
+        self.tabla_ventas.setHorizontalHeaderItem(1, __qtablewidgetitem23)
+        __qtablewidgetitem24 = QTableWidgetItem()
+        self.tabla_ventas.setHorizontalHeaderItem(2, __qtablewidgetitem24)
+        __qtablewidgetitem25 = QTableWidgetItem()
+        self.tabla_ventas.setHorizontalHeaderItem(3, __qtablewidgetitem25)
         self.tabla_ventas.setObjectName(u"tabla_ventas")
         self.tabla_ventas.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
         self.tabla_ventas.setEditTriggers(QAbstractItemView.NoEditTriggers)
@@ -1830,16 +1989,16 @@ class Ui_MainWindow(object):
         self.tabla_carrito = QTableWidget(self.page_ventas)
         if (self.tabla_carrito.columnCount() < 5):
             self.tabla_carrito.setColumnCount(5)
-        __qtablewidgetitem21 = QTableWidgetItem()
-        self.tabla_carrito.setHorizontalHeaderItem(0, __qtablewidgetitem21)
-        __qtablewidgetitem22 = QTableWidgetItem()
-        self.tabla_carrito.setHorizontalHeaderItem(1, __qtablewidgetitem22)
-        __qtablewidgetitem23 = QTableWidgetItem()
-        self.tabla_carrito.setHorizontalHeaderItem(2, __qtablewidgetitem23)
-        __qtablewidgetitem24 = QTableWidgetItem()
-        self.tabla_carrito.setHorizontalHeaderItem(3, __qtablewidgetitem24)
-        __qtablewidgetitem25 = QTableWidgetItem()
-        self.tabla_carrito.setHorizontalHeaderItem(4, __qtablewidgetitem25)
+        __qtablewidgetitem26 = QTableWidgetItem()
+        self.tabla_carrito.setHorizontalHeaderItem(0, __qtablewidgetitem26)
+        __qtablewidgetitem27 = QTableWidgetItem()
+        self.tabla_carrito.setHorizontalHeaderItem(1, __qtablewidgetitem27)
+        __qtablewidgetitem28 = QTableWidgetItem()
+        self.tabla_carrito.setHorizontalHeaderItem(2, __qtablewidgetitem28)
+        __qtablewidgetitem29 = QTableWidgetItem()
+        self.tabla_carrito.setHorizontalHeaderItem(3, __qtablewidgetitem29)
+        __qtablewidgetitem30 = QTableWidgetItem()
+        self.tabla_carrito.setHorizontalHeaderItem(4, __qtablewidgetitem30)
         self.tabla_carrito.setObjectName(u"tabla_carrito")
         self.tabla_carrito.horizontalHeader().setDefaultSectionSize(77)
 
@@ -1850,6 +2009,12 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_27 = QHBoxLayout()
         self.horizontalLayout_27.setObjectName(u"horizontalLayout_27")
+        self.btn_buscar_ticket = QPushButton(self.page_ventas)
+        self.btn_buscar_ticket.setObjectName(u"btn_buscar_ticket")
+        self.btn_buscar_ticket.setMinimumSize(QSize(140, 40))
+
+        self.horizontalLayout_27.addWidget(self.btn_buscar_ticket)
+
         self.horizontalSpacer_26 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
         self.horizontalLayout_27.addItem(self.horizontalSpacer_26)
@@ -1885,7 +2050,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget_menu.setCurrentIndex(2)
+        self.stackedWidget_menu.setCurrentIndex(17)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -1927,19 +2092,40 @@ class Ui_MainWindow(object):
         self.lbl_logo_empresa_5.setText("")
         self.btn_validar_contrasena_eliminar_temperatura.setText(QCoreApplication.translate("MainWindow", u"Aceptar", None))
         self.lbl_titulo_estadisticas.setText(QCoreApplication.translate("MainWindow", u"ESTADISTICAS", None))
-        self.label_14.setText(QCoreApplication.translate("MainWindow", u"Grafica", None))
-        self.label_15.setText(QCoreApplication.translate("MainWindow", u"Grafica", None))
-        self.label_16.setText(QCoreApplication.translate("MainWindow", u"Grafica", None))
-        self.label_20.setText(QCoreApplication.translate("MainWindow", u"Grafica", None))
-        self.lbl_titulo_corte_de_caja.setText(QCoreApplication.translate("MainWindow", u"CORTE DE CAJA", None))
-        ___qtablewidgetitem5 = self.tabla_gastos.horizontalHeaderItem(0)
+        self.lbl_logo_empresa_3.setText("")
+        self.lbl_logo_empresa_7.setText("")
+        self.lbl_logo_empresa_8.setText("")
+        self.btn_grafica_ventas.setText(QCoreApplication.translate("MainWindow", u"Grafica ventas", None))
+        self.btn_grafica_gastos.setText(QCoreApplication.translate("MainWindow", u"Grafica gastos", None))
+        self.btn_grafica_productos.setText(QCoreApplication.translate("MainWindow", u"Grafica productos", None))
+        self.label_20.setText(QCoreApplication.translate("MainWindow", u"Busqueda de ticket", None))
+        self.lineEdit_busqueda_ticket.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Ingresa el id del ticket a buscar...", None))
+        ___qtablewidgetitem5 = self.tabla_busqueda_ticket.horizontalHeaderItem(0)
         ___qtablewidgetitem5.setText(QCoreApplication.translate("MainWindow", u"ID", None));
-        ___qtablewidgetitem6 = self.tabla_gastos.horizontalHeaderItem(1)
-        ___qtablewidgetitem6.setText(QCoreApplication.translate("MainWindow", u"Concepto", None));
-        ___qtablewidgetitem7 = self.tabla_gastos.horizontalHeaderItem(2)
-        ___qtablewidgetitem7.setText(QCoreApplication.translate("MainWindow", u"Monto", None));
-        ___qtablewidgetitem8 = self.tabla_gastos.horizontalHeaderItem(3)
-        ___qtablewidgetitem8.setText(QCoreApplication.translate("MainWindow", u"Fecha", None));
+        ___qtablewidgetitem6 = self.tabla_busqueda_ticket.horizontalHeaderItem(1)
+        ___qtablewidgetitem6.setText(QCoreApplication.translate("MainWindow", u"Nombre", None));
+        ___qtablewidgetitem7 = self.tabla_busqueda_ticket.horizontalHeaderItem(2)
+        ___qtablewidgetitem7.setText(QCoreApplication.translate("MainWindow", u"Cantidad", None));
+        ___qtablewidgetitem8 = self.tabla_busqueda_ticket.horizontalHeaderItem(3)
+        ___qtablewidgetitem8.setText(QCoreApplication.translate("MainWindow", u"Precio", None));
+        ___qtablewidgetitem9 = self.tabla_busqueda_ticket.horizontalHeaderItem(4)
+        ___qtablewidgetitem9.setText(QCoreApplication.translate("MainWindow", u"Fecha", None));
+        self.label_21.setText(QCoreApplication.translate("MainWindow", u"Total venta:", None))
+        self.btn_regresar_ventas.setText(QCoreApplication.translate("MainWindow", u"Regresar", None))
+        self.label_16.setText(QCoreApplication.translate("MainWindow", u"Grafica Ventas", None))
+        self.btn_regresar_estadisticas.setText(QCoreApplication.translate("MainWindow", u"Regresar", None))
+        self.label_15.setText(QCoreApplication.translate("MainWindow", u"Grafica Producto", None))
+        self.lineEdit_grafica_productos.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Ingresa el producto a buscar...", None))
+        self.btn_regresar_estadisticas2.setText(QCoreApplication.translate("MainWindow", u"Regresar", None))
+        self.lbl_titulo_corte_de_caja.setText(QCoreApplication.translate("MainWindow", u"CORTE DE CAJA", None))
+        ___qtablewidgetitem10 = self.tabla_gastos.horizontalHeaderItem(0)
+        ___qtablewidgetitem10.setText(QCoreApplication.translate("MainWindow", u"ID", None));
+        ___qtablewidgetitem11 = self.tabla_gastos.horizontalHeaderItem(1)
+        ___qtablewidgetitem11.setText(QCoreApplication.translate("MainWindow", u"Concepto", None));
+        ___qtablewidgetitem12 = self.tabla_gastos.horizontalHeaderItem(2)
+        ___qtablewidgetitem12.setText(QCoreApplication.translate("MainWindow", u"Monto", None));
+        ___qtablewidgetitem13 = self.tabla_gastos.horizontalHeaderItem(3)
+        ___qtablewidgetitem13.setText(QCoreApplication.translate("MainWindow", u"Fecha", None));
         self.btn_anadir_gasto.setText(QCoreApplication.translate("MainWindow", u"A\u00d1ADIR GASTO", None))
         self.btn_generar_corte.setText(QCoreApplication.translate("MainWindow", u"GENERAR CORTE DE CAJA", None))
         self.btn_mostrar_corte.setText(QCoreApplication.translate("MainWindow", u"MOSTRAR CORTE DE CAJA", None))
@@ -1986,6 +2172,8 @@ class Ui_MainWindow(object):
         self.label_9.setText(QCoreApplication.translate("MainWindow", u"CONCEPTO:", None))
         self.label_10.setText(QCoreApplication.translate("MainWindow", u"MONTO:", None))
         self.btn_agregar_gasto.setText(QCoreApplication.translate("MainWindow", u"Agregar", None))
+        self.label_14.setText(QCoreApplication.translate("MainWindow", u"Grafica Gastos e Ingresos", None))
+        self.btn_regresar_estadisticas3.setText(QCoreApplication.translate("MainWindow", u"Regresar", None))
         self.lbl_titulo_gastos_2.setText(QCoreApplication.translate("MainWindow", u"INGRESO DE MONTOS EFECTIVO", None))
         self.lbl_monto_500.setText(QCoreApplication.translate("MainWindow", u"$500", None))
         self.lbl_monto_200.setText(QCoreApplication.translate("MainWindow", u"$200", None))
@@ -2012,20 +2200,20 @@ class Ui_MainWindow(object):
         self.lbl_logo_empresa_4.setText("")
         self.btn_validar_contrasena_eliminar.setText(QCoreApplication.translate("MainWindow", u"Aceptar", None))
         self.lbl_titulo_inventario.setText(QCoreApplication.translate("MainWindow", u"INVENTARIO", None))
-        ___qtablewidgetitem9 = self.tabla_inventario.horizontalHeaderItem(0)
-        ___qtablewidgetitem9.setText(QCoreApplication.translate("MainWindow", u"ID", None));
-        ___qtablewidgetitem10 = self.tabla_inventario.horizontalHeaderItem(1)
-        ___qtablewidgetitem10.setText(QCoreApplication.translate("MainWindow", u"Nombre", None));
-        ___qtablewidgetitem11 = self.tabla_inventario.horizontalHeaderItem(2)
-        ___qtablewidgetitem11.setText(QCoreApplication.translate("MainWindow", u"Descripcion", None));
-        ___qtablewidgetitem12 = self.tabla_inventario.horizontalHeaderItem(3)
-        ___qtablewidgetitem12.setText(QCoreApplication.translate("MainWindow", u"Categoria", None));
-        ___qtablewidgetitem13 = self.tabla_inventario.horizontalHeaderItem(4)
-        ___qtablewidgetitem13.setText(QCoreApplication.translate("MainWindow", u"SubCategoria", None));
-        ___qtablewidgetitem14 = self.tabla_inventario.horizontalHeaderItem(5)
-        ___qtablewidgetitem14.setText(QCoreApplication.translate("MainWindow", u"Precio", None));
-        ___qtablewidgetitem15 = self.tabla_inventario.horizontalHeaderItem(6)
-        ___qtablewidgetitem15.setText(QCoreApplication.translate("MainWindow", u"Cantidad", None));
+        ___qtablewidgetitem14 = self.tabla_inventario.horizontalHeaderItem(0)
+        ___qtablewidgetitem14.setText(QCoreApplication.translate("MainWindow", u"ID", None));
+        ___qtablewidgetitem15 = self.tabla_inventario.horizontalHeaderItem(1)
+        ___qtablewidgetitem15.setText(QCoreApplication.translate("MainWindow", u"Nombre", None));
+        ___qtablewidgetitem16 = self.tabla_inventario.horizontalHeaderItem(2)
+        ___qtablewidgetitem16.setText(QCoreApplication.translate("MainWindow", u"Descripcion", None));
+        ___qtablewidgetitem17 = self.tabla_inventario.horizontalHeaderItem(3)
+        ___qtablewidgetitem17.setText(QCoreApplication.translate("MainWindow", u"Categoria", None));
+        ___qtablewidgetitem18 = self.tabla_inventario.horizontalHeaderItem(4)
+        ___qtablewidgetitem18.setText(QCoreApplication.translate("MainWindow", u"SubCategoria", None));
+        ___qtablewidgetitem19 = self.tabla_inventario.horizontalHeaderItem(5)
+        ___qtablewidgetitem19.setText(QCoreApplication.translate("MainWindow", u"Precio", None));
+        ___qtablewidgetitem20 = self.tabla_inventario.horizontalHeaderItem(6)
+        ___qtablewidgetitem20.setText(QCoreApplication.translate("MainWindow", u"Cantidad", None));
         self.btn_agregar_inventario.setText(QCoreApplication.translate("MainWindow", u"Agregar", None))
         self.lbl_id.setText(QCoreApplication.translate("MainWindow", u"Tu hermana :D", None))
         self.lbl_nombre.setText(QCoreApplication.translate("MainWindow", u"Nombre Producto", None))
@@ -2040,22 +2228,23 @@ class Ui_MainWindow(object):
         self.label_12.setText(QCoreApplication.translate("MainWindow", u"Busqueda", None))
         self.label_13.setText(QCoreApplication.translate("MainWindow", u"Carrito", None))
         self.lineEdit_busqueda_ventas.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Ingrese el nombre del producto a buscar...", None))
-        ___qtablewidgetitem16 = self.tabla_ventas.horizontalHeaderItem(0)
-        ___qtablewidgetitem16.setText(QCoreApplication.translate("MainWindow", u"ID", None));
-        ___qtablewidgetitem17 = self.tabla_ventas.horizontalHeaderItem(1)
-        ___qtablewidgetitem17.setText(QCoreApplication.translate("MainWindow", u"Nombre", None));
-        ___qtablewidgetitem18 = self.tabla_ventas.horizontalHeaderItem(2)
-        ___qtablewidgetitem18.setText(QCoreApplication.translate("MainWindow", u"Cantidad", None));
-        ___qtablewidgetitem19 = self.tabla_ventas.horizontalHeaderItem(3)
-        ___qtablewidgetitem19.setText(QCoreApplication.translate("MainWindow", u"Precio", None));
-        ___qtablewidgetitem20 = self.tabla_carrito.horizontalHeaderItem(0)
-        ___qtablewidgetitem20.setText(QCoreApplication.translate("MainWindow", u"ID", None));
-        ___qtablewidgetitem21 = self.tabla_carrito.horizontalHeaderItem(1)
-        ___qtablewidgetitem21.setText(QCoreApplication.translate("MainWindow", u"Nombre", None));
-        ___qtablewidgetitem22 = self.tabla_carrito.horizontalHeaderItem(2)
-        ___qtablewidgetitem22.setText(QCoreApplication.translate("MainWindow", u"Cantidad", None));
-        ___qtablewidgetitem23 = self.tabla_carrito.horizontalHeaderItem(3)
-        ___qtablewidgetitem23.setText(QCoreApplication.translate("MainWindow", u"Precio", None));
+        ___qtablewidgetitem21 = self.tabla_ventas.horizontalHeaderItem(0)
+        ___qtablewidgetitem21.setText(QCoreApplication.translate("MainWindow", u"ID", None));
+        ___qtablewidgetitem22 = self.tabla_ventas.horizontalHeaderItem(1)
+        ___qtablewidgetitem22.setText(QCoreApplication.translate("MainWindow", u"Nombre", None));
+        ___qtablewidgetitem23 = self.tabla_ventas.horizontalHeaderItem(2)
+        ___qtablewidgetitem23.setText(QCoreApplication.translate("MainWindow", u"Cantidad", None));
+        ___qtablewidgetitem24 = self.tabla_ventas.horizontalHeaderItem(3)
+        ___qtablewidgetitem24.setText(QCoreApplication.translate("MainWindow", u"Precio", None));
+        ___qtablewidgetitem25 = self.tabla_carrito.horizontalHeaderItem(0)
+        ___qtablewidgetitem25.setText(QCoreApplication.translate("MainWindow", u"ID", None));
+        ___qtablewidgetitem26 = self.tabla_carrito.horizontalHeaderItem(1)
+        ___qtablewidgetitem26.setText(QCoreApplication.translate("MainWindow", u"Nombre", None));
+        ___qtablewidgetitem27 = self.tabla_carrito.horizontalHeaderItem(2)
+        ___qtablewidgetitem27.setText(QCoreApplication.translate("MainWindow", u"Cantidad", None));
+        ___qtablewidgetitem28 = self.tabla_carrito.horizontalHeaderItem(3)
+        ___qtablewidgetitem28.setText(QCoreApplication.translate("MainWindow", u"Precio", None));
+        self.btn_buscar_ticket.setText(QCoreApplication.translate("MainWindow", u"Buscar Ticket", None))
         self.btn_realizar_venta.setText(QCoreApplication.translate("MainWindow", u"Realizar Venta", None))
     # retranslateUi
 

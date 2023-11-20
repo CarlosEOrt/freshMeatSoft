@@ -10,6 +10,12 @@
     <height>686</height>
    </rect>
   </property>
+  <property name="minimumSize">
+   <size>
+    <width>140</width>
+    <height>0</height>
+   </size>
+  </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
@@ -703,7 +709,7 @@ border: 1px: solid: rgb(0, 206, 152);
                    <bool>true</bool>
                   </property>
                   <property name="currentIndex">
-                   <number>2</number>
+                   <number>17</number>
                   </property>
                   <widget class="QWidget" name="page_temperaturas">
                    <layout class="QVBoxLayout" name="verticalLayout_13">
@@ -1030,11 +1036,186 @@ border: 1px: solid: rgb(0, 206, 152);
                    </layout>
                   </widget>
                   <widget class="QWidget" name="page_estadisticas">
-                   <layout class="QVBoxLayout" name="verticalLayout_14">
+                   <layout class="QVBoxLayout" name="verticalLayout_41">
                     <item>
-                     <widget class="QLabel" name="lbl_titulo_estadisticas">
+                     <layout class="QVBoxLayout" name="verticalLayout_14">
+                      <item>
+                       <widget class="QLabel" name="lbl_titulo_estadisticas">
+                        <property name="text">
+                         <string>ESTADISTICAS</string>
+                        </property>
+                        <property name="alignment">
+                         <set>Qt::AlignCenter</set>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <layout class="QHBoxLayout" name="horizontalLayout_38">
+                        <property name="spacing">
+                         <number>90</number>
+                        </property>
+                        <item>
+                         <widget class="QLabel" name="lbl_logo_empresa_3">
+                          <property name="minimumSize">
+                           <size>
+                            <width>80</width>
+                            <height>80</height>
+                           </size>
+                          </property>
+                          <property name="maximumSize">
+                           <size>
+                            <width>80</width>
+                            <height>80</height>
+                           </size>
+                          </property>
+                          <property name="text">
+                           <string/>
+                          </property>
+                          <property name="pixmap">
+                           <pixmap>Imagenes/sack-dollar.svg</pixmap>
+                          </property>
+                          <property name="scaledContents">
+                           <bool>true</bool>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QLabel" name="lbl_logo_empresa_7">
+                          <property name="minimumSize">
+                           <size>
+                            <width>80</width>
+                            <height>80</height>
+                           </size>
+                          </property>
+                          <property name="maximumSize">
+                           <size>
+                            <width>80</width>
+                            <height>80</height>
+                           </size>
+                          </property>
+                          <property name="text">
+                           <string/>
+                          </property>
+                          <property name="pixmap">
+                           <pixmap>Imagenes/usd-circle.svg</pixmap>
+                          </property>
+                          <property name="scaledContents">
+                           <bool>true</bool>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QLabel" name="lbl_logo_empresa_8">
+                          <property name="minimumSize">
+                           <size>
+                            <width>80</width>
+                            <height>80</height>
+                           </size>
+                          </property>
+                          <property name="maximumSize">
+                           <size>
+                            <width>80</width>
+                            <height>80</height>
+                           </size>
+                          </property>
+                          <property name="text">
+                           <string/>
+                          </property>
+                          <property name="pixmap">
+                           <pixmap>Imagenes/shopping-bag.svg</pixmap>
+                          </property>
+                          <property name="scaledContents">
+                           <bool>true</bool>
+                          </property>
+                         </widget>
+                        </item>
+                       </layout>
+                      </item>
+                      <item>
+                       <spacer name="verticalSpacer_19">
+                        <property name="orientation">
+                         <enum>Qt::Vertical</enum>
+                        </property>
+                        <property name="sizeType">
+                         <enum>QSizePolicy::Minimum</enum>
+                        </property>
+                        <property name="sizeHint" stdset="0">
+                         <size>
+                          <width>20</width>
+                          <height>40</height>
+                         </size>
+                        </property>
+                       </spacer>
+                      </item>
+                      <item>
+                       <layout class="QHBoxLayout" name="horizontalLayout_37">
+                        <item>
+                         <widget class="QPushButton" name="btn_grafica_ventas">
+                          <property name="minimumSize">
+                           <size>
+                            <width>140</width>
+                            <height>40</height>
+                           </size>
+                          </property>
+                          <property name="text">
+                           <string>Grafica ventas</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QPushButton" name="btn_grafica_gastos">
+                          <property name="minimumSize">
+                           <size>
+                            <width>140</width>
+                            <height>40</height>
+                           </size>
+                          </property>
+                          <property name="text">
+                           <string>Grafica gastos</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QPushButton" name="btn_grafica_productos">
+                          <property name="minimumSize">
+                           <size>
+                            <width>140</width>
+                            <height>40</height>
+                           </size>
+                          </property>
+                          <property name="text">
+                           <string>Grafica productos</string>
+                          </property>
+                         </widget>
+                        </item>
+                       </layout>
+                      </item>
+                     </layout>
+                    </item>
+                    <item>
+                     <spacer name="verticalSpacer_18">
+                      <property name="orientation">
+                       <enum>Qt::Vertical</enum>
+                      </property>
+                      <property name="sizeType">
+                       <enum>QSizePolicy::Preferred</enum>
+                      </property>
+                      <property name="sizeHint" stdset="0">
+                       <size>
+                        <width>20</width>
+                        <height>120</height>
+                       </size>
+                      </property>
+                     </spacer>
+                    </item>
+                   </layout>
+                  </widget>
+                  <widget class="QWidget" name="page_busqueda_ticket">
+                   <layout class="QVBoxLayout" name="verticalLayout_42">
+                    <item>
+                     <widget class="QLabel" name="label_20">
                       <property name="text">
-                       <string>ESTADISTICAS</string>
+                       <string>Busqueda de ticket</string>
                       </property>
                       <property name="alignment">
                        <set>Qt::AlignCenter</set>
@@ -1042,145 +1223,237 @@ border: 1px: solid: rgb(0, 206, 152);
                      </widget>
                     </item>
                     <item>
-                     <layout class="QHBoxLayout" name="horizontalLayout_34">
+                     <widget class="QLineEdit" name="lineEdit_busqueda_ticket">
+                      <property name="placeholderText">
+                       <string>Ingresa el id del ticket a buscar...</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QTableWidget" name="tabla_busqueda_ticket">
+                      <attribute name="horizontalHeaderDefaultSectionSize">
+                       <number>156</number>
+                      </attribute>
+                      <column>
+                       <property name="text">
+                        <string>ID</string>
+                       </property>
+                      </column>
+                      <column>
+                       <property name="text">
+                        <string>Nombre</string>
+                       </property>
+                      </column>
+                      <column>
+                       <property name="text">
+                        <string>Cantidad</string>
+                       </property>
+                      </column>
+                      <column>
+                       <property name="text">
+                        <string>Precio</string>
+                       </property>
+                      </column>
+                      <column>
+                       <property name="text">
+                        <string>Fecha</string>
+                       </property>
+                      </column>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLabel" name="label_21">
+                      <property name="text">
+                       <string>Total venta:</string>
+                      </property>
+                      <property name="alignment">
+                       <set>Qt::AlignCenter</set>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <layout class="QHBoxLayout" name="horizontalLayout_39">
                       <item>
-                       <widget class="QFrame" name="frame_grafica1">
-                        <property name="styleSheet">
-                         <string notr="true">background-color: rgb(255, 255, 255);
-border-radius: 30px;
-border: 4px solid #003049;
-</string>
+                       <spacer name="horizontalSpacer_45">
+                        <property name="minimumSize">
+                         <size>
+                          <width>120</width>
+                          <height>40</height>
+                         </size>
                         </property>
-                        <property name="frameShape">
-                         <enum>QFrame::StyledPanel</enum>
+                        <property name="orientation">
+                         <enum>Qt::Horizontal</enum>
                         </property>
-                        <property name="frameShadow">
-                         <enum>QFrame::Raised</enum>
+                        <property name="sizeHint" stdset="0">
+                         <size>
+                          <width>117</width>
+                          <height>37</height>
+                         </size>
                         </property>
-                        <layout class="QVBoxLayout" name="verticalLayout_22" stretch="1,5">
-                         <item>
-                          <widget class="QLabel" name="label_14">
-                           <property name="styleSheet">
-                            <string notr="true">border: 0px</string>
-                           </property>
-                           <property name="text">
-                            <string>Grafica</string>
-                           </property>
-                           <property name="alignment">
-                            <set>Qt::AlignCenter</set>
-                           </property>
-                          </widget>
-                         </item>
-                         <item>
-                          <layout class="QVBoxLayout" name="grafica1"/>
-                         </item>
-                        </layout>
-                       </widget>
+                       </spacer>
                       </item>
                       <item>
-                       <widget class="QFrame" name="frame_grafica2">
-                        <property name="styleSheet">
-                         <string notr="true">background-color: rgb(255, 255, 255);
-border-radius: 30px;
-border: 4px solid #003049;
-</string>
+                       <widget class="QPushButton" name="btn_regresar_ventas">
+                        <property name="minimumSize">
+                         <size>
+                          <width>120</width>
+                          <height>40</height>
+                         </size>
                         </property>
-                        <property name="frameShape">
-                         <enum>QFrame::StyledPanel</enum>
+                        <property name="text">
+                         <string>Regresar</string>
                         </property>
-                        <property name="frameShadow">
-                         <enum>QFrame::Raised</enum>
-                        </property>
-                        <layout class="QVBoxLayout" name="verticalLayout_36" stretch="1,5">
-                         <item>
-                          <widget class="QLabel" name="label_15">
-                           <property name="styleSheet">
-                            <string notr="true">border: 0px</string>
-                           </property>
-                           <property name="text">
-                            <string>Grafica</string>
-                           </property>
-                           <property name="alignment">
-                            <set>Qt::AlignCenter</set>
-                           </property>
-                          </widget>
-                         </item>
-                         <item>
-                          <layout class="QVBoxLayout" name="grafica2"/>
-                         </item>
-                        </layout>
                        </widget>
                       </item>
                      </layout>
                     </item>
+                   </layout>
+                  </widget>
+                  <widget class="QWidget" name="page_grafica_ventas">
+                   <layout class="QVBoxLayout" name="verticalLayout_40">
+                    <item>
+                     <widget class="QFrame" name="frame_grafica_ventas">
+                      <property name="styleSheet">
+                       <string notr="true">background-color: rgb(255, 255, 255);
+border-radius: 30px;
+border: 4px solid #003049;
+</string>
+                      </property>
+                      <property name="frameShape">
+                       <enum>QFrame::StyledPanel</enum>
+                      </property>
+                      <property name="frameShadow">
+                       <enum>QFrame::Raised</enum>
+                      </property>
+                      <layout class="QVBoxLayout" name="verticalLayout_39" stretch="1,5">
+                       <item>
+                        <widget class="QLabel" name="label_16">
+                         <property name="styleSheet">
+                          <string notr="true">border: 0px</string>
+                         </property>
+                         <property name="text">
+                          <string>Grafica Ventas</string>
+                         </property>
+                         <property name="alignment">
+                          <set>Qt::AlignCenter</set>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <layout class="QVBoxLayout" name="grafica_ventas"/>
+                       </item>
+                      </layout>
+                     </widget>
+                    </item>
+                    <item>
+                     <layout class="QHBoxLayout" name="horizontalLayout_36">
+                      <item>
+                       <spacer name="horizontalSpacer_44">
+                        <property name="orientation">
+                         <enum>Qt::Horizontal</enum>
+                        </property>
+                        <property name="sizeHint" stdset="0">
+                         <size>
+                          <width>40</width>
+                          <height>20</height>
+                         </size>
+                        </property>
+                       </spacer>
+                      </item>
+                      <item>
+                       <widget class="QPushButton" name="btn_regresar_estadisticas">
+                        <property name="minimumSize">
+                         <size>
+                          <width>140</width>
+                          <height>40</height>
+                         </size>
+                        </property>
+                        <property name="text">
+                         <string>Regresar</string>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </item>
+                   </layout>
+                  </widget>
+                  <widget class="QWidget" name="page_grafica_producto">
+                   <layout class="QVBoxLayout" name="verticalLayout_38">
+                    <item>
+                     <widget class="QFrame" name="frame_grafica_productos">
+                      <property name="styleSheet">
+                       <string notr="true">background-color: rgb(255, 255, 255);
+border-radius: 30px;
+border: 4px solid #003049;
+</string>
+                      </property>
+                      <property name="frameShape">
+                       <enum>QFrame::StyledPanel</enum>
+                      </property>
+                      <property name="frameShadow">
+                       <enum>QFrame::Raised</enum>
+                      </property>
+                      <layout class="QVBoxLayout" name="verticalLayout_37" stretch="1,0,5">
+                       <item>
+                        <widget class="QLabel" name="label_15">
+                         <property name="styleSheet">
+                          <string notr="true">border: 0px</string>
+                         </property>
+                         <property name="text">
+                          <string>Grafica Producto</string>
+                         </property>
+                         <property name="alignment">
+                          <set>Qt::AlignCenter</set>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QLineEdit" name="lineEdit_grafica_productos">
+                         <property name="styleSheet">
+                          <string notr="true">QLineEdit{
+border:0px;
+color:rgb(0, 48, 73);
+border-bottom:2px solid rgb(61,61,61);
+font: 75 12pt &quot;Times New Roman&quot;;
+}</string>
+                         </property>
+                         <property name="placeholderText">
+                          <string>Ingresa el producto a buscar...</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <layout class="QVBoxLayout" name="grafica_productos"/>
+                       </item>
+                      </layout>
+                     </widget>
+                    </item>
                     <item>
                      <layout class="QHBoxLayout" name="horizontalLayout_35">
                       <item>
-                       <widget class="QFrame" name="frame_grafica3">
-                        <property name="styleSheet">
-                         <string notr="true">background-color: rgb(255, 255, 255);
-border-radius: 30px;
-border: 4px solid #003049;
-</string>
+                       <spacer name="horizontalSpacer_43">
+                        <property name="orientation">
+                         <enum>Qt::Horizontal</enum>
                         </property>
-                        <property name="frameShape">
-                         <enum>QFrame::StyledPanel</enum>
+                        <property name="sizeHint" stdset="0">
+                         <size>
+                          <width>40</width>
+                          <height>20</height>
+                         </size>
                         </property>
-                        <property name="frameShadow">
-                         <enum>QFrame::Raised</enum>
-                        </property>
-                        <layout class="QVBoxLayout" name="verticalLayout_37" stretch="1,5">
-                         <item>
-                          <widget class="QLabel" name="label_16">
-                           <property name="styleSheet">
-                            <string notr="true">border: 0px</string>
-                           </property>
-                           <property name="text">
-                            <string>Grafica</string>
-                           </property>
-                           <property name="alignment">
-                            <set>Qt::AlignCenter</set>
-                           </property>
-                          </widget>
-                         </item>
-                         <item>
-                          <layout class="QVBoxLayout" name="grafica3"/>
-                         </item>
-                        </layout>
-                       </widget>
+                       </spacer>
                       </item>
                       <item>
-                       <widget class="QFrame" name="frame_grafica4">
-                        <property name="styleSheet">
-                         <string notr="true">background-color: rgb(255, 255, 255);
-border-radius: 30px;
-border: 4px solid #003049;
-</string>
+                       <widget class="QPushButton" name="btn_regresar_estadisticas2">
+                        <property name="minimumSize">
+                         <size>
+                          <width>140</width>
+                          <height>40</height>
+                         </size>
                         </property>
-                        <property name="frameShape">
-                         <enum>QFrame::StyledPanel</enum>
+                        <property name="text">
+                         <string>Regresar</string>
                         </property>
-                        <property name="frameShadow">
-                         <enum>QFrame::Raised</enum>
-                        </property>
-                        <layout class="QVBoxLayout" name="verticalLayout_38" stretch="1,5">
-                         <item>
-                          <widget class="QLabel" name="label_20">
-                           <property name="styleSheet">
-                            <string notr="true">border: 0px</string>
-                           </property>
-                           <property name="text">
-                            <string>Grafica</string>
-                           </property>
-                           <property name="alignment">
-                            <set>Qt::AlignCenter</set>
-                           </property>
-                          </widget>
-                         </item>
-                         <item>
-                          <layout class="QVBoxLayout" name="grafica4"/>
-                         </item>
-                        </layout>
                        </widget>
                       </item>
                      </layout>
@@ -1996,6 +2269,74 @@ border: 4px solid #003049;
                           <width>40</width>
                           <height>40</height>
                          </size>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </item>
+                   </layout>
+                  </widget>
+                  <widget class="QWidget" name="page_grafica_gastos">
+                   <layout class="QVBoxLayout" name="verticalLayout_36">
+                    <item>
+                     <widget class="QFrame" name="frame_grafica_gastos">
+                      <property name="styleSheet">
+                       <string notr="true">background-color: rgb(255, 255, 255);
+border-radius: 30px;
+border: 4px solid #003049;
+</string>
+                      </property>
+                      <property name="frameShape">
+                       <enum>QFrame::StyledPanel</enum>
+                      </property>
+                      <property name="frameShadow">
+                       <enum>QFrame::Raised</enum>
+                      </property>
+                      <layout class="QVBoxLayout" name="verticalLayout_22" stretch="1,5">
+                       <item>
+                        <widget class="QLabel" name="label_14">
+                         <property name="styleSheet">
+                          <string notr="true">border: 0px</string>
+                         </property>
+                         <property name="text">
+                          <string>Grafica Gastos e Ingresos</string>
+                         </property>
+                         <property name="alignment">
+                          <set>Qt::AlignCenter</set>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <layout class="QVBoxLayout" name="grafica_gastos"/>
+                       </item>
+                      </layout>
+                     </widget>
+                    </item>
+                    <item>
+                     <layout class="QHBoxLayout" name="horizontalLayout_34">
+                      <item>
+                       <spacer name="horizontalSpacer_42">
+                        <property name="orientation">
+                         <enum>Qt::Horizontal</enum>
+                        </property>
+                        <property name="sizeHint" stdset="0">
+                         <size>
+                          <width>40</width>
+                          <height>20</height>
+                         </size>
+                        </property>
+                       </spacer>
+                      </item>
+                      <item>
+                       <widget class="QPushButton" name="btn_regresar_estadisticas3">
+                        <property name="minimumSize">
+                         <size>
+                          <width>140</width>
+                          <height>40</height>
+                         </size>
+                        </property>
+                        <property name="text">
+                         <string>Regresar</string>
                         </property>
                        </widget>
                       </item>
@@ -3433,6 +3774,19 @@ border: 4px solid #003049;
                     </item>
                     <item>
                      <layout class="QHBoxLayout" name="horizontalLayout_27">
+                      <item>
+                       <widget class="QPushButton" name="btn_buscar_ticket">
+                        <property name="minimumSize">
+                         <size>
+                          <width>140</width>
+                          <height>40</height>
+                         </size>
+                        </property>
+                        <property name="text">
+                         <string>Buscar Ticket</string>
+                        </property>
+                       </widget>
+                      </item>
                       <item>
                        <spacer name="horizontalSpacer_26">
                         <property name="orientation">

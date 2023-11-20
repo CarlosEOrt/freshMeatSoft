@@ -8,6 +8,7 @@ import pdfkit
 import webbrowser
 import os
 import os.path
+import calendar
 from tkinter import *
 from tkinter.simpledialog import askstring
 from tkinter import messagebox
@@ -15,7 +16,7 @@ from PyQt6 import QtCore, QtWidgets
 from PyQt6.QtCore import QTimer, QPropertyAnimation, QEasingCurve, Qt
 from PyQt6.QtWidgets import QApplication, QMainWindow
 from PyQt6.uic import loadUi
-from datetime import date
+from datetime import date, datetime
 from os import remove
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 import matplotlib.pyplot as plt
@@ -53,13 +54,27 @@ class MyWindow(QMainWindow):
         self.actualizarTablaTemperaturas()
         self.actualizarResultadosBusqueda()
 
-        # Graficas
-        self.grafica = Canvas_grafica()
-        self.grafica1.addWidget(self.grafica)
-        self.grafica22 = Canvas_grafica2()
-        self.grafica2.addWidget(self.grafica22)
-        # self.grafica3.addWidget(self.grafica)
-        # self.grafica4.addWidget(self.grafica)
+        # Botones graficas
+        self.btn_regresar_estadisticas.clicked.connect(
+            lambda: self.stackedWidget_menu.setCurrentWidget(self.page_estadisticas))
+        self.btn_regresar_estadisticas2.clicked.connect(
+            lambda: self.stackedWidget_menu.setCurrentWidget(self.page_estadisticas))
+        self.btn_regresar_estadisticas3.clicked.connect(
+            lambda: self.stackedWidget_menu.setCurrentWidget(self.page_estadisticas))
+        self.btn_grafica_ventas.clicked.connect(
+            lambda: self.stackedWidget_menu.setCurrentWidget(self.page_grafica_ventas))
+        self.btn_grafica_gastos.clicked.connect(
+            lambda: self.stackedWidget_menu.setCurrentWidget(self.page_grafica_gastos))
+        self.btn_grafica_productos.clicked.connect(
+            lambda: self.stackedWidget_menu.setCurrentWidget(self.page_grafica_producto))
+        self.grafica = Canvas_grafica_ventas()
+        self.grafica_ventas.addWidget(self.grafica)
+        self.grafica2 = Canvas_grafica_gastos()
+        self.grafica_gastos.addWidget(self.grafica2)
+        self.grafica3 = Canvas_grafica_productos("")
+        self.grafica_productos.addWidget(self.grafica3)
+        self.lineEdit_grafica_productos.textChanged.connect(
+            lambda: self.actualizarGraficaProductos())
 
         # self.timer = QTimer(self) # se crea una variable para constante actualizacion
         # self.timer.timeout.connect(lambda:self.actualizarTemperatura())#actualiza el label
@@ -132,7 +147,10 @@ class MyWindow(QMainWindow):
             self.seleccionarProductoDeCarrito)
         self.btn_realizar_venta.clicked.connect(
             lambda: self.realizarVentaDeCarrito())
-
+        self.btn_buscar_ticket.clicked.connect(
+            lambda: self.stackedWidget_menu.setCurrentWidget(self.page_busqueda_ticket))
+        self.btn_regresar_ventas.clicked.connect(
+            lambda: self.stackedWidget_menu.setCurrentWidget(self.page_ventas))
         # Funcion para actualizar el comboBox de agregar productos
 
         self.comboBox.currentIndexChanged.connect(
@@ -378,7 +396,7 @@ class MyWindow(QMainWindow):
         self.actualizarTablaGastos()
 
     def obtenerFechaActual(self):
-        fecha_actual = datetime.date.today()
+        fecha_actual = date.today()
         fecha_actual_str = fecha_actual.strftime('%Y-%m-%d')
         return fecha_actual_str
 
@@ -656,6 +674,16 @@ class MyWindow(QMainWindow):
                 item = QtWidgets.QTableWidgetItem(str(valor))
                 self.tabla_ventas.setItem(fila, columna, item)
 
+    def actualizarGraficaProductos(self):
+        self.grafica3 = Canvas_grafica_productos(
+            self.lineEdit_grafica_productos.text())
+        while self.grafica_productos.count():
+            widget = self.grafica_productos.takeAt(0)
+            if widget.widget():
+                widget.widget().deleteLater()
+
+        self.grafica_productos.addWidget(self.grafica3)
+
     def desbloquearPrograma(self, booleano):
         self.frame_control.setEnabled(booleano)
         self.frame_contenido.setEnabled(booleano)
@@ -820,37 +848,65 @@ class MyWindow(QMainWindow):
 # Graficas
 
 
-class Canvas_grafica(FigureCanvas):
+class Canvas_grafica_ventas(FigureCanvas):
     def __init__(self, parent=None):
         self.fig, self.ax = plt.subplots(1, dpi=100, figsize=(5, 5),
                                          sharey=True, facecolor='white')
         super().__init__(self.fig)
+        com = Comunicacion()
+        resultados = com.estadisticasVentas()
 
-        nombres = ['', '25', '30', '35', '40']
         colores = ['red', 'blue', 'green', 'black', 'yellow']
-        tamaño = [10, 15, 20, 25, 80]
+        fechas = [(fila[0].strftime('%Y-%m-%d')) for fila in resultados]
+        cantidad_ventas = [fila[1] for fila in resultados]
 
-        self.ax.bar(nombres, tamaño, color=colores)
-        self.fig.suptitle('Nombre Grafica', size=9)
+        self.ax.bar(fechas, cantidad_ventas, color=colores)
+        self.fig.suptitle('Ventas de los ultimos cinco dias', size=9)
 
 
-class Canvas_grafica2(FigureCanvas):
+class Canvas_grafica_productos(FigureCanvas):
+    def __init__(self, texto, parent=None):
+        self.fig, self.ax = plt.subplots(1, dpi=100, figsize=(5, 5),
+                                         sharey=True, facecolor='white')
+        super().__init__(self.fig)
+        com = Comunicacion()
+        resultados = com.estadisticasProductos(texto)
+
+        colores = ['blue', 'blue', 'blue', 'blue', 'blue', 'blue', 'blue']
+        fechas = [(fila[0].strftime('%Y-%m-%d')) for fila in resultados]
+        cantidad_ventas = [fila[1] for fila in resultados]
+
+        self.ax.bar(fechas, cantidad_ventas, color=colores)
+        self.fig.suptitle('Ventas de los ultimos cinco dias', size=9)
+
+
+class Canvas_grafica_gastos(FigureCanvas):
     def __init__(self, parent=None):
         self.fig, self.ax = plt.subplots(1, dpi=100, figsize=(5, 5),
                                          sharey=True, facecolor='white')
         super().__init__(self.fig)
 
-        nombres = ['Fresa', 'Piña', 'Lima', 'Uva']
-        colores = ['blue', 'yellow', 'aqua', 'fuchsia']
-        tamaño = [20, 26, 30, 24]
-        explotar = [0.05, 0.05, 0.05, 0.05]
+        com = Comunicacion()
+        ingresos = com.estadisticasIngresos()
+        gastos = com.estadisticasGastos()
+        nombres_mes_espanol = [
+            'N/A', 'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
+            'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
+        ]
+        nombreMes = nombres_mes_espanol[datetime.now().month]
 
-        plt.title("Cantidad de Frutas Disponibles",
+        nombres = ['Gastos: $' + str(gastos[0]),
+                   'Ingresos: $' + str(ingresos[0])]
+        colores = ['red', 'green',]
+        tamaño = [gastos[0], ingresos[0]]
+        explotar = [0.05, 0.05]
+
+        plt.title("Ingresos y gastos del mes de " + nombreMes,
                   color='black', size=9, family="Arial")
 
         self.ax.pie(tamaño, explode=explotar, labels=nombres,
                     colors=colores,
-                    autopct='%1.0f%%', pctdistance=0.6,
+                    autopct='%1.0f%%', pctdistance=0.3,
                     shadow=True, startangle=90, radius=0.8,
                     labeldistance=1.1)
         self.ax.axis('equal')
