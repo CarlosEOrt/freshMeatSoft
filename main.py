@@ -8,7 +8,6 @@ import pdfkit
 import webbrowser
 import os
 import os.path
-import calendar
 from tkinter import *
 from tkinter.simpledialog import askstring
 from tkinter import messagebox
@@ -62,17 +61,14 @@ class MyWindow(QMainWindow):
         self.btn_regresar_estadisticas3.clicked.connect(
             lambda: self.stackedWidget_menu.setCurrentWidget(self.page_estadisticas))
         self.btn_grafica_ventas.clicked.connect(
-            lambda: self.stackedWidget_menu.setCurrentWidget(self.page_grafica_ventas))
+            lambda: self.dirigirseAPestaniaVentas())
         self.btn_grafica_gastos.clicked.connect(
-            lambda: self.stackedWidget_menu.setCurrentWidget(self.page_grafica_gastos))
+            lambda: self.dirigirseAPestaniaGastos())
         self.btn_grafica_productos.clicked.connect(
-            lambda: self.stackedWidget_menu.setCurrentWidget(self.page_grafica_producto))
-        self.grafica = Canvas_grafica_ventas()
-        self.grafica_ventas.addWidget(self.grafica)
-        self.grafica2 = Canvas_grafica_gastos()
-        self.grafica_gastos.addWidget(self.grafica2)
-        self.grafica3 = Canvas_grafica_productos("")
-        self.grafica_productos.addWidget(self.grafica3)
+            lambda: self.dirigirseAPestaniaProducto())
+        self.actualizarGraficaVentas()
+        self.actualizarGraficaGastos()
+        self.actualizarGraficaProductos()
         self.lineEdit_grafica_productos.textChanged.connect(
             lambda: self.actualizarGraficaProductos())
 
@@ -142,6 +138,8 @@ class MyWindow(QMainWindow):
         # Botones de Funcionalidades de Ventas
         self.lineEdit_busqueda_ventas.textChanged.connect(
             lambda: self.actualizarResultadosBusqueda())
+        self.lineEdit_busqueda_ticket.textChanged.connect(
+            lambda: self.actualizarResultadosTicket())
         self.tabla_ventas.cellClicked.connect(self.agregarProductoACarrito)
         self.tabla_carrito.cellClicked.connect(
             self.seleccionarProductoDeCarrito)
@@ -674,6 +672,43 @@ class MyWindow(QMainWindow):
                 item = QtWidgets.QTableWidgetItem(str(valor))
                 self.tabla_ventas.setItem(fila, columna, item)
 
+    def actualizarResultadosTicket(self):
+        com = Comunicacion()
+        resultados = com.traerVentasDeTicket(
+            self.lineEdit_busqueda_ticket.text())
+        self.tabla_busqueda_ticket.setRowCount(0)
+        self.tabla_busqueda_ticket.setRowCount(len(resultados))
+        totalDeVenta=0
+        for fila, datos in enumerate(resultados):
+            for columna, valor in enumerate(datos):
+                item = QtWidgets.QTableWidgetItem(str(valor))
+                self.tabla_busqueda_ticket.setItem(fila, columna, item)
+        
+        for fila in range(self.tabla_busqueda_ticket.rowCount()):
+            totalDeVenta += float(self.tabla_busqueda_ticket.item(fila, 3).text())
+        if(totalDeVenta!=0):
+            self.label_21.setText("Total de Venta: " + str(totalDeVenta))
+        else:
+            self.label_21.setText("")
+        
+    def actualizarGraficaVentas(self):
+        self.grafica1 = Canvas_grafica_ventas()
+        while self.grafica_ventas.count():
+            widget = self.grafica_ventas.takeAt(0)
+            if widget.widget():
+                widget.widget().deleteLater()
+
+        self.grafica_ventas.addWidget(self.grafica1)
+
+    def actualizarGraficaGastos(self):
+        self.grafica2 = Canvas_grafica_gastos()
+        while self.grafica_gastos.count():
+            widget = self.grafica_gastos.takeAt(0)
+            if widget.widget():
+                widget.widget().deleteLater()
+
+        self.grafica_gastos.addWidget(self.grafica2)
+
     def actualizarGraficaProductos(self):
         self.grafica3 = Canvas_grafica_productos(
             self.lineEdit_grafica_productos.text())
@@ -683,6 +718,18 @@ class MyWindow(QMainWindow):
                 widget.widget().deleteLater()
 
         self.grafica_productos.addWidget(self.grafica3)
+    
+    def dirigirseAPestaniaVentas(self):
+        self.stackedWidget_menu.setCurrentWidget(self.page_grafica_ventas)
+        self.actualizarGraficaVentas()
+    
+    def dirigirseAPestaniaGastos(self):
+        self.stackedWidget_menu.setCurrentWidget(self.page_grafica_gastos)
+        self.actualizarGraficaGastos()
+
+    def dirigirseAPestaniaProducto(self):
+        self.stackedWidget_menu.setCurrentWidget(self.page_grafica_producto)
+        self.actualizarGraficaProductos()
 
     def desbloquearPrograma(self, booleano):
         self.frame_control.setEnabled(booleano)
@@ -855,7 +902,7 @@ class Canvas_grafica_ventas(FigureCanvas):
         super().__init__(self.fig)
         com = Comunicacion()
         resultados = com.estadisticasVentas()
-
+        
         colores = ['red', 'blue', 'green', 'black', 'yellow']
         fechas = [(fila[0].strftime('%Y-%m-%d')) for fila in resultados]
         cantidad_ventas = [fila[1] for fila in resultados]
@@ -887,29 +934,32 @@ class Canvas_grafica_gastos(FigureCanvas):
         super().__init__(self.fig)
 
         com = Comunicacion()
-        ingresos = com.estadisticasIngresos()
-        gastos = com.estadisticasGastos()
+        ingresosConsulta = com.estadisticasIngresos()
+        gastosConsulta = com.estadisticasGastos()
         nombres_mes_espanol = [
             'N/A', 'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
             'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
         ]
         nombreMes = nombres_mes_espanol[datetime.now().month]
+        ingresos=ingresosConsulta[0]
+        gastos=gastosConsulta[0]
+        if(gastos!=None and ingresos!=None):
+            colores = ['red', 'green',]
+            nombres = ['Gastos: $' + str(gastos),
+                    'Ingresos: $' + str(ingresos)]
+            tamaño = [gastos, ingresos]
+            explotar = [0.05, 0.05]
 
-        nombres = ['Gastos: $' + str(gastos[0]),
-                   'Ingresos: $' + str(ingresos[0])]
-        colores = ['red', 'green',]
-        tamaño = [gastos[0], ingresos[0]]
-        explotar = [0.05, 0.05]
+            plt.title("Ingresos y gastos del mes de " + nombreMes,
+                    color='black', size=9, family="Arial")
 
-        plt.title("Ingresos y gastos del mes de " + nombreMes,
-                  color='black', size=9, family="Arial")
-
-        self.ax.pie(tamaño, explode=explotar, labels=nombres,
-                    colors=colores,
-                    autopct='%1.0f%%', pctdistance=0.3,
-                    shadow=True, startangle=90, radius=0.8,
-                    labeldistance=1.1)
-        self.ax.axis('equal')
+            self.ax.pie(tamaño, explode=explotar, labels=nombres,
+                        colors=colores,
+                        autopct='%1.0f%%', pctdistance=0.3,
+                        shadow=True, startangle=90, radius=0.8,
+                        labeldistance=1.1)
+            self.ax.axis('equal')
+        
 
 
 if __name__ == '__main__':

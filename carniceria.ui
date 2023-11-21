@@ -709,7 +709,7 @@ border: 1px: solid: rgb(0, 206, 152);
                    <bool>true</bool>
                   </property>
                   <property name="currentIndex">
-                   <number>17</number>
+                   <number>3</number>
                   </property>
                   <widget class="QWidget" name="page_temperaturas">
                    <layout class="QVBoxLayout" name="verticalLayout_13">
@@ -1231,8 +1231,17 @@ border: 1px: solid: rgb(0, 206, 152);
                     </item>
                     <item>
                      <widget class="QTableWidget" name="tabla_busqueda_ticket">
+                      <attribute name="horizontalHeaderCascadingSectionResizes">
+                       <bool>false</bool>
+                      </attribute>
                       <attribute name="horizontalHeaderDefaultSectionSize">
                        <number>156</number>
+                      </attribute>
+                      <attribute name="horizontalHeaderHighlightSections">
+                       <bool>true</bool>
+                      </attribute>
+                      <attribute name="verticalHeaderVisible">
+                       <bool>false</bool>
                       </attribute>
                       <column>
                        <property name="text">
@@ -1264,7 +1273,7 @@ border: 1px: solid: rgb(0, 206, 152);
                     <item>
                      <widget class="QLabel" name="label_21">
                       <property name="text">
-                       <string>Total venta:</string>
+                       <string/>
                       </property>
                       <property name="alignment">
                        <set>Qt::AlignCenter</set>
@@ -3651,7 +3660,7 @@ border: 4px solid #003049;
                       <item>
                        <widget class="QLabel" name="label_12">
                         <property name="text">
-                         <string>Busqueda</string>
+                         <string>Busqueda de Producto</string>
                         </property>
                         <property name="alignment">
                          <set>Qt::AlignCenter</set>

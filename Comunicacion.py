@@ -271,3 +271,12 @@ class Comunicacion:
         resultado = cursor.fetchall()
         cursor.close()
         return resultado
+    
+    def traerVentasDeTicket(self, idTicket):
+        cursor = self.conexion.cursor()
+        sentenciaSQL = "SELECT inventario.id, inventario.nombre, inventario.cantidad, inventario_ventas.cantidad*inventario.precio, ventas.fecha FROM inventario  JOIN inventario_ventas ON inventario.id = inventario_ventas.idProducto  JOIN ventas ON inventario_ventas.idVenta = ventas.id  WHERE inventario_ventas.idVenta = %s;"
+        valores = (idTicket)
+        cursor.execute(sentenciaSQL, (valores, ))
+        resultado = cursor.fetchall()
+        cursor.close()
+        return resultado
