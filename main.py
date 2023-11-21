@@ -941,13 +941,13 @@ class Canvas_grafica_gastos(FigureCanvas):
             'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
         ]
         nombreMes = nombres_mes_espanol[datetime.now().month]
-        ingresos=ingresosConsulta[0]
-        gastos=gastosConsulta[0]
-        if(gastos!=None and ingresos!=None):
+    
+
+        if((gastosConsulta!=0 and ingresosConsulta==0) or (ingresosConsulta!=0 and gastosConsulta==0) or (ingresosConsulta!=0 and gastosConsulta!=0)):
             colores = ['red', 'green',]
-            nombres = ['Gastos: $' + str(gastos),
-                    'Ingresos: $' + str(ingresos)]
-            tamaño = [gastos, ingresos]
+            nombres = ['Gastos: $' + str(gastosConsulta),
+                    'Ingresos: $' + str(ingresosConsulta)]
+            tamaño = [gastosConsulta, ingresosConsulta]
             explotar = [0.05, 0.05]
 
             plt.title("Ingresos y gastos del mes de " + nombreMes,

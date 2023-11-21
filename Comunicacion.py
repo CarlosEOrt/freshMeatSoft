@@ -251,7 +251,8 @@ class Comunicacion:
         cursor = self.conexion.cursor()
         sentenciaSQL = "SELECT SUM(monto) FROM gastos WHERE MONTH(fecha) = MONTH(CURDATE()) AND YEAR(fecha) = YEAR(CURDATE());"
         cursor.execute(sentenciaSQL)
-        resultado = cursor.fetchone()
+        resultado = cursor.fetchone()[0]
+        resultado = resultado if resultado is not None else 0
         cursor.close()
         return resultado
 
@@ -259,7 +260,8 @@ class Comunicacion:
         cursor = self.conexion.cursor()
         sentenciaSQL = "SELECT SUM(monto) FROM ventas WHERE MONTH(fecha) = MONTH(CURDATE()) AND YEAR(fecha) = YEAR(CURDATE());"
         cursor.execute(sentenciaSQL)
-        resultado = cursor.fetchone()
+        resultado = cursor.fetchone()[0]
+        resultado = resultado if resultado is not None else 0
         cursor.close()
         return resultado
 
