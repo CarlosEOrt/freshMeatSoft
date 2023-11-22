@@ -8,6 +8,7 @@ import pdfkit
 import webbrowser
 import os
 import os.path
+import re
 from tkinter import *
 from tkinter.simpledialog import askstring
 from tkinter import messagebox
@@ -175,7 +176,7 @@ class MyWindow(QMainWindow):
             self.lineEdit_26.setText(self.lbl_nombre.text())
             self.lineEdit_27.setText(self.lbl_descripcion.text())
             self.lineEdit_28.setText(self.lbl_precio.text())
-            self.lineEdit_25.setText(self.lbl_cantidad.text())
+            self.lineEdit_25.setText(self.lbl_cantidad.text().rstrip(" kg.").rstrip(" c/u"))
             self.comboBox_13.setCurrentText(self.lbl_categoria.text())
             self.comboBox_14.setCurrentText(self.lbl_subcategoria.text())
         else:
@@ -328,13 +329,27 @@ class MyWindow(QMainWindow):
     # funcionalides de CRUD de inventario
 
     def agregarProductoABaseDeDatos(self):
-        producto = Producto(self.lineEdit.text(), self.lineEdit_2.text(),
-                            self.comboBox.currentText(), self.comboBox_2.currentText(),
-                            self.lineEdit_3.text(), self.lineEdit_4.text())
-        com = Comunicacion()
-        com.insertarProducto(producto)
-        self.borrarCamposInventarioAgregar()
-        self.actualizarTablaInventario()
+        if((self.comboBox.currentText()=="Carne") or (self.comboBox.currentText()=="Despensa" and (self.comboBox_2.currentText()=="Fruta" or self.comboBox_2.currentText()=="Verdura"))):
+            print("hola")
+            productoEsFlotante=True
+        else:
+            productoEsFlotante=False
+        validoNombre=self.validarNombre(self.lineEdit.text(),self.lbl_error_nombre_agregar)
+        validoDescripcion=self.validarDescripcion(self.lineEdit_2.text(),self.lbl_error_descripcion_agregar) 
+        if(productoEsFlotante):
+            validoCantidad=self.validarCantidadFlotante(self.lineEdit_3.text(),self.lbl_error_cantidad_agregar)
+        else:
+            validoCantidad=self.validarCantidadEntero(self.lineEdit_3.text(),self.lbl_error_cantidad_agregar)
+        validoPrecio=self.validarPrecio(self.lineEdit_4.text(), self.lbl_error_precio_agregar)
+        if(validoNombre and validoDescripcion and validoCantidad and validoPrecio):
+            producto = Producto(self.lineEdit.text(), self.lineEdit_2.text(),
+                                self.comboBox.currentText(), self.comboBox_2.currentText(),
+                                self.lineEdit_3.text(), self.lineEdit_4.text())
+            com = Comunicacion()
+            com.insertarProducto(producto)
+            self.borrarCamposInventarioAgregar()
+            self.actualizarTablaInventario()
+            self.limpiarErroresAgregar()
 
     def actualizarTablaInventario(self):
         com = Comunicacion()
@@ -344,18 +359,43 @@ class MyWindow(QMainWindow):
 
         for fila, datos in enumerate(resultados):
             for columna, valor in enumerate(datos):
-                item = QtWidgets.QTableWidgetItem(str(valor))
+                if columna == 6: # Verificar si estamos en la columna que contiene la información que nos interesa
+                    if resultados[fila][3] == 'Carne' or (resultados[fila][3] == 'Despensa' and (resultados[fila][4]=="Fruta" or resultados[fila][4]=="Verdura")):
+                        # Si el valor es 'carne', establecer el texto como número flotante con la leyenda 'kg'
+                        item = QtWidgets.QTableWidgetItem(f"{float(valor):.2f} kg.")
+                    elif resultados[fila][3] == 'Despensa':
+                        # Si el valor es 'despensa', establecer el texto como 'c/u'
+                        item = QtWidgets.QTableWidgetItem(f"{float(valor):.0f} c/u")
+                    else:
+                        # Manejar otros casos si es necesario
+                        item = QtWidgets.QTableWidgetItem(str(valor))
+                else:
+                    # Para otras columnas, simplemente establecer el valor como texto
+                    item = QtWidgets.QTableWidgetItem(str(valor))
                 self.tabla_inventario.setItem(fila, columna, item)
 
         self.stackedWidget_menu.setCurrentWidget(self.page_inventario)
 
     def actualizarProducto(self):
-        producto = Producto(self.lineEdit_26.text(), self.lineEdit_27.text(),
-                            self.comboBox_13.currentText(), self.comboBox_14.currentText(),
-                            self.lineEdit_28.text(), self.lineEdit_25.text())
-        com = Comunicacion()
-        com.editarProducto(producto, self.lbl_id.text())
-        self.actualizarTablaInventario()
+        if(self.comboBox_13.currentText()=="Carne" or (self.comboBox_13.currentText()=="Despensa" and (self.comboBox_14.currentText()=="Fruta" or self.comboBox_14.currentText()=="Verdura"))):
+            productoEsFlotante=True
+        else:
+            productoEsFlotante=False
+        validoNombre=self.validarNombre(self.lineEdit_26.text(),self.lbl_error_nombre_agregar)
+        validoDescripcion=self.validarDescripcion(self.lineEdit_27.text(),self.lbl_error_descripcion_editar) 
+        if(productoEsFlotante):
+            validoCantidad=self.validarCantidadFlotante(self.lineEdit_25.text(),self.lbl_error_cantidad_editar)
+        else:
+            validoCantidad=self.validarCantidadEntero(self.lineEdit_25.text(),self.lbl_error_cantidad_editar)
+        validoPrecio=self.validarPrecio(self.lineEdit_28.text(), self.lbl_error_precio_editar)
+        if(validoNombre and validoDescripcion and validoCantidad and validoPrecio):
+            producto = Producto(self.lineEdit_26.text(), self.lineEdit_27.text(),
+                                self.comboBox_13.currentText(), self.comboBox_14.currentText(),
+                                self.lineEdit_28.text(), self.lineEdit_25.text())
+            com = Comunicacion()
+            com.editarProducto(producto, self.lbl_id.text())
+            self.actualizarTablaInventario()
+            self.limpiarErroresEditar()
 
     def borrarProductoDeBaseDeDatos(self):
         com = Comunicacion()
@@ -367,20 +407,20 @@ class MyWindow(QMainWindow):
         if columna == 0:  # si es la columna de id nos lleva a mostrar el producto
             self.stackedWidget_menu.setCurrentWidget(
                 self.page_mostrar_seleccion)
-            self.lbl_id.setText("ID: " +
-                                self.tabla_inventario.item(fila, columna+0).text())
-            self.lbl_nombre.setText("Nombre: " +
-                                    self.tabla_inventario.item(fila, columna+1).text())
-            self.lbl_descripcion.setText("Descripcion: " +
-                                         self.tabla_inventario.item(fila, columna+2).text())
-            self.lbl_categoria.setText("Categoria: " +
-                                       self.tabla_inventario.item(fila, columna+3).text())
-            self.lbl_subcategoria.setText("SubCategoria: " +
-                                          self.tabla_inventario.item(fila, columna+4).text())
-            self.lbl_precio.setText("Precio: " +
-                                    self.tabla_inventario.item(fila, columna+5).text())
-            self.lbl_cantidad.setText("Cantidad: " +
-                                      self.tabla_inventario.item(fila, columna+6).text())
+            self.lbl_id.setText(
+                self.tabla_inventario.item(fila, columna+0).text())
+            self.lbl_nombre.setText(
+                self.tabla_inventario.item(fila, columna+1).text())
+            self.lbl_descripcion.setText(
+                self.tabla_inventario.item(fila, columna+2).text())
+            self.lbl_categoria.setText(
+                self.tabla_inventario.item(fila, columna+3).text())
+            self.lbl_subcategoria.setText(
+                self.tabla_inventario.item(fila, columna+4).text())
+            self.lbl_precio.setText(
+                self.tabla_inventario.item(fila, columna+5).text())
+            self.lbl_cantidad.setText(
+                self.tabla_inventario.item(fila, columna+6).text())
 
     # Funciones Corte de Caja
     def agregarGastoABaseDeDatos(self):
@@ -669,8 +709,22 @@ class MyWindow(QMainWindow):
 
         for fila, datos in enumerate(resultados):
             for columna, valor in enumerate(datos):
-                item = QtWidgets.QTableWidgetItem(str(valor))
+                if columna == 2: # Verificar si estamos en la columna que contiene la información que nos interesa
+                    if resultados[fila][4] == 'Carne' or (resultados[fila][4] == 'Despensa' and (resultados[fila][5]=="Fruta" or resultados[fila][5]=="Verdura")):
+                        # Si el valor es 'carne', establecer el texto como número flotante con la leyenda 'kg'
+                        item = QtWidgets.QTableWidgetItem(f"{float(valor):.2f} kg.")
+                    elif resultados[fila][4] == 'Despensa':
+                        # Si el valor es 'despensa', establecer el texto como 'c/u'
+                        item = QtWidgets.QTableWidgetItem(f"{float(valor):.0f} c/u")
+                    else:
+                        # Manejar otros casos si es necesario
+                        item = QtWidgets.QTableWidgetItem(str(valor))
+                else:
+                    # Para otras columnas, simplemente establecer el valor como texto
+                    item = QtWidgets.QTableWidgetItem(str(valor))
                 self.tabla_ventas.setItem(fila, columna, item)
+
+    
 
     def actualizarResultadosTicket(self):
         com = Comunicacion()
@@ -678,19 +732,19 @@ class MyWindow(QMainWindow):
             self.lineEdit_busqueda_ticket.text())
         self.tabla_busqueda_ticket.setRowCount(0)
         self.tabla_busqueda_ticket.setRowCount(len(resultados))
-        totalDeVenta = 0
+        totalDeVenta=0
         for fila, datos in enumerate(resultados):
             for columna, valor in enumerate(datos):
                 item = QtWidgets.QTableWidgetItem(str(valor))
                 self.tabla_busqueda_ticket.setItem(fila, columna, item)
-
+        
         for fila in range(self.tabla_busqueda_ticket.rowCount()):
             totalDeVenta += float(self.tabla_busqueda_ticket.item(fila, 3).text())
-        if (totalDeVenta != 0):
+        if(totalDeVenta!=0):
             self.label_21.setText("Total de Venta: " + str(totalDeVenta))
         else:
             self.label_21.setText("")
-
+        
     def actualizarGraficaVentas(self):
         self.grafica1 = Canvas_grafica_ventas()
         while self.grafica_ventas.count():
@@ -718,11 +772,11 @@ class MyWindow(QMainWindow):
                 widget.widget().deleteLater()
 
         self.grafica_productos.addWidget(self.grafica3)
-
+    
     def dirigirseAPestaniaVentas(self):
         self.stackedWidget_menu.setCurrentWidget(self.page_grafica_ventas)
         self.actualizarGraficaVentas()
-
+    
     def dirigirseAPestaniaGastos(self):
         self.stackedWidget_menu.setCurrentWidget(self.page_grafica_gastos)
         self.actualizarGraficaGastos()
@@ -747,17 +801,27 @@ class MyWindow(QMainWindow):
             # Vamos a verificar que en la tabla haya otro producto para agregarlo ahi mismo o denegar la venta por exceso de stock
             filaConProductoExistenteEnCarrito = self.verificarProductoExistenteEnCarrito(
                 self.tabla_inventario.item(fila, 0).text())
+            com = Comunicacion()
+            resultadoCategoria=com.traerCategoriaDeProductos(self.tabla_inventario.item(fila, 0).text())
+            productoSeRegistraEnKilogramos=False
+            if(resultadoCategoria[0][0] == 'Carne' or (resultadoCategoria[0][0] == 'Despensa' and (resultadoCategoria[0][1]=="Fruta" or resultadoCategoria[0][1]=="Verdura"))):
+                valorCantidadProducto=float(cantidadProducto)
+                productoSeRegistraEnKilogramos=True
+            else:
+                valorCantidadProducto=int(cantidadProducto)
             cantidadExistenteEnCarrito = self.obtenerValorDeCantidadEnCarrito(
                 filaConProductoExistenteEnCarrito)
             # Verificamos el producto
-            if (cantidadProducto.isdigit() and int(cantidadProducto) > 0 and (int(cantidadProducto)+int(cantidadExistenteEnCarrito)) <= int(self.tabla_ventas.item(fila, 2).text())):
+            if (float(valorCantidadProducto) > 0.0 and (float(valorCantidadProducto)+float(cantidadExistenteEnCarrito)) <= float(self.tabla_ventas.item(fila, 2).text().rstrip(" kg.").rstrip(" c/u"))):
                 # Verificamos si ya existe el producto en la tabla de venta
                 if (filaConProductoExistenteEnCarrito != -1):
                     # Vamos a modificar
-                    cantidadTotalProducto = int(
-                        cantidadProducto)+int(cantidadExistenteEnCarrito)
-                    itemCantidad = QtWidgets.QTableWidgetItem(
-                        str(cantidadTotalProducto))
+                    cantidadTotalProducto = float(
+                        cantidadProducto)+float(cantidadExistenteEnCarrito)
+                    if(productoSeRegistraEnKilogramos):
+                        itemCantidad = QtWidgets.QTableWidgetItem(f"{float(cantidadTotalProducto):.2f} kg.")
+                    else:
+                        itemCantidad = QtWidgets.QTableWidgetItem(f"{float(cantidadTotalProducto):.0f} c/u")
                     itemPrecio = QtWidgets.QTableWidgetItem(
                         str(float(cantidadTotalProducto)*float(self.tabla_ventas.item(fila, 3).text())))
                     self.tabla_carrito.setItem(
@@ -772,7 +836,10 @@ class MyWindow(QMainWindow):
                         self.tabla_ventas.item(fila, 0).text())
                     itemNombre = QtWidgets.QTableWidgetItem(
                         self.tabla_ventas.item(fila, 1).text())
-                    itemCantidad = QtWidgets.QTableWidgetItem(cantidadProducto)
+                    if(productoSeRegistraEnKilogramos):
+                        itemCantidad = QtWidgets.QTableWidgetItem(f"{float(cantidadProducto):.2f} kg.")
+                    else:
+                        itemCantidad = QtWidgets.QTableWidgetItem(f"{float(cantidadProducto):.0f} c/u")
                     itemPrecio = QtWidgets.QTableWidgetItem(
                         str(float(cantidadProducto)*float(self.tabla_ventas.item(fila, 3).text())))
                     itemEliminar = QtWidgets.QTableWidgetItem("Eliminar")
@@ -788,7 +855,7 @@ class MyWindow(QMainWindow):
         except:
             self.desbloquearPrograma(True)
             messagebox.showwarning(
-                'PROCESO INTERRUMPIDO', 'El proceso fue cancelado o fallo durante la ejecución...')
+                'PROCESO INTERRUMPIDO', 'El proceso fue cancelado o fallo durante la ejecución, de igual manera puede haber ingresado un valor no válido...')
 
     def verificarProductoExistenteEnCarrito(self, idBuscar):
         for fila in range(self.tabla_carrito.rowCount()):
@@ -802,7 +869,7 @@ class MyWindow(QMainWindow):
         if (fila == -1):
             return 0
         else:
-            return self.tabla_carrito.item(fila, 2).text()
+            return self.tabla_carrito.item(fila, 2).text().rstrip(" kg.").rstrip(" c/u")
 
     def seleccionarProductoDeCarrito(self, fila, columna):
         filaSeleccionada = self.tabla_carrito.currentRow()
@@ -835,10 +902,20 @@ class MyWindow(QMainWindow):
                     self.tabla_carrito.item(fila, 0).text())
                 resultadosPrecio = com.traerPrecioDeProductoVentas(
                     self.tabla_carrito.item(fila, 0).text())
-                if (cantidadProducto.isdigit() and int(cantidadProducto) > 0 and int(cantidadProducto) <= int(resultadoCantidad[0])):
+                resultadoCategoria=com.traerCategoriaDeProductos(self.tabla_carrito.item(fila, 0).text())
+                productoSeRegistraEnKilogramos=False
+                if(resultadoCategoria[0][0] == 'Carne' or (resultadoCategoria[0][0] == 'Despensa' and (resultadoCategoria[0][1]=="Fruta" or resultadoCategoria[0][1]=="Verdura"))):
+                    valorCantidadProducto=float(cantidadProducto)
+                    productoSeRegistraEnKilogramos=True
+                else:
+                    valorCantidadProducto=int(cantidadProducto)
+                if (float(valorCantidadProducto) > 0.0 and float(valorCantidadProducto) <= float(resultadoCantidad[0])):
                     # Modificamos la cantidad del producto a la tabla en dado caso de que sea valido
                     # Cambiar esto con validación de número
-                    itemCantidad = QtWidgets.QTableWidgetItem(cantidadProducto)
+                    if(productoSeRegistraEnKilogramos):
+                        itemCantidad = QtWidgets.QTableWidgetItem(f"{float(valorCantidadProducto):.2f} kg.")
+                    else:
+                        itemCantidad = QtWidgets.QTableWidgetItem(f"{float(valorCantidadProducto):.0f} c/u")
                     itemPrecio = QtWidgets.QTableWidgetItem(
                         str(float(cantidadProducto)*float(resultadosPrecio[0])))
                     self.tabla_carrito.setItem(fila, 2, itemCantidad)
@@ -849,7 +926,7 @@ class MyWindow(QMainWindow):
             except:
                 self.desbloquearPrograma(True)
                 messagebox.showwarning(
-                    'PROCESO INTERRUMPIDO', 'El proceso fue cancelado o fallo durante la ejecución...')
+                    'PROCESO INTERRUMPIDO', 'El proceso fue cancelado o fallo durante la ejecución al ingresar datos inválidos...')
 
     def obtenerPrecioTotalDeCarrito(self):
         precioTotal = 0
@@ -887,10 +964,67 @@ class MyWindow(QMainWindow):
         for fila in range(self.tabla_carrito.rowCount()):
             # Pasamos los datos del carrito a la tabla de inventario_ventas, pasandole el id del producto y la cantidad
             com.insertarVentaInventario(ultimoIDVenta[0], int(self.tabla_carrito.item(
-                fila, 0).text()), int(self.tabla_carrito.item(fila, 2).text()))
+                fila, 0).text()), float(self.tabla_carrito.item(fila, 2).text().rstrip(" kg.").rstrip(" c/u")))
             # Ahora actualizaremos el stock con la venta que realizamos
             com.actualizarStockDeVenta(int(self.tabla_carrito.item(
-                fila, 0).text()), int(self.tabla_carrito.item(fila, 2).text()))
+                fila, 0).text()), float(self.tabla_carrito.item(fila, 2).text().rstrip(" kg.").rstrip(" c/u")))
+
+    # Funciones para validar cadenas
+    def limpiarErroresAgregar(self):
+        self.lbl_error_nombre_agregar.setText("")
+        self.lbl_error_descripcion_agregar.setText("")
+        self.lbl_error_cantidad_agregar.setText("")
+        self.lbl_error_precio_agregar.setText("")
+
+    def limpiarErroresEditar(self):
+        self.lbl_error_nombre_editar.setText("")
+        self.lbl_error_descripcion_editar.setText("")
+        self.lbl_error_cantidad_editar.setText("")
+        self.lbl_error_precio_editar.setText("")
+
+    def validarNombre(self, texto, lineEdit):
+        patron = r'^.{1,100}$'
+        if re.match(patron, texto):
+            return True
+        else:
+            lineEdit.setText("El nombre debe tener minimo un caracter y un máximo de 100 caracteres...")
+            return False
+    
+    def validarDescripcion(self, texto, lineEdit):
+        patron = r'^.{1,100}$'
+    
+        if re.match(patron, texto):
+            return True
+        else:
+            lineEdit.setText("La descripción debe tener minimo un caracter y un máximo de 100 caracteres...")
+            return False
+    
+    def validarCantidadFlotante(self, texto, lineEdit):
+        patron = r'^[1-9]\d*(\.\d+)?$'
+    
+        if re.match(patron, texto):
+            return True
+        else:
+            lineEdit.setText("La cantidad del producto debe ser un valor númerico...")
+            return False
+
+    def validarCantidadEntero(self, texto, lineEdit):
+        patron = r'^[1-9]\d*$'
+    
+        if re.match(patron, texto):
+            return True
+        else:
+            lineEdit.setText("La cantidad del producto debe ser mayor 0, no debe contener puntos decimales y ser un valor númerico...")
+            return False
+    
+    def validarPrecio(self, texto, lineEdit):
+        patron = r'^\d+(\.\d{1,2})?$'
+    
+        if re.match(patron, texto):
+            return True
+        else:
+            lineEdit.setText("El precio debe ser un valor númerico y contener un máximo de dos decimales...")
+            return False
 
 # Graficas
 
@@ -902,7 +1036,7 @@ class Canvas_grafica_ventas(FigureCanvas):
         super().__init__(self.fig)
         com = Comunicacion()
         resultados = com.estadisticasVentas()
-
+        
         colores = ['red', 'blue', 'green', 'black', 'yellow']
         fechas = [(fila[0].strftime('%Y-%m-%d')) for fila in resultados]
         cantidad_ventas = [fila[1] for fila in resultados]
@@ -941,16 +1075,17 @@ class Canvas_grafica_gastos(FigureCanvas):
             'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
         ]
         nombreMes = nombres_mes_espanol[datetime.now().month]
+    
 
-        if ((gastosConsulta != 0 and ingresosConsulta == 0) or (ingresosConsulta != 0 and gastosConsulta == 0) or (ingresosConsulta != 0 and gastosConsulta != 0)):
+        if((gastosConsulta!=0 and ingresosConsulta==0) or (ingresosConsulta!=0 and gastosConsulta==0) or (ingresosConsulta!=0 and gastosConsulta!=0)):
             colores = ['red', 'green',]
             nombres = ['Gastos: $' + str(gastosConsulta),
-                       'Ingresos: $' + str(ingresosConsulta)]
+                    'Ingresos: $' + str(ingresosConsulta)]
             tamaño = [gastosConsulta, ingresosConsulta]
             explotar = [0.05, 0.05]
 
             plt.title("Ingresos y gastos del mes de " + nombreMes,
-                      color='black', size=9, family="Arial")
+                    color='black', size=9, family="Arial")
 
             self.ax.pie(tamaño, explode=explotar, labels=nombres,
                         colors=colores,
@@ -958,6 +1093,7 @@ class Canvas_grafica_gastos(FigureCanvas):
                         shadow=True, startangle=90, radius=0.8,
                         labeldistance=1.1)
             self.ax.axis('equal')
+        
 
 
 if __name__ == '__main__':

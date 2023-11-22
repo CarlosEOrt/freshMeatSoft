@@ -119,11 +119,20 @@ class Comunicacion:
     # Cambio realizado a la consulta de traer ventas
     def traerProductosVentas(self, cadenaBusqueda):
         cursor = self.conexion.cursor()
-        sentenciaSQL = "SELECT id, nombre, cantidad, precio FROM inventario WHERE borrado !=1 AND cantidad > 0 AND nombre LIKE %s "
+        sentenciaSQL = "SELECT id, nombre, cantidad, precio, categoria, subcategoria FROM inventario WHERE borrado !=1 AND cantidad > 0 AND nombre LIKE %s "
         valores = ('%'+cadenaBusqueda+'%')
         cursor.execute(sentenciaSQL, (valores, ))
         resultados = cursor.fetchall()
         return resultados
+
+    def traerCategoriaDeProductos(self, idBusqueda):
+        cursor = self.conexion.cursor()
+        sentenciaSQL = "SELECT categoria, subcategoria FROM inventario WHERE id = %s"
+        valores = (idBusqueda)
+        cursor.execute(sentenciaSQL, (valores, ))
+        resultados = cursor.fetchall()
+        return resultados
+
 
     def traerCantidadDeProductoVentas(self, idProducto):
         cursor = self.conexion.cursor()

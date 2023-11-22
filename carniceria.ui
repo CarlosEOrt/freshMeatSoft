@@ -709,7 +709,7 @@ border: 1px: solid: rgb(0, 206, 152);
                    <bool>true</bool>
                   </property>
                   <property name="currentIndex">
-                   <number>5</number>
+                   <number>7</number>
                   </property>
                   <widget class="QWidget" name="page_temperaturas">
                    <layout class="QVBoxLayout" name="verticalLayout_13">
@@ -1730,6 +1730,10 @@ font: 75 12pt &quot;Times New Roman&quot;;
                               <height>0</height>
                              </size>
                             </property>
+                            <property name="styleSheet">
+                             <string notr="true">color:rgb(193, 18, 31);
+font: 77 7pt &quot;Arial Black&quot;;</string>
+                            </property>
                             <property name="text">
                              <string/>
                             </property>
@@ -1752,6 +1756,10 @@ font: 75 12pt &quot;Times New Roman&quot;;
                               <width>350</width>
                               <height>0</height>
                              </size>
+                            </property>
+                            <property name="styleSheet">
+                             <string notr="true">color:rgb(193, 18, 31);
+font: 77 7pt &quot;Arial Black&quot;;</string>
                             </property>
                             <property name="text">
                              <string/>
@@ -1791,6 +1799,10 @@ font: 75 12pt &quot;Times New Roman&quot;;
                               <width>350</width>
                               <height>0</height>
                              </size>
+                            </property>
+                            <property name="styleSheet">
+                             <string notr="true">color:rgb(193, 18, 31);
+font: 77 7pt &quot;Arial Black&quot;;</string>
                             </property>
                             <property name="text">
                              <string/>
@@ -1835,6 +1847,10 @@ font: 75 12pt &quot;Times New Roman&quot;;
                               <height>0</height>
                              </size>
                             </property>
+                            <property name="styleSheet">
+                             <string notr="true">color:rgb(193, 18, 31);
+font: 77 7pt &quot;Arial Black&quot;;</string>
+                            </property>
                             <property name="text">
                              <string/>
                             </property>
@@ -1858,6 +1874,10 @@ font: 75 12pt &quot;Times New Roman&quot;;
                               <height>0</height>
                              </size>
                             </property>
+                            <property name="styleSheet">
+                             <string notr="true">color:rgb(193, 18, 31);
+font: 77 7pt &quot;Arial Black&quot;;</string>
+                            </property>
                             <property name="text">
                              <string/>
                             </property>
@@ -1875,6 +1895,10 @@ font: 75 12pt &quot;Times New Roman&quot;;
                           </item>
                           <item>
                            <widget class="QLabel" name="lbl_error_cantidad_agregar">
+                            <property name="styleSheet">
+                             <string notr="true">color:rgb(193, 18, 31);
+font: 77 7pt &quot;Arial Black&quot;;</string>
+                            </property>
                             <property name="text">
                              <string/>
                             </property>
@@ -2050,6 +2074,10 @@ font: 75 12pt &quot;Times New Roman&quot;;
                             <height>0</height>
                            </size>
                           </property>
+                          <property name="styleSheet">
+                           <string notr="true">color:rgb(193, 18, 31);
+font: 77 7pt &quot;Arial Black&quot;;</string>
+                          </property>
                           <property name="text">
                            <string/>
                           </property>
@@ -2072,6 +2100,10 @@ font: 75 12pt &quot;Times New Roman&quot;;
                             <width>350</width>
                             <height>0</height>
                            </size>
+                          </property>
+                          <property name="styleSheet">
+                           <string notr="true">color:rgb(193, 18, 31);
+font: 77 7pt &quot;Arial Black&quot;;</string>
                           </property>
                           <property name="text">
                            <string/>
@@ -2111,6 +2143,10 @@ font: 75 12pt &quot;Times New Roman&quot;;
                             <width>350</width>
                             <height>0</height>
                            </size>
+                          </property>
+                          <property name="styleSheet">
+                           <string notr="true">color:rgb(193, 18, 31);
+font: 77 7pt &quot;Arial Black&quot;;</string>
                           </property>
                           <property name="text">
                            <string/>
@@ -2180,6 +2216,10 @@ font: 75 12pt &quot;Times New Roman&quot;;
                             <height>0</height>
                            </size>
                           </property>
+                          <property name="styleSheet">
+                           <string notr="true">color:rgb(193, 18, 31);
+font: 77 7pt &quot;Arial Black&quot;;</string>
+                          </property>
                           <property name="text">
                            <string/>
                           </property>
@@ -2203,6 +2243,10 @@ font: 75 12pt &quot;Times New Roman&quot;;
                             <height>0</height>
                            </size>
                           </property>
+                          <property name="styleSheet">
+                           <string notr="true">color:rgb(193, 18, 31);
+font: 77 7pt &quot;Arial Black&quot;;</string>
+                          </property>
                           <property name="text">
                            <string/>
                           </property>
@@ -2225,6 +2269,10 @@ font: 75 12pt &quot;Times New Roman&quot;;
                             <width>350</width>
                             <height>0</height>
                            </size>
+                          </property>
+                          <property name="styleSheet">
+                           <string notr="true">color:rgb(193, 18, 31);
+font: 77 7pt &quot;Arial Black&quot;;</string>
                           </property>
                           <property name="text">
                            <string/>
