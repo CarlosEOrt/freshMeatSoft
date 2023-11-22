@@ -367,20 +367,20 @@ class MyWindow(QMainWindow):
         if columna == 0:  # si es la columna de id nos lleva a mostrar el producto
             self.stackedWidget_menu.setCurrentWidget(
                 self.page_mostrar_seleccion)
-            self.lbl_id.setText(
-                self.tabla_inventario.item(fila, columna+0).text())
-            self.lbl_nombre.setText(
-                self.tabla_inventario.item(fila, columna+1).text())
-            self.lbl_descripcion.setText(
-                self.tabla_inventario.item(fila, columna+2).text())
-            self.lbl_categoria.setText(
-                self.tabla_inventario.item(fila, columna+3).text())
-            self.lbl_subcategoria.setText(
-                self.tabla_inventario.item(fila, columna+4).text())
-            self.lbl_precio.setText(
-                self.tabla_inventario.item(fila, columna+5).text())
-            self.lbl_cantidad.setText(
-                self.tabla_inventario.item(fila, columna+6).text())
+            self.lbl_id.setText("ID: " +
+                                self.tabla_inventario.item(fila, columna+0).text())
+            self.lbl_nombre.setText("Nombre: " +
+                                    self.tabla_inventario.item(fila, columna+1).text())
+            self.lbl_descripcion.setText("Descripcion: " +
+                                         self.tabla_inventario.item(fila, columna+2).text())
+            self.lbl_categoria.setText("Categoria: " +
+                                       self.tabla_inventario.item(fila, columna+3).text())
+            self.lbl_subcategoria.setText("SubCategoria: " +
+                                          self.tabla_inventario.item(fila, columna+4).text())
+            self.lbl_precio.setText("Precio: " +
+                                    self.tabla_inventario.item(fila, columna+5).text())
+            self.lbl_cantidad.setText("Cantidad: " +
+                                      self.tabla_inventario.item(fila, columna+6).text())
 
     # Funciones Corte de Caja
     def agregarGastoABaseDeDatos(self):
@@ -678,19 +678,19 @@ class MyWindow(QMainWindow):
             self.lineEdit_busqueda_ticket.text())
         self.tabla_busqueda_ticket.setRowCount(0)
         self.tabla_busqueda_ticket.setRowCount(len(resultados))
-        totalDeVenta=0
+        totalDeVenta = 0
         for fila, datos in enumerate(resultados):
             for columna, valor in enumerate(datos):
                 item = QtWidgets.QTableWidgetItem(str(valor))
                 self.tabla_busqueda_ticket.setItem(fila, columna, item)
-        
+
         for fila in range(self.tabla_busqueda_ticket.rowCount()):
             totalDeVenta += float(self.tabla_busqueda_ticket.item(fila, 3).text())
-        if(totalDeVenta!=0):
+        if (totalDeVenta != 0):
             self.label_21.setText("Total de Venta: " + str(totalDeVenta))
         else:
             self.label_21.setText("")
-        
+
     def actualizarGraficaVentas(self):
         self.grafica1 = Canvas_grafica_ventas()
         while self.grafica_ventas.count():
@@ -718,11 +718,11 @@ class MyWindow(QMainWindow):
                 widget.widget().deleteLater()
 
         self.grafica_productos.addWidget(self.grafica3)
-    
+
     def dirigirseAPestaniaVentas(self):
         self.stackedWidget_menu.setCurrentWidget(self.page_grafica_ventas)
         self.actualizarGraficaVentas()
-    
+
     def dirigirseAPestaniaGastos(self):
         self.stackedWidget_menu.setCurrentWidget(self.page_grafica_gastos)
         self.actualizarGraficaGastos()
@@ -902,7 +902,7 @@ class Canvas_grafica_ventas(FigureCanvas):
         super().__init__(self.fig)
         com = Comunicacion()
         resultados = com.estadisticasVentas()
-        
+
         colores = ['red', 'blue', 'green', 'black', 'yellow']
         fechas = [(fila[0].strftime('%Y-%m-%d')) for fila in resultados]
         cantidad_ventas = [fila[1] for fila in resultados]
@@ -941,17 +941,16 @@ class Canvas_grafica_gastos(FigureCanvas):
             'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
         ]
         nombreMes = nombres_mes_espanol[datetime.now().month]
-    
 
-        if((gastosConsulta!=0 and ingresosConsulta==0) or (ingresosConsulta!=0 and gastosConsulta==0) or (ingresosConsulta!=0 and gastosConsulta!=0)):
+        if ((gastosConsulta != 0 and ingresosConsulta == 0) or (ingresosConsulta != 0 and gastosConsulta == 0) or (ingresosConsulta != 0 and gastosConsulta != 0)):
             colores = ['red', 'green',]
             nombres = ['Gastos: $' + str(gastosConsulta),
-                    'Ingresos: $' + str(ingresosConsulta)]
+                       'Ingresos: $' + str(ingresosConsulta)]
             tamaño = [gastosConsulta, ingresosConsulta]
             explotar = [0.05, 0.05]
 
             plt.title("Ingresos y gastos del mes de " + nombreMes,
-                    color='black', size=9, family="Arial")
+                      color='black', size=9, family="Arial")
 
             self.ax.pie(tamaño, explode=explotar, labels=nombres,
                         colors=colores,
@@ -959,7 +958,6 @@ class Canvas_grafica_gastos(FigureCanvas):
                         shadow=True, startangle=90, radius=0.8,
                         labeldistance=1.1)
             self.ax.axis('equal')
-        
 
 
 if __name__ == '__main__':
