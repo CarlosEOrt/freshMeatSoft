@@ -344,7 +344,7 @@ class MyWindow(QMainWindow):
         if(validoNombre and validoDescripcion and validoCantidad and validoPrecio):
             producto = Producto(self.lineEdit.text(), self.lineEdit_2.text(),
                                 self.comboBox.currentText(), self.comboBox_2.currentText(),
-                                self.lineEdit_3.text(), self.lineEdit_4.text())
+                                self.lineEdit_4.text(), self.lineEdit_3.text())
             com = Comunicacion()
             com.insertarProducto(producto)
             self.borrarCamposInventarioAgregar()
