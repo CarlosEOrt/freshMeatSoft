@@ -330,7 +330,6 @@ class MyWindow(QMainWindow):
 
     def agregarProductoABaseDeDatos(self):
         if((self.comboBox.currentText()=="Carne") or (self.comboBox.currentText()=="Despensa" and (self.comboBox_2.currentText()=="Fruta" or self.comboBox_2.currentText()=="Verdura"))):
-            print("hola")
             productoEsFlotante=True
         else:
             productoEsFlotante=False
@@ -369,6 +368,8 @@ class MyWindow(QMainWindow):
                     else:
                         # Manejar otros casos si es necesario
                         item = QtWidgets.QTableWidgetItem(str(valor))
+                elif columna ==5:
+                    item = QtWidgets.QTableWidgetItem(f"{float(valor):.2f}")
                 else:
                     # Para otras columnas, simplemente establecer el valor como texto
                     item = QtWidgets.QTableWidgetItem(str(valor))
@@ -735,13 +736,27 @@ class MyWindow(QMainWindow):
         totalDeVenta=0
         for fila, datos in enumerate(resultados):
             for columna, valor in enumerate(datos):
-                item = QtWidgets.QTableWidgetItem(str(valor))
+                if columna == 2: # Verificar si estamos en la columna que contiene la información que nos interesa
+                    if resultados[fila][5] == 'Carne' or (resultados[fila][5] == 'Despensa' and (resultados[fila][6]=="Fruta" or resultados[fila][6]=="Verdura")):
+                        # Si el valor es 'carne', establecer el texto como número flotante con la leyenda 'kg'
+                        item = QtWidgets.QTableWidgetItem(f"{float(valor):.2f} kg.")
+                    elif resultados[fila][5] == 'Despensa':
+                        # Si el valor es 'despensa', establecer el texto como 'c/u'
+                        item = QtWidgets.QTableWidgetItem(f"{float(valor):.0f} c/u")
+                    else:
+                        # Manejar otros casos si es necesario
+                        item = QtWidgets.QTableWidgetItem(str(valor))
+                elif columna == 3:
+                    item = QtWidgets.QTableWidgetItem(f"{float(valor):.2f}")
+                else:
+                    # Para otras columnas, simplemente establecer el valor como texto
+                    item = QtWidgets.QTableWidgetItem(str(valor))
                 self.tabla_busqueda_ticket.setItem(fila, columna, item)
         
         for fila in range(self.tabla_busqueda_ticket.rowCount()):
             totalDeVenta += float(self.tabla_busqueda_ticket.item(fila, 3).text())
         if(totalDeVenta!=0):
-            self.label_21.setText("Total de Venta: " + str(totalDeVenta))
+            self.label_21.setText(f"Total de Venta: {float(totalDeVenta):.2f}")
         else:
             self.label_21.setText("")
         
@@ -800,9 +815,9 @@ class MyWindow(QMainWindow):
 
             # Vamos a verificar que en la tabla haya otro producto para agregarlo ahi mismo o denegar la venta por exceso de stock
             filaConProductoExistenteEnCarrito = self.verificarProductoExistenteEnCarrito(
-                self.tabla_inventario.item(fila, 0).text())
+                self.tabla_ventas.item(fila, 0).text())
             com = Comunicacion()
-            resultadoCategoria=com.traerCategoriaDeProductos(self.tabla_inventario.item(fila, 0).text())
+            resultadoCategoria=com.traerCategoriaDeProductos(self.tabla_ventas.item(fila, 0).text())
             productoSeRegistraEnKilogramos=False
             if(resultadoCategoria[0][0] == 'Carne' or (resultadoCategoria[0][0] == 'Despensa' and (resultadoCategoria[0][1]=="Fruta" or resultadoCategoria[0][1]=="Verdura"))):
                 valorCantidadProducto=float(cantidadProducto)
@@ -859,6 +874,7 @@ class MyWindow(QMainWindow):
 
     def verificarProductoExistenteEnCarrito(self, idBuscar):
         for fila in range(self.tabla_carrito.rowCount()):
+            #print(self.tabla_carrito.item(fila, 1).text() + idBuscar + self.tabla_carrito.item(fila, 0).text())
             if (idBuscar in self.tabla_carrito.item(fila, 0).text()):
                 # regresamos la fila pues el id ya existe
                 return fila
@@ -1084,8 +1100,9 @@ class Canvas_grafica_gastos(FigureCanvas):
 
         if((gastosConsulta!=0 and ingresosConsulta==0) or (ingresosConsulta!=0 and gastosConsulta==0) or (ingresosConsulta!=0 and gastosConsulta!=0)):
             colores = ['red', 'green',]
-            nombres = ['Gastos: $' + str(gastosConsulta),
-                    'Ingresos: $' + str(ingresosConsulta)]
+            
+            nombres = [f"Gastos: {float(gastosConsulta):.2f}",
+                    f"Ingresos: {float(ingresosConsulta):.2f}"]
             tamaño = [gastosConsulta, ingresosConsulta]
             explotar = [0.05, 0.05]
 
