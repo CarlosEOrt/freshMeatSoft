@@ -985,6 +985,7 @@ class MyWindow(QMainWindow):
     def validarNombre(self, texto, lineEdit):
         patron = r'^.{1,100}$'
         if re.match(patron, texto):
+            lineEdit.setText("")
             return True
         else:
             lineEdit.setText("El nombre debe tener minimo un caracter y un máximo de 100 caracteres...")
@@ -994,6 +995,7 @@ class MyWindow(QMainWindow):
         patron = r'^.{1,100}$'
     
         if re.match(patron, texto):
+            lineEdit.setText("")
             return True
         else:
             lineEdit.setText("La descripción debe tener minimo un caracter y un máximo de 100 caracteres...")
@@ -1003,6 +1005,7 @@ class MyWindow(QMainWindow):
         patron = r'^[1-9]\d*(\.\d+)?$'
     
         if re.match(patron, texto):
+            lineEdit.setText("")
             return True
         else:
             lineEdit.setText("La cantidad del producto debe ser un valor númerico...")
@@ -1012,6 +1015,7 @@ class MyWindow(QMainWindow):
         patron = r'^[1-9]\d*$'
     
         if re.match(patron, texto):
+            lineEdit.setText("")
             return True
         else:
             lineEdit.setText("La cantidad del producto debe ser mayor 0, no debe contener puntos decimales y ser un valor númerico...")
@@ -1021,6 +1025,7 @@ class MyWindow(QMainWindow):
         patron = r'^\d+(\.\d{1,2})?$'
     
         if re.match(patron, texto):
+            lineEdit.setText("")
             return True
         else:
             lineEdit.setText("El precio debe ser un valor númerico y contener un máximo de dos decimales...")
