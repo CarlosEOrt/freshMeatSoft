@@ -720,6 +720,8 @@ class MyWindow(QMainWindow):
                     else:
                         # Manejar otros casos si es necesario
                         item = QtWidgets.QTableWidgetItem(str(valor))
+                elif columna ==3:
+                    item = QtWidgets.QTableWidgetItem(f"{float(valor):.2f}")
                 else:
                     # Para otras columnas, simplemente establecer el valor como texto
                     item = QtWidgets.QTableWidgetItem(str(valor))
