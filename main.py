@@ -206,6 +206,8 @@ class MyWindow(QMainWindow):
             self.actualizarTablaTemperaturas()
         else:
             self.lbl_contrasena_eliminar_temperatura.setText("")
+            messagebox.showwarning(
+                'ERROR DE CREDENCIALES', 'La contraseña no coincide con las de permiso para acceder a esta área.')
             self.stackedWidget_menu.setCurrentWidget(self.page_temperaturas)
 
     def validacion_de_credenciales_corte(self):
