@@ -709,7 +709,7 @@ border: 1px: solid: rgb(0, 206, 152);
                    <bool>true</bool>
                   </property>
                   <property name="currentIndex">
-                   <number>7</number>
+                   <number>0</number>
                   </property>
                   <widget class="QWidget" name="page_temperaturas">
                    <layout class="QVBoxLayout" name="verticalLayout_13">
@@ -842,7 +842,7 @@ border: 1px: solid: rgb(0, 206, 152);
                        <widget class="QPushButton" name="btn_convertir_temperaturas">
                         <property name="minimumSize">
                          <size>
-                          <width>130</width>
+                          <width>170</width>
                           <height>40</height>
                          </size>
                         </property>
@@ -853,7 +853,7 @@ border: 1px: solid: rgb(0, 206, 152);
                          </size>
                         </property>
                         <property name="text">
-                         <string>Cambiar unidad</string>
+                         <string>Cambiar unidad a °F</string>
                         </property>
                        </widget>
                       </item>
@@ -1574,7 +1574,7 @@ font: 75 12pt &quot;Times New Roman&quot;;
                             <family>Arial Black</family>
                             <pointsize>10</pointsize>
                             <italic>false</italic>
-                            <bold>false</bold>
+                            <fontweight></fontweight>
                            </font>
                           </property>
                           <property name="cursor">
@@ -1598,7 +1598,7 @@ font: 75 12pt &quot;Times New Roman&quot;;
                             <family>Arial Black</family>
                             <pointsize>10</pointsize>
                             <italic>false</italic>
-                            <bold>false</bold>
+                            <fontweight></fontweight>
                            </font>
                           </property>
                           <property name="cursor">
@@ -1626,7 +1626,7 @@ font: 75 12pt &quot;Times New Roman&quot;;
                           <family>Arial Black</family>
                           <pointsize>12</pointsize>
                           <italic>false</italic>
-                          <bold>false</bold>
+                          <fontweight></fontweight>
                          </font>
                         </property>
                         <property name="text">
@@ -1970,7 +1970,7 @@ font: 77 7pt &quot;Arial Black&quot;;</string>
                         <family>Arial Black</family>
                         <pointsize>12</pointsize>
                         <italic>false</italic>
-                        <bold>false</bold>
+                        <fontweight></fontweight>
                        </font>
                       </property>
                       <property name="text">

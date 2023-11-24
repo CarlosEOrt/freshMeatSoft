@@ -1,1 +1,1 @@
-lineEdit_3
+pathTemper

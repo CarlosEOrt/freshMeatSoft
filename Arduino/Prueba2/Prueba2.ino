@@ -3,15 +3,14 @@
 #define DHTTYPE DHT22
  
 const int DHTPin = 2;
-const int ledPinCalentamiento = 8;
-const int ledPinEnfriamiento = 9;
-const float rangoMenorCalentamiento = 15.0;
-const float rangoMayorCalentamiento = 20.0;
-const float rangoMenorEnfriamiento = 25.0;
-const float rangoMayorEnfriamiento = 30.0;
+const int ledPinCalentamiento = 9;
+const int ledPinEnfriamiento = 8;
+const float rangoMenorCalentamiento = 20.0;
+const float rangoMayorCalentamiento = 23.0;
+const float rangoMenorEnfriamiento = 24.0;
+const float rangoMayorEnfriamiento = 27.0;
 bool calentando = false;
 bool enfriando = false;
-int contadorPrueba = 20;
  
 DHT dht(DHTPin, DHTTYPE);
                                                                                                                                   
@@ -27,8 +26,6 @@ void setup()
  
 void loop() 
 {
-  delay(2000);
-
   float humidity = dht.readHumidity();
   float celsius = dht.readTemperature();
   float fahrenheit = dht.readTemperature(true);
@@ -39,40 +36,25 @@ void loop()
     return;
   }
 
-  if(calentando)
-  {
-    contadorPrueba+=1;
-  }
-
-  if(enfriando)
-  {
-    contadorPrueba-=1;
-  }
-
-  if(!calentando && !enfriando)
-  {
-    contadorPrueba+=1;
-  }
-
-  if(contadorPrueba<=rangoMenorCalentamiento)
+  if(celsius<=rangoMenorCalentamiento)
   {
     calentando = true;
     digitalWrite(ledPinCalentamiento, HIGH);
   }
 
-  if(calentando && contadorPrueba>=rangoMayorCalentamiento)
+  if(calentando && celsius>=rangoMayorCalentamiento)
   {
     calentando = false;
     digitalWrite(ledPinCalentamiento, LOW);
   }
 
-  if(contadorPrueba>=rangoMayorEnfriamiento)
+  if(celsius>=rangoMayorEnfriamiento)
   {
     enfriando = true;
     digitalWrite(ledPinEnfriamiento, HIGH);
   }
 
-  if(enfriando && contadorPrueba<=rangoMenorEnfriamiento)
+  if(enfriando && celsius<=rangoMenorEnfriamiento)
   {
     enfriando = false;
     digitalWrite(ledPinEnfriamiento, LOW);
@@ -81,6 +63,4 @@ void loop()
   Serial.println(celsius);
   Serial.println(fahrenheit);
   Serial.println(humidity);
-  Serial.print("Contador Prueba: ");
-  Serial.println(contadorPrueba);
 }

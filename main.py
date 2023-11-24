@@ -30,7 +30,7 @@ from Comunicacion import Comunicacion
 
 class MyWindow(QMainWindow):
     global arduino
-    # arduino = serial.Serial('COM3', 9600) # Puerto y baud-rate en los que funciona el Arduino
+    arduino = serial.Serial('COM3', 9600) # Puerto y baud-rate en los que funciona el Arduino
     global pathTemperatura
     pathTemperatura = "Documentos\\Temperatura\\"
 
@@ -73,9 +73,9 @@ class MyWindow(QMainWindow):
         self.lineEdit_grafica_productos.textChanged.connect(
             lambda: self.actualizarGraficaProductos())
 
-        # self.timer = QTimer(self) # se crea una variable para constante actualizacion
-        # self.timer.timeout.connect(lambda:self.actualizarTemperatura())#actualiza el label
-        # self.timer.start(100)#tiempo que tarda en el contador
+        self.timer = QTimer(self) # se crea una variable para constante actualizacion
+        self.timer.timeout.connect(lambda:self.actualizarTemperatura())#actualiza el label
+        self.timer.start(1)#tiempo que tarda en el contador
 
         # Redireccion de botones menu
         self.btn_inventario.clicked.connect(
@@ -236,18 +236,20 @@ class MyWindow(QMainWindow):
                 "\n" + str(datosHumedad.decode('utf-8')))
 
         com = Comunicacion()
+        fecha = self.obtenerFechaActual()
 
-        if com.verificarFechaTemperaturas(self.obtenerFechaActual()) is None:
-            if (os.path.isfile(pathTemperatura + nombreArchivo)):
-                # Abre el archivo si ya existe
-                archivo = open(pathTemperatura + nombreArchivo, "a")
-            else:
-                # Crea el archivo si no existe
-                archivo = open(pathTemperatura + nombreArchivo, "x")
+        if com.verificarFechaTemperaturas(fecha) is None:
+            if (com.verificacionCorteEnBase(fecha)):
+                if (os.path.isfile(pathTemperatura + nombreArchivo)):
+                    # Abre el archivo si ya existe
+                    archivo = open(pathTemperatura + nombreArchivo, "a")
+                else:
+                    # Crea el archivo si no existe
+                    archivo = open(pathTemperatura + nombreArchivo, "x")
 
-            # Escribe la temperatura en el archivo txt creado
-            archivo.write(str(datosCelsius.decode('utf-8')).strip() + "\n")
-            archivo.close()
+                # Escribe la temperatura en el archivo txt creado
+                archivo.write(str(datosCelsius.decode('utf-8')).strip() + "\n")
+                archivo.close()
 
     def convertirTablaTemperaturas(self):
         if self.tabla_temperaturas.rowCount() > 0:
@@ -259,8 +261,10 @@ class MyWindow(QMainWindow):
 
             if float(string) == float(self.tabla_temperaturas.item(0, 1).text()):
                 self.conversionTemperaturas(1)
+                self.btn_convertir_temperaturas.setText("Cambiar unidad a °C")
             else:
                 self.conversionTemperaturas(2)
+                self.btn_convertir_temperaturas.setText("Cambiar unidad a °F")
 
     def conversionTemperaturas(self, boolean):
         for i in range(1, 4):
@@ -268,8 +272,7 @@ class MyWindow(QMainWindow):
                 temperaturaAConvertir = float(
                     self.tabla_temperaturas.item(j, i).text())
                 if boolean == 1:
-                    temperaturaAConvertir = (
-                        temperaturaAConvertir * (9/5)) + 32
+                    temperaturaAConvertir = (temperaturaAConvertir * (9/5)) + 32
                 else:
                     temperaturaAConvertir = (temperaturaAConvertir - 32)*(5/9)
                 temperaturaAConvertir = round(temperaturaAConvertir, 1)
@@ -498,7 +501,7 @@ class MyWindow(QMainWindow):
         efectivoTotalCaja = self.leerTemporalMontos(self.guardarTemporalMontos(
             monto50c, monto1, monto2, monto5, monto10, monto20, monto50, monto100, monto200, monto500))
         self.borrarCamposMontosAgregar()
-        # self.generarReporteTemperaturas()
+        self.generarReporteTemperaturas()
         self.generar_pdf_corte(efectivoTotalCaja)
 
     def verificarExistenciaCorte(self):
@@ -589,27 +592,29 @@ class MyWindow(QMainWindow):
 
     # Funcionalidades Temperaturas
     def generarReporteTemperaturas(self):
-        archivo = open(pathTemperatura + nombreArchivo, "r")
-        lista = archivo.readlines()
-
-        for i in range(0, len(lista)):
-            lista[i] = float(lista[i].strip())
-
-        lista.sort()
-
-        temperaturaMin = lista[0]
-        temperaturaMax = lista[len(lista)-1]
-        temperaturaPromedio = sum(lista)/len(lista)
-
-        archivo.close()
-
         com = Comunicacion()
-        com.insertarTemperatura(self.obtenerFechaActual(), round(
-            temperaturaPromedio, 1), temperaturaMax, temperaturaMin)
+        if com.verificacionCorteEnBase(self.obtenerFechaActual()):
+            archivo = open(pathTemperatura + nombreArchivo, "r")
+            lista = archivo.readlines()
 
-        os.remove(pathTemperatura + nombreArchivo)
+            for i in range(0, len(lista)):
+                lista[i] = float(lista[i].strip())
 
-        self.actualizarTablaTemperaturas()
+            lista.sort()
+
+            temperaturaMin = lista[0]
+            temperaturaMax = lista[len(lista)-1]
+            temperaturaPromedio = sum(lista)/len(lista)
+
+            archivo.close()
+
+            com = Comunicacion()
+            com.insertarTemperatura(self.obtenerFechaActual(), round(
+                temperaturaPromedio, 1), temperaturaMax, temperaturaMin)
+
+            os.remove(pathTemperatura + nombreArchivo)
+
+            self.actualizarTablaTemperaturas()
 
     def celda_clicada_tabla_temperaturas(self, fila, columna):
         # Acción específica cuando una celda se hace clic
