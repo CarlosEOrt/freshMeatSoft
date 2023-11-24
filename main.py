@@ -225,31 +225,36 @@ class MyWindow(QMainWindow):
         datosFahrenheit = arduino.readline()
         datosHumedad = arduino.readline()
 
+        strCelsius = str(datosCelsius.decode('utf-8'))
+        strFahrenheit = str(datosFahrenheit.decode('utf-8'))
+        strHumedad = str(datosHumedad.decode('utf-8'))
+
         if self.comboBox_temperaturas.currentIndex() == 0:  # Caso grados Celsius
             self.lbl_temperatura_actual.setText(
-                "\n" + str(datosCelsius.decode('utf-8')))
+                "\n" + str(strCelsius))
         elif self.comboBox_temperaturas.currentIndex() == 1:  # Caso grados fahrenheit
             self.lbl_temperatura_actual.setText(
-                "\n" + str(datosFahrenheit.decode('utf-8')))
+                "\n" + str(strFahrenheit))
         else:  # Caso humedad
             self.lbl_temperatura_actual.setText(
-                "\n" + str(datosHumedad.decode('utf-8')))
+                "\n" + str(strHumedad))
 
         com = Comunicacion()
         fecha = self.obtenerFechaActual()
 
         if com.verificarFechaTemperaturas(fecha) is None:
             if (com.verificacionCorteEnBase(fecha)):
-                if (os.path.isfile(pathTemperatura + nombreArchivo)):
-                    # Abre el archivo si ya existe
-                    archivo = open(pathTemperatura + nombreArchivo, "a")
-                else:
-                    # Crea el archivo si no existe
-                    archivo = open(pathTemperatura + nombreArchivo, "x")
+                if strCelsius.strip() != "Error en el sensor!" and strFahrenheit.strip() != "Error en el sensor!" and strHumedad.strip() != "Error en el sensor!":
+                    if (os.path.isfile(pathTemperatura + nombreArchivo)):
+                        # Abre el archivo si ya existe
+                        archivo = open(pathTemperatura + nombreArchivo, "a")
+                    else:
+                        # Crea el archivo si no existe
+                        archivo = open(pathTemperatura + nombreArchivo, "x")
 
-                # Escribe la temperatura en el archivo txt creado
-                archivo.write(str(datosCelsius.decode('utf-8')).strip() + "\n")
-                archivo.close()
+                    # Escribe la temperatura en el archivo txt creado
+                    archivo.write(str(datosCelsius.decode('utf-8')).strip() + "\n")
+                    archivo.close()
 
     def convertirTablaTemperaturas(self):
         if self.tabla_temperaturas.rowCount() > 0:
