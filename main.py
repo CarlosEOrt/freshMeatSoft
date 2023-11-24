@@ -24,6 +24,7 @@ import matplotlib.pyplot as plt
 from Producto import Producto
 from Gasto import Gasto
 from Venta import Venta
+from Ticket import Ticket
 
 from Comunicacion import Comunicacion
 
@@ -973,12 +974,16 @@ class MyWindow(QMainWindow):
             com = Comunicacion()
             com.insertarVenta(ventaCarrito)
 
+            #imprimirTicket
+
+            ticket = Ticket(self.obtenerProductosCarrito(), precioTotal, self.obtenerFechaActual())
+            ticket.imprimirTicket(ticket.obtenerRuta())
             # Actualizar tabla de inventario_venta :D
             # Actualizar stock en inventario :D
             com = Comunicacion()
             ultimoID = com.traerUltimoIdDeVenta()
             self.insertarProductosEnVentasSeparadas(com, ultimoID)
-
+            
             # Actualizar tablas :D
             self.actualizarTablaGastos()
             self.lineEdit_busqueda_ventas.setText("")
@@ -987,6 +992,28 @@ class MyWindow(QMainWindow):
         else:
             messagebox.showwarning(
                 'CARRITO VACIO', 'El carrito no cuenta con productos suficientes para una venta...')
+
+    def obtenerProductosCarrito(self):
+        num_filas = self.tabla_carrito.rowCount()
+        num_columnas = self.tabla_carrito.columnCount()
+
+        # Crear una lista para almacenar los valores de la tabla
+        valores_tabla = []
+
+        # Iterar sobre las celdas de la tabla y obtener los valores
+        for fila in range(num_filas):
+            fila_actual = []
+            for columna in range(num_columnas):
+                if columna == 2:
+                    item = QtWidgets.QTableWidgetItem(self.tabla_carrito.item(fila, columna).text().replace(' kg.', '').replace(' c/u', ''))
+                else:
+                    item = self.tabla_carrito.item(fila, columna)
+                if item is not None:
+                    fila_actual.append(item.text())
+                else:
+                    fila_actual.append(None)
+            valores_tabla.append(fila_actual)
+        return valores_tabla
 
     def insertarProductosEnVentasSeparadas(self, com, ultimoIDVenta):
         for fila in range(self.tabla_carrito.rowCount()):
