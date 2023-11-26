@@ -224,13 +224,31 @@ class MyWindow(QMainWindow):
 
     def actualizarTemperatura(self):
         # Leer los datos que manda el Arduino
-        datosCelsius = arduino.readline()
-        datosFahrenheit = arduino.readline()
-        datosHumedad = arduino.readline()
+        string1 = arduino.readline()
+        string2 = arduino.readline()
+        string3 = arduino.readline()
 
-        strCelsius = str(datosCelsius.decode('utf-8'))
-        strFahrenheit = str(datosFahrenheit.decode('utf-8'))
-        strHumedad = str(datosHumedad.decode('utf-8'))
+        string1 = str(string1.decode('utf-8'))
+        string2 = str(string2.decode('utf-8'))
+        string3 = str(string3.decode('utf-8'))
+
+        for i in range (3):
+            if 'C' in string1:
+                strCelsius = string1
+                strFahrenheit = string2
+                strHumedad = string3
+            elif 'F' in string1:
+                datstrCelsiusosCelsius = string3
+                strFahrenheit = string1
+                strHumedad = string2
+            else:
+                strCelsius = string2
+                strFahrenheit = string3
+                strHumedad = string1
+        
+        strCelsius = strCelsius.replace('C', '')
+        strFahrenheit = strFahrenheit.replace('F', '')
+        strHumedad = strHumedad.replace('H', '')
 
         if self.comboBox_temperaturas.currentIndex() == 0:  # Caso grados Celsius
             self.lbl_temperatura_actual.setText(
@@ -256,7 +274,7 @@ class MyWindow(QMainWindow):
                         archivo = open(pathTemperatura + nombreArchivo, "x")
 
                     # Escribe la temperatura en el archivo txt creado
-                    archivo.write(str(datosCelsius.decode('utf-8')).strip() + "\n")
+                    archivo.write(strCelsius.strip() + "\n")
                     archivo.close()
 
     def convertirTablaTemperaturas(self):

@@ -11,6 +11,7 @@ const float rangoMenorEnfriamiento = 24.0;
 const float rangoMayorEnfriamiento = 27.0;
 bool calentando = false;
 bool enfriando = false;
+String imprimir = "";
  
 DHT dht(DHTPin, DHTTYPE);
                                                                                                                                   
@@ -60,7 +61,13 @@ void loop()
     digitalWrite(ledPinEnfriamiento, LOW);
   }
 
-  Serial.println(celsius);
-  Serial.println(fahrenheit);
-  Serial.println(humidity);
+  imprimir = String(celsius, 2);
+  imprimir.concat("C");
+  Serial.println(imprimir);
+  imprimir = String(fahrenheit, 2);
+  imprimir.concat("F");
+  Serial.println(imprimir);
+  imprimir = String(humidity, 2);
+  imprimir.concat("H");
+  Serial.println(imprimir);
 }

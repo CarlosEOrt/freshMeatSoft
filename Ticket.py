@@ -6,7 +6,7 @@ from ironpdf import PdfDocument
 class Ticket():
     def __init__(self, productos, precioTotal, fecha):
         # Crear un objeto PDF
-        self.rutaPDF = "ticket.pdf"
+        self.rutaPDF = "Documentos\\Tickets\\ticket.pdf"
         document = ap.Document()
         longitudPantalla=45
 
