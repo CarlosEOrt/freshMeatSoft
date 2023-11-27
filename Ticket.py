@@ -4,9 +4,12 @@ import aspose.pdf as ap
 from ironpdf import PdfDocument
 
 class Ticket():
-    def __init__(self, productos, precioTotal, fecha):
+    def __init__(self, productos, precioTotal, fecha, id):
         # Crear un objeto PDF
         self.rutaPDF = "Documentos\\Tickets\\ticket.pdf"
+        self.id = id
+        stringId = ','.join([str(i) for i in id])
+        stringId = stringId.replace('(', '').replace(')', '').replace(',', '')
         document = ap.Document()
         longitudPantalla=45
 
@@ -14,7 +17,8 @@ class Ticket():
         page = document.pages.add()
         page.set_page_size(227, 340);
         # Initialize textfragment object
-        text = ap.facades.FormattedText("Fresh Meat Soft: " + str(fecha))
+        text = ap.facades.FormattedText("ID: " + stringId)
+        text.add_new_line_text("Fresh Meat Soft: " + str(fecha))
         text.add_new_line_text("")
         text.add_new_line_text("")
         text.add_new_line_text("______________________________________________")

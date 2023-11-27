@@ -182,6 +182,8 @@ class MyWindow(QMainWindow):
             self.comboBox_14.setCurrentText(self.lbl_subcategoria.text())
         else:
             self.lbl_contrasena_editar.setText("")
+            messagebox.showwarning(
+                'ERROR DE CREDENCIALES', 'La contraseña no coincide con las de permiso para acceder a esta área.')
             self.stackedWidget_menu.setCurrentWidget(self.page_inventario)
 
     def validacion_de_credenciales_eliminar(self):
@@ -192,6 +194,8 @@ class MyWindow(QMainWindow):
             self.borrarProductoDeBaseDeDatos()
         else:
             self.lbl_contrasena_eliminar.setText("")
+            messagebox.showwarning(
+                'ERROR DE CREDENCIALES', 'La contraseña no coincide con las de permiso para acceder a esta área.')
             self.stackedWidget_menu.setCurrentWidget(self.page_inventario)
 
     def validacion_de_credenciales_eliminar_temperatura(self):
@@ -215,7 +219,6 @@ class MyWindow(QMainWindow):
         if contrasena == '123':
             self.stackedWidget_menu.setCurrentWidget(self.page_agregar_montos)
             self.lbl_contrasena_corte.setText("")
-
         else:
             self.lbl_contrasena_corte.setText("")
             messagebox.showwarning(
@@ -378,6 +381,7 @@ class MyWindow(QMainWindow):
             self.borrarCamposInventarioAgregar()
             self.actualizarTablaInventario()
             self.limpiarErroresAgregar()
+            self.actualizarResultadosBusqueda()
 
     def actualizarTablaInventario(self):
         com = Comunicacion()
@@ -411,7 +415,7 @@ class MyWindow(QMainWindow):
             productoEsFlotante=True
         else:
             productoEsFlotante=False
-        validoNombre=self.validarNombre(self.lineEdit_26.text(),self.lbl_error_nombre_agregar)
+        validoNombre=self.validarNombre(self.lineEdit_26.text(),self.lbl_error_nombre_editar)
         validoDescripcion=self.validarDescripcion(self.lineEdit_27.text(),self.lbl_error_descripcion_editar) 
         if(productoEsFlotante):
             validoCantidad=self.validarCantidadFlotante(self.lineEdit_25.text(),self.lbl_error_cantidad_editar)
@@ -426,10 +430,12 @@ class MyWindow(QMainWindow):
             com.editarProducto(producto, self.lbl_id.text())
             self.actualizarTablaInventario()
             self.limpiarErroresEditar()
+            self.actualizarResultadosBusqueda()
 
     def borrarProductoDeBaseDeDatos(self):
         com = Comunicacion()
         com.eliminarProducto(self.lbl_id.text())
+        self.actualizarResultadosBusqueda()
         self.actualizarTablaInventario()
 
     def celda_clicada(self, fila, columna):
@@ -454,14 +460,19 @@ class MyWindow(QMainWindow):
 
     # Funciones Corte de Caja
     def agregarGastoABaseDeDatos(self):
-        fecha_actual_str = self.obtenerFechaActual()
-        gasto = Gasto(self.lineEdit_concepto_gasto.text(),
-                      self.lineEdit_monto_gasto.text(), fecha_actual_str)
-        com = Comunicacion()
-        com.insertarGasto(gasto)
-        self.borrarCamposGastosAgregar()
-        self.stackedWidget_menu.setCurrentWidget(self.page_corte_de_caja)
-        self.actualizarTablaGastos()
+        if not self.lineEdit_concepto_gasto.text() or not self.lineEdit_monto_gasto.text():
+            self.desbloquearPrograma(False)
+            messagebox.showwarning('FALTA INFORMACION', 'No se ha ingresado la informacion solicitada para el registro de gastos')
+            self.desbloquearPrograma(True)
+        else:
+            fecha_actual_str = self.obtenerFechaActual()
+            gasto = Gasto(self.lineEdit_concepto_gasto.text(),
+                        self.lineEdit_monto_gasto.text(), fecha_actual_str)
+            com = Comunicacion()
+            com.insertarGasto(gasto)
+            self.borrarCamposGastosAgregar()
+            self.stackedWidget_menu.setCurrentWidget(self.page_corte_de_caja)
+            self.actualizarTablaGastos()
 
     def obtenerFechaActual(self):
         fecha_actual = date.today()
@@ -993,15 +1004,14 @@ class MyWindow(QMainWindow):
 
             com = Comunicacion()
             com.insertarVenta(ventaCarrito)
+            ultimoID = com.traerUltimoIdDeVenta()
 
             #imprimirTicket
 
-            ticket = Ticket(self.obtenerProductosCarrito(), precioTotal, self.obtenerFechaActual())
+            ticket = Ticket(self.obtenerProductosCarrito(), precioTotal, self.obtenerFechaActual(), ultimoID)
             ticket.imprimirTicket(ticket.obtenerRuta())
             # Actualizar tabla de inventario_venta :D
             # Actualizar stock en inventario :D
-            com = Comunicacion()
-            ultimoID = com.traerUltimoIdDeVenta()
             self.insertarProductosEnVentasSeparadas(com, ultimoID)
             
             # Actualizar tablas :D
